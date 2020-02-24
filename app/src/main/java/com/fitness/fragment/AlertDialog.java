@@ -40,10 +40,22 @@ public class AlertDialog extends DialogFragment {
     protected String btnYes;
     protected String btnNo;
     protected boolean capitalize = true;
+    private boolean action1 = true;
+    private boolean action2 = false;
 
     public void setTitleandContent(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+
+    public void setAction(boolean action1, boolean action2) {
+        this.action1 = action1;
+        this.action2 = action2;
+    }
+
+    public void setButton(String button1, String button2) {
+        this.btnYes = button1;
+        this.btnNo = button2;
     }
 
     public void setCapitalize(boolean capitalize){
@@ -126,12 +138,25 @@ public class AlertDialog extends DialogFragment {
             contentText.setText("---");
         }
 
+        if (action1){
+            yesBtn.setVisibility(View.VISIBLE);
+        }else{
+            yesBtn.setVisibility(View.GONE);
+        }
+
+        if (action2){
+            noBtn.setVisibility(View.VISIBLE);
+        }else{
+            noBtn.setVisibility(View.GONE);
+        }
+
         if(StringUtil.checkNullString(btnYes).trim().isEmpty() == false){
             yesBtn.setText(StringUtil.capitalizeAllString(btnYes));
         }
         else{
             yesBtn.setText("---");
         }
+
         if(StringUtil.checkNullString(btnNo).trim().isEmpty() == false){
             noBtn.setText(StringUtil.capitalizeAllString(btnNo));
         }

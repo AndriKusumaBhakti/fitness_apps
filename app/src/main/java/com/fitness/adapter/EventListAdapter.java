@@ -67,6 +67,12 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.View
                 listener.onRemove(mDataSet.get(position).getId());
             }
         });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onDetail(mDataSet.get(position));
+            }
+        });
     }
 
     @Override
@@ -76,6 +82,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.View
 
     public interface ClickListener {
         void onRemove(int posisi);
+        void onDetail(EventModel model);
     }
 
     public void removeList(int id){

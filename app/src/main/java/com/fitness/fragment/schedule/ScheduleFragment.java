@@ -288,5 +288,16 @@ public class ScheduleFragment extends BaseFragment implements OnDateSelectedList
             );
             getEventBymonth();
         }
+
+        @Override
+        public void onDetail(EventModel model) {
+            SimpleDateFormat formatter = new SimpleDateFormat(Constants.FORMAT_TANGGAL2);
+            SimpleDateFormat formatter2 = new SimpleDateFormat(Constants.FORMAT_TANGGAL);
+            Date dateStart = new Date();
+            try {
+                dateStart = formatter2.parse(model.getDateEvent());
+            }catch (Exception e){}
+            getBaseActivity().showAlertDialog(model.getNamaClass(), String.valueOf(formatter.format(dateStart))+" "+model.getJamEvent());
+        }
     }
 }

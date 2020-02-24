@@ -391,13 +391,28 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
     }
 
     public void showAlertDialog(String title, String content){
-        showAlertDialog(title,content,"OK");
+        showAlertDialog(title,content,getResources().getString(R.string.btn_ok));
     }
 
-    public void showAlertDialog(String title, String content, String btn){
+    public void showAlertDialog(String title, String content, String btn1){
         if(!isFinishing()){
             AlertDialog dialogs = new AlertDialog();
             dialogs.setTitleandContent(title, content);
+            dialogs.setAction(true, false);
+            dialogs.setButton(btn1, "");
+            dialogs.show(getFragmentManager(), DIALOG_FRAGMENT_FLAG);
+            /*FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
+            ft.add(dialogs, null);
+            ft.commitAllowingStateLoss();*/
+        }
+    }
+
+    public void showAlertDialog(String title, String content, String nameBtn1, String nameBtn2, boolean btn1, boolean btn2){
+        if(!isFinishing()){
+            AlertDialog dialogs = new AlertDialog();
+            dialogs.setTitleandContent(title, content);
+            dialogs.setAction(btn1, btn2);
+            dialogs.setButton(nameBtn1, nameBtn2);
             dialogs.show(getFragmentManager(), DIALOG_FRAGMENT_FLAG);
             /*FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
             ft.add(dialogs, null);

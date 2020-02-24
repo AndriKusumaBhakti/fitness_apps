@@ -4,37 +4,52 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/spinner_border">
-    <LinearLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/psik"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/medbooks_10dp"
-        android:orientation="vertical">
-        <com.fitness.view.TextViewBold
-            android:id="@+id/titleCard"
-            android:layout_width="wrap_content"
-            android:textSize="@dimen/medbooks_14dp"
-            android:textColor="@color/red_bar"
-            android:layout_height="wrap_content"
-            android:text="title"
-            android:layout_marginBottom="@dimen/medbooks_5dp" />
-        <com.fitness.view.TextViewRegular
-            android:id="@+id/bodyCard"
-            android:layout_width="wrap_content"
-            android:textSize="@dimen/medbooks_12dp"
-            android:textColor="@color/red_bar"
-            android:layout_marginBottom="@dimen/medbooks_5dp"
-            android:text="rasas"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:id="@+id/removeData"
-            android:layout_width="@dimen/medbooks_20dp"
-            android:layout_gravity="center|right"
-            android:layout_height="@dimen/medbooks_20dp"
-            android:layout_marginRight="@dimen/medbooks_10dp"
-            android:src="@drawable/icon_remove"/>
-    </FrameLayout>
+        android:layout_height="wrap_content"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardCornerRadius="8dp"
+        android:background="@color/greywhite">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/medbooks_10dp"
+            android:orientation="vertical">
+            <com.fitness.view.TextViewBold
+                android:id="@+id/titleCard"
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/medbooks_14dp"
+                android:textColor="@color/red_bar"
+                android:layout_height="wrap_content"
+                android:text="title"
+                android:layout_marginBottom="@dimen/medbooks_5dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/medbooks_2dp"
+                android:layout_marginRight="@dimen/medbooks_25dp"
+                android:layout_marginBottom="@dimen/medbooks_5dp"
+                android:background="@color/greywhite"/>
+            <com.fitness.view.TextViewRegular
+                android:id="@+id/bodyCard"
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/medbooks_12dp"
+                android:textColor="@color/red_bar"
+                android:layout_marginBottom="@dimen/medbooks_5dp"
+                android:text="rasas"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/removeData"
+                android:layout_width="@dimen/medbooks_20dp"
+                android:layout_gravity="center|right"
+                android:layout_height="@dimen/medbooks_20dp"
+                android:layout_marginRight="@dimen/medbooks_10dp"
+                android:src="@drawable/icon_remove"/>
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
 </FrameLayout>
