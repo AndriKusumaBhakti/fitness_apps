@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/login_page_main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="56dp">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="30dp">
+
+                    <FrameLayout
+                        android:id="@+id/countries"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@+id/frameLayout">
+
+                        <com.fitness.view.TextViewSemiBold
+                            android:id="@+id/tv_country_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:textSize="@dimen/medbooks_24dp" />
+
+                        <com.fitness.view.TextViewSemiBold
+                            android:id="@+id/tv_country_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/medbooks_24dp"
+                            android:layout_gravity="center_vertical"/>
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="85dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/temperature_background"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/frameLayout">
+
+                        <TextSwitcher
+                            android:id="@+id/ts_temperature"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"/>
+
+                    </FrameLayout>
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="210dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginStart="@dimen/medbooks_9dp"
+                    android:clipChildren="false"
+                    android:overScrollMode="never"
+                    app:layoutManager="com.ramotion.cardslider.CardSliderLayoutManager"
+                    app:viewUpdater="com.fitness.adapter.CardsUpdater"/>
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp">
+
+                            <ImageView
+                                android:layout_width="@dimen/medbooks_10dp"
+                                android:layout_height="@dimen/medbooks_10dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="30dp"
+                                android:src="@drawable/red_dot_small"
+                                android:alpha="0.8"
+                                android:scaleType="fitCenter"/>
+
+                            <TextSwitcher
+                                android:id="@+id/ts_place"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/medbooks_60dp"/>
+
+                        </FrameLayout>
+
+                        <RelativeLayout
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:animateLayoutChanges="true">
+
+                            <TextSwitcher
+                                android:id="@+id/ts_description"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/medbooks_60dp"
+                                android:layout_marginEnd="10dp"/>
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="@dimen/medbooks_10dp"
+                                android:layout_below="@id/ts_description">
+
+                                <ImageView
+                                    android:layout_width="@dimen/medbooks_20dp"
+                                    android:layout_height="@dimen/medbooks_20dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="30dp"
+                                    android:src="@drawable/icon_clock_red"
+                                    android:scaleType="fitCenter"/>
+
+                                <TextSwitcher
+                                    android:id="@+id/ts_clock"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/medbooks_60dp"/>
+
+                            </FrameLayout>
+                        </RelativeLayout>
+                        <LinearLayout
+                            android:id="@+id/view_map"
+                            android:layout_marginTop="@dimen/medbooks_10dp"
+                            android:visibility="visible"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <fragment
+                                android:id="@+id/map_fitness"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/medbooks_250dp"
+                                class="com.google.android.gms.maps.SupportMapFragment"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

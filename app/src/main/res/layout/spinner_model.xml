@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/spinner_border"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner_border"
+        android:orientation="vertical">
+
+        <com.fitness.view.TextViewRegular
+            android:id="@+id/spinner_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="1dp"
+            android:text=""
+            android:textSize="@dimen/medbooks_12dp"
+            android:textColor="@color/red_bar"/>
+
+        <RelativeLayout
+            android:id="@+id/spinner_main_layout"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:minHeight="43dp"
+            android:layout_marginTop="-8dp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/drop_down_icn_1"
+                android:layout_width="@dimen/medbooks_25dp"
+                android:layout_height="@dimen/medbooks_25dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/icon_arrow_down_red" />
+
+            <com.fitness.view.TextViewRegular
+                android:id="@+id/spinner_text_data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/drop_down_icn_1"
+                android:gravity="center_vertical"
+                android:layout_alignParentBottom="true"
+                android:paddingBottom="5dp"
+                android:textColor="@color/red_bar"
+                android:textColorHint="@color/red_bar"
+                android:text=""
+                android:textSize="@dimen/medbooks_14dp"></com.fitness.view.TextViewRegular>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <com.fitness.view.TextViewRegular
+        android:id="@+id/spinner_label_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/medbooks_3dp"
+        android:text="Error Text"
+        android:textSize="@dimen/medbooks_12dp"
+        android:textColor="@color/red_bar_status"
+        android:visibility="gone"/>
+
+</LinearLayout>

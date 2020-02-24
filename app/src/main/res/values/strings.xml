@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">Flash Fitness</string>
+    <string name="label_app">Group Fit­ness Classes</string>
+
+    <string name="error_connection_offline">No internet connection detected. Please turn it on to access this feature</string>
+
+    <string name="error_fetching_data">There is error in system, Please try it again later...</string>
+    <string name="alert">Warning</string>
+    <string name="btn_yes">Yes</string>
+    <string name="btn_no">No</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_cancel">"Cancel"</string>
+    <string name="btn_save">"Save"</string>
+
+    <string name="please_wait">Please Wait...</string>
+    <string name="date_hint">Select a date</string>
+    <string name="choose_date">Choose Date</string>
+
+
+    <string name="label_home">News</string>
+    <string name="label_schedule">Schedule</string>
+    <string name="label_virtual">Training</string>
+    <string name="label_reward">Reward</string>
+    <string name="label_profile">Profile</string>
+
+    <integer-array name="posters">
+        <item>@drawable/gambar_1</item>
+        <item>@drawable/gambar_2</item>
+        <item>@drawable/gambar_3</item>
+        <item>@drawable/gambar_4</item>
+        <item>@drawable/gambar_5</item>
+        <item>@drawable/gambar_6</item>
+        <item>@drawable/gambar_7</item>
+        <item>@drawable/gambar_2</item>
+    </integer-array>
+
+    <string-array name="titles">
+        <item>DNA Insanity</item>
+        <item>Fast Fit</item>
+        <item>Floating Yoga</item>
+        <item>Peloton</item>
+        <item>Playground</item>
+        <item>Saltar</item>
+        <item>Strong By Zumba</item>
+        <item>Kettlebell</item>
+    </string-array>
+
+    <string-array name="overviews">
+        <item>Get crazy on the gym floor with the hottest dance club moves and party your way to a fitter you.</item>
+        <item>Get fit and go fast with bodyweight exercises and equipment to up your endurance and burn calories.</item>
+        <item>Glow with health and strength when you defy gravity in this low-impact combo of yoga and Pilates.</item>
+        <item>Feel the burn of a 3-part spin workout and explore different terrains without even leaving the gym.</item>
+        <item>Play your way to a fitter you with functional equipment and cardio exercises for all fitness levels.</item>
+        <item>Leap to the stars and strengthen your core in a low-impact trampoline workout.</item>
+        <item>Sculpt your legs and core with an intense routine that will keep you burning long after the workout.</item>
+        <item>Play your way to a fitter you with functional equipment and cardio exercises for all fitness levels.</item>
+    </string-array>
+
+
+    <string name="gps_not_active">Current Location Not Obtained, Try Turning on GPS, Exit the Room and Wait a Moment</string>
+
+    <string-array name="deskripsi">
+        <item>Calm your mind with high intensity yoga exercises and longer class duration.
+            We will challenge your abilities with a combination of more difficult movements and add experience through exploration and search.
+            You will be motivated to develop trust, potential and be open to new possibilities.
+            You will develop your perception and improve your discipline. You will feel your body stronger, healthier and more flexible.</item>
+        <item>Welcome to class with a mix of dance and music. You will dance with the latest dance choreography and new popular music.
+            It does not matter if you are not an expert or are already an expert at dancing, we have something for you in this class.
+            This exercise will make your heart beat faster and burn your calories. This exercise has been designed to keep sweating while having fun.</item>
+        <item>Concentrate your entire body in yoga practice that will improve your mind, body and life.
+            This class uses a series of simple yoga movements and there are several elements from Tai Chi and Pilates.
+            You will stretch with songs that will help you relax and calm down. Controlled breathing, concentration, and structured movement are very important to create calm.
+            This class is a class with a good method of introducing yoga. If you have done yoga before, you will like various poses in this class.
+            You will increase the strength of your core and increase your flexibility while reducing your stress levels.
+            You will feel a strong body, a sense of well-being and lasting peace after attending class</item>
+        <item>Building on the three main elements namely exercise, breathing and meditation, yoga helps unite your mind and body.
+            In this class, we will take you through a series of light stretches, postures, and poses, focusing on breathing to calm your mind.
+            This exercise can be a truly effective learning process that enables healing, transformation, and empowerment.
+            This will allow you to let go of what does not help you or use it for your personal growth.
+            You will increase flexibility, increase strength and build your muscles, as well as cardio and circulatory health.
+            Leave class with increased energy, vitality, and protection from injury</item>
+        <item>It is all about the burn with Core Ex an ab workout that is going to work on churning out a sculpted core.
+            Combining low-impact core exercises and creative modifications to keep your muscles guessing,
+            you will instantly feel the burn and be one step closer to that sexy, sculpted core.</item>
+    </string-array>
+
+    <string name="add_new_event">Add Schedule</string>
+    <string name="select_class">Select Classes</string>
+    <string name="select_clock">Select Clock</string>
+    <string name="select_date">Select Date</string>
+</resources>

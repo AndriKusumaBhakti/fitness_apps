@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/close_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/transparent_black_lv1"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/medbooks_15dp"
+        android:layout_marginRight="@dimen/medbooks_15dp"
+        android:background="@color/greywhite2"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/view_dialog_date_header_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/medbooks_65dp"
+            android:paddingTop="@dimen/medbooks_10dp"
+            android:paddingBottom="@dimen/medbooks_10dp">
+
+            <com.fitness.view.TextViewBold
+                android:id="@+id/View_dialog_date_close"
+                android:layout_width="@dimen/medbooks_40dp"
+                android:layout_height="@dimen/medbooks_40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textColor="@color/red_bar"
+                android:text="X"
+                android:textSize="@dimen/medbooks_16dp" />
+
+            <com.fitness.view.TextViewRegular
+                android:id="@+id/view_dialog_date_header_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:background="@color/transparent"
+                android:gravity="center"
+                android:padding="@dimen/medbooks_5dp"
+                android:textSize="@dimen/medbooks_18dp"
+                android:textColor="@color/red_bar"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/medbooks_1dp"
+            android:orientation="vertical"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@color/red_transparant1"></LinearLayout>
+
+        <DatePicker
+            android:id="@+id/view_dialog_date_picker"
+            android:layout_marginLeft="@dimen/medbooks_10dp"
+            android:layout_marginRight="@dimen/medbooks_10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:calendarViewShown="false"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medbooks_20dp"
+            android:background="@color/transparent"
+            android:paddingTop="@dimen/medbooks_1dp"
+            android:paddingLeft="@dimen/medbooks_10dp"
+            android:paddingRight="@dimen/medbooks_10dp"
+            android:paddingBottom="@dimen/medbooks_10dp">
+
+            <com.fitness.view.ButtonBold
+                android:id="@+id/view_dialog_date_btn_yes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@drawable/selector_btn_red"
+                android:paddingBottom="@dimen/medbooks_15dp"
+                android:paddingTop="@dimen/medbooks_15dp"
+                android:layout_marginRight="@dimen/medbooks_10dp"
+                android:text="@string/btn_ok"
+                android:textSize="@dimen/medbooks_16dp"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                style="?android:attr/borderlessButtonStyle"/>
+
+            <com.fitness.view.ButtonRegular
+                android:id="@+id/view_dialog_date_btn_no"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/medbooks_1dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/selector_btn_transparant_red"
+                android:paddingBottom="@dimen/medbooks_15dp"
+                android:paddingTop="@dimen/medbooks_15dp"
+                android:text="@string/btn_cancel"
+                android:textSize="@dimen/medbooks_16dp"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                style="?android:attr/borderlessButtonStyle"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

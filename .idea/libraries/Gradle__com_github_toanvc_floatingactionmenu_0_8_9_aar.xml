@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.toanvc:floatingactionmenu:0.8.9@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/234c6cb85cd29279ed709065e4132e92/jetified-floatingactionmenu-0.8.9/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/234c6cb85cd29279ed709065e4132e92/jetified-floatingactionmenu-0.8.9/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/234c6cb85cd29279ed709065e4132e92/jetified-floatingactionmenu-0.8.9/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.toanvc/floatingactionmenu/0.8.9/40af3a3bdae5b586e3324d699c13e389acd717e/floatingactionmenu-0.8.9-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.toanvc/floatingactionmenu/0.8.9/f0c27dda3d8a742fa1a24ce12792f1149ee57c1/floatingactionmenu-0.8.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

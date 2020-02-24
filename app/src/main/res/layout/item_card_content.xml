@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/gradient_start"
+    android:padding="12dp">
+    <com.fitness.view.TextViewBold
+        android:id="@+id/titleCard"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/medbooks_20dp"
+        android:textColor="@color/greywhite"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/medbooks_10dp" />
+
+    <ImageView
+        android:id="@+id/gambarCard"
+        android:layout_marginLeft="@dimen/medbooks_50dp"
+        android:layout_marginRight="@dimen/medbooks_50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:adjustViewBounds="true"/>
+
+    <com.fitness.view.TextViewRegular
+        android:id="@+id/ketranganCard"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/medbooks_12dp"
+        android:gravity="center"
+        android:textColor="@color/greywhite"
+        android:layout_marginTop="6dp" />
+
+</LinearLayout>

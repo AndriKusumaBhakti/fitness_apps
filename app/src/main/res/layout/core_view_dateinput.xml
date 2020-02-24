@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_border"
+            android:orientation="vertical">
+
+            <com.fitness.view.TextViewLight
+                android:id="@+id/dateinput_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey1"
+                android:textSize="@dimen/medbooks_12dp"/>
+
+            <RelativeLayout
+                android:id="@+id/coreview_dateinput_layout"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:minHeight="43dp"
+                android:layout_marginTop="-8dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                >
+
+                <com.fitness.view.TextViewRegular
+                    android:id="@+id/coreview_dateinput_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/coreview_dateinput_icon"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/grey2"
+                    android:textColorHint="@color/grey1"
+                    android:textSize="@dimen/medbooks_14dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/coreview_dateinput_icon"
+                    android:layout_width="@dimen/medbooks_25dp"
+                    android:layout_height="@dimen/medbooks_25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginLeft="@dimen/medbooks_5dp"
+                    android:layout_marginRight="@dimen/medbooks_5dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_calender" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <com.fitness.view.TextViewRegular
+            android:id="@+id/dateinput_label_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/medbooks_5dp"
+            android:text="Error Text"
+            android:textSize="@dimen/medbooks_12dp"
+            android:textColor="@color/red_bar"
+            android:visibility="visible"/>
+
+    </LinearLayout>
+
+</merge>

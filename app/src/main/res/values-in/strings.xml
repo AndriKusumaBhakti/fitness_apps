@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Flash Fitness</string>
+    <string name="label_app">Kelompok Kelas Kebugaran</string>
+
+    <string name="error_connection_offline">Tidak ada sambungan internet yang terdeteksi. Mohon menyambungkan koneksi internet untuk mengakses fitur ini</string>
+
+    <string name="error_fetching_data">Terdapat gangguan pada sistem, Harap coba lagi nanti...</string>
+    <string name="alert">"Peringatan"</string>
+    <string name="btn_yes">"Ya"</string>
+    <string name="btn_no">"Tidak"</string>
+    <string name="btn_ok">"OK"</string>
+    <string name="btn_cancel">"Batal"</string>
+    <string name="btn_save">"Simpan"</string>
+
+    <string name="please_wait">Harap Menunggu...</string>
+    <string name="date_hint">Pilih Tanggal</string>
+    <string name="choose_date">"Pilih Tanggal"</string>
+
+    <string name="label_home">Terbaru</string>
+    <string name="label_schedule">Agenda</string>
+    <string name="label_virtual">Latihan</string>
+    <string name="label_reward">Rewards</string>
+    <string name="label_profile">"Profil"</string>
+
+    <integer-array name="posters">
+        <item>@drawable/icon_home</item>
+        <item>@drawable/icon_home</item>
+        <item>@drawable/icon_home</item>
+        <item>@drawable/icon_home</item>
+        <item>@drawable/icon_home</item>
+        <item>@drawable/icon_home</item>
+        <item>@drawable/icon_home</item>
+        <item>@drawable/icon_home</item>
+    </integer-array>
+
+    <string-array name="titles">
+        <item>DNA Insanity</item>
+        <item>Fast Fit</item>
+        <item>Floating Yoga</item>
+        <item>Peloton</item>
+        <item>Playground</item>
+        <item>Saltar</item>
+        <item>Strong By Zumba</item>
+        <item>Kettlebell</item>
+    </string-array>
+
+    <string-array name="overviews">
+        <item>Get crazy on the gym floor with the hottest dance club moves and party your way to a fitter you.</item>
+        <item>Get fit and go fast with bodyweight exercises and equipment to up your endurance and burn calories.</item>
+        <item>Glow with health and strength when you defy gravity in this low-impact combo of yoga and Pilates.</item>
+        <item>Feel the burn of a 3-part spin workout and explore different terrains without even leaving the gym.</item>
+        <item>Play your way to a fitter you with functional equipment and cardio exercises for all fitness levels.</item>
+        <item>Leap to the stars and strengthen your core in a low-impact trampoline workout.</item>
+        <item>Sculpt your legs and core with an intense routine that will keep you burning long after the workout.</item>
+        <item>Play your way to a fitter you with functional equipment and cardio exercises for all fitness levels.</item>
+    </string-array>
+
+    <string name="gps_not_active">Lokasi Saat Ini Belum Didapatkan, Coba Nyalakan GPS, Keluar Ruangan dan Tunggu Beberapa Saat</string>
+
+    <string-array name="deskripsi">
+        <item>Tenangkan pikiran anda dengan latihan yoga berintensitas tinggi dan durasi kelas yang lebih lama. Kami akan menantang kemampuan anda dengan kombinasi gerakan yang lebih sulit dan menambah pengalaman melalui eksplorasi dan pencarian. Anda akan termotivasi untuk mengembangkan kepercayaan, potensi dan terbuka dengan kemungkinan-kemungkinan baru. Anda akan mengembangkan persepsi dan meningkatkan kedisiplinan anda. Anda akan merasakan tubuh anda lebih kuat, sehat dan lebih fleksibel.</item>
+        <item>Selamat datang di kelas dengan perpaduan antara tarian dan musik. Anda akan berdansa dengan koreografi dansa terbaru dan musik baru yang sedang popular. Tidak masalah jika anda tidak ahli atau sudah ahli berdansa, kami memiliki sesuatu untuk anda di kelas ini. Latihan ini akan membuat jantung anda berdetak kencang dan membakar kalori Anda. Latihan ini sudah dirancang untuk tetap mengeluarkan keringat sambil bersenang-senang.</item>
+        <item>Pusatkan seluruh tubuh anda dalam latihan yoga yang akan meningkatkan pikiran, tubuh, dan kehidupan anda. Kelas ini menggunakan serangkaian gerakan yoga sederhana dan terdapat beberapa unsur dari Tai Chi dan Pilates. Anda akan melakukan peregangan dengan lagu-lagu yang akan membantu anda bersantai dan menenangkan diri. Pernapasan yang terkontrol, konsentrasi, dan pergerakan yang terstruktur sangat penting untuk menciptakan ketenangan. Kelas ini adalah kelas dengan metode pengenalan yoga yang bagus. Jika Anda sudah pernah melakukan yoga sebelumnya, Anda akan menyukai berbagai macam pose di kelas ini. Anda akan meningkatkan kekuatan bagian inti anda dan meningkatkan fleksibilitas anda sekaligus mengurangi tingkat stres Anda. Anda akan merasakan tubuh yang kuat, rasa kesejahteraan dan ketenangan yang abadi setelah mengikuti kelas.</item>
+        <item>Membangun tiga elemen utama yaitu latihan, pernapasan dan meditasi, yoga membantu menyatukan pikiran dan tubuh Anda. Di kelas ini, kami akan membawa Anda melalui serangkaian peregangan ringan, postur, dan pose, dengan fokus pada pernapasan untuk menenangkan pikiran Anda. Latihan ini dapat menjadi proses belajar yang benar-benar efektif yang memungkinkan penyembuhan, transformasi, dan pemberdayaan. Ini akan memungkinkan Anda untuk melepaskan apa yang tidak membantu Anda atau menggunakannya untuk pertumbuhan pribadi Anda. Anda akan meningkatkan fleksibilitas, meningkatkan kekuatan dan membentuk otot Anda, serta kesehatan kardio dan peredaran darah. Tinggalkan kelas dengan bertambahnya energi, vitalitas, dan perlindungan dari cedera</item>
+        <item>Ini semua tentang pembakaran dengan Core Ex - latihan ab yang akan bekerja pada mengaduk inti yang terpahat. Menggabungkan latihan inti berdampak rendah dan modifikasi kreatif untuk membuat otot Anda menebak-nebak, Anda akan langsung merasakan luka bakar dan menjadi selangkah lebih dekat ke inti yang seksi dan terpahat itu.</item>
+    </string-array>
+
+    <string name="add_new_event">Tambah Agenda</string>
+    <string name="select_class">Pilih Kelas</string>
+    <string name="select_clock">Pilih Jam</string>
+    <string name="select_date">Pilih Tanggal</string>
+</resources>

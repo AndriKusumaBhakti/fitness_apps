@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/greywhite2">
+
+    <com.fitness.view.TextViewLight
+        android:id="@+id/loading_dialog_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="x"
+        android:textSize="@dimen/medbooks_22dp"
+        android:padding="10dp"
+        android:textColor="@color/red_bar"
+        android:layout_alignParentRight="true"
+        android:paddingTop="@dimen/medbooks_5dp"
+        android:paddingRight="@dimen/medbooks_10dp"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:isScrollContainer="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="@dimen/medbooks_50dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/medbooks_5dp"
+                    android:paddingBottom="@dimen/medbooks_5dp"
+                    android:src="@drawable/icon_flash_fitness"/>
+                <com.fitness.view.TextViewRegular
+                    android:id="@+id/loading_dialog_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="@color/red_bar"
+                    android:textSize="18sp"
+                    android:text="@string/app_name" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="vertical"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@color/red_bar_status"
+        ></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ProgressBar
+                android:id="@+id/loading_dialog_progress"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/red_bar"/>
+
+            <com.fitness.view.TextViewLight
+                android:id="@+id/loading_dialog_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:gravity="center"
+                android:text="@string/please_wait"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/loading_buttons"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginBottom="@dimen/medbooks_20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp">
+
+
+            <com.fitness.view.ButtonRegular
+                android:id="@+id/loading_button_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/selector_btn_red"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:text="@string/btn_yes"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                style="?android:attr/borderlessButtonStyle"
+                android:visibility="gone"/>
+
+            <com.fitness.view.ButtonRegular
+                android:id="@+id/loading_button_right"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/selector_btn_red"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:textAllCaps="false"
+                android:text="@string/btn_no"
+                android:textColor="@color/white"
+                style="?android:attr/borderlessButtonStyle"
+                android:visibility="gone"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
