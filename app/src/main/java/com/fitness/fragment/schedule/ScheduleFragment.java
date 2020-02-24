@@ -53,6 +53,7 @@ public class ScheduleFragment extends BaseFragment implements OnDateSelectedList
     private View transparentBlackBG;
 
     SimpleDateFormat sdfMonth = new SimpleDateFormat("M");
+    SimpleDateFormat sdfDay = new SimpleDateFormat("dd");
     SimpleDateFormat sdfYear = new SimpleDateFormat("yyyy");
 
     private RecyclerView list_data;
@@ -104,8 +105,10 @@ public class ScheduleFragment extends BaseFragment implements OnDateSelectedList
         currentYear = Integer.valueOf(sdfYear.format(calendarView.getCurrentDate().getDate()));
 
         CalendarDay day = CalendarDay.from(currentYear, currentMonth, 1);
+        CalendarDay day2 = CalendarDay.from(currentYear, currentMonth+1, Integer.valueOf(sdfDay.format(new Date())));
         reloadCalendarView(day);
-        getData(day);
+        getData(day2);
+        APP.log("Date : "+day2);
         getEventBymonth();
     }
 
@@ -190,6 +193,7 @@ public class ScheduleFragment extends BaseFragment implements OnDateSelectedList
 
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+        APP.log("Date : "+date);
         getData(date);
     }
 
@@ -207,6 +211,7 @@ public class ScheduleFragment extends BaseFragment implements OnDateSelectedList
     public void onResume() {
         super.onResume();
         DashboardActivity.instance.showBottomMenu();
+        dashboardAction.collapse();
     }
 
     private void getEventBymonth(){
@@ -269,6 +274,7 @@ public class ScheduleFragment extends BaseFragment implements OnDateSelectedList
         public void onRemove(int posisi) {
             APP.log("id : "+posisi);
             event.deleteAllReminder(posisi);
+            adapter.removeList(posisi);
             calendarView.invalidate();
             calendarView.removeDecorators();
             calendarView.state().edit()
@@ -281,8 +287,6 @@ public class ScheduleFragment extends BaseFragment implements OnDateSelectedList
                     new OneDayDecorator()
             );
             getEventBymonth();
-            CalendarDay day = CalendarDay.from(currentYear, currentMonth, 1);
-            getData(day);
         }
     }
 }

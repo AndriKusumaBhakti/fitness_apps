@@ -77,4 +77,15 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.View
     public interface ClickListener {
         void onRemove(int posisi);
     }
+
+    public void removeList(int id){
+        if (mDataSet.size()>0){
+            for (int i=0; i<mDataSet.size(); i++){
+                if (mDataSet.get(i).getId() == id){
+                    mDataSet.remove(i);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
 }
