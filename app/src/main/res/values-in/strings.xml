@@ -7,12 +7,13 @@
     <string name="error_connection_offline">Tidak ada sambungan internet yang terdeteksi. Mohon menyambungkan koneksi internet untuk mengakses fitur ini</string>
 
     <string name="error_fetching_data">Terdapat gangguan pada sistem, Harap coba lagi nanti...</string>
-    <string name="alert">"Peringatan"</string>
-    <string name="btn_yes">"Ya"</string>
-    <string name="btn_no">"Tidak"</string>
-    <string name="btn_ok">"OK"</string>
-    <string name="btn_cancel">"Batal"</string>
-    <string name="btn_save">"Simpan"</string>
+    <string name="alert">Peringatan</string>
+    <string name="btn_yes">Ya</string>
+    <string name="btn_no">Tidak</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_cancel">Batal</string>
+    <string name="btn_save">Simpan</string>
+    <string name="btn_apply">Terapkan</string>
 
     <string name="please_wait">Harap Menunggu...</string>
     <string name="date_hint">Pilih Tanggal</string>
@@ -79,7 +80,9 @@
 
     <string name="add_new_event">Tambah Agenda</string>
     <string name="select_class">Pilih Kelas</string>
+    <string name="select_branch">Select Cabang</string>
     <string name="select_clock">Pilih Jam</string>
     <string name="select_date">Pilih Tanggal</string>
     <string name="label_cabang">Nama Cabang</string>
+    <string name="label_location">Lokasi</string>
 </resources>

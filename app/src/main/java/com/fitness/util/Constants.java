@@ -13,6 +13,9 @@ public class Constants {
     public final static int REQUEST_CODE_ASK_PERMISSIONS_CAMERA = 99;
     public final static int REQUEST_CODE_ASK_PERMISSIONS_STORAGE = 98;
 
+    final public static String labelName = "PhotoPath";
+    final public static String posisi = "0";
+
     public static final String EXTRA_CUSTOM_TABS_SESSION = "android.support.customtabs.extra.SESSION";
     public static final String EXTRA_CUSTOM_TABS_TOOLBAR_COLOR = "android.support.customtabs.extra.TOOLBAR_COLOR";
     public static final String EXTRA_CUSTOM_TABS_EXIT_ANIMATION_BUNDLE = "android.support.customtabs.extra.EXIT_ANIMATION_BUNDLE";

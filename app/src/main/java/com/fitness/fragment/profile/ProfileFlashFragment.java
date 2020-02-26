@@ -16,6 +16,7 @@ import com.fitness.base.OnActionbarListener;
 import com.fitness.database.DBClub;
 import com.fitness.entities.ClubEntity;
 import com.fitness.fragment.BaseFragment;
+import com.fitness.util.Constants;
 import com.fitness.view.TextViewLight;
 import com.fitness.view.TextViewRegular;
 
@@ -93,19 +94,19 @@ public class ProfileFlashFragment extends BaseFragment {
             if (position == 0){
                 FlashFitnessFragment fragment = new FlashFitnessFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("label_bar", nameLabel);
+                bundle.putString(Constants.labelName, nameLabel);
                 fragment.setArguments(bundle);
                 dashboard.pushFragmentDashboard(fragment);
             }else if (position == 1){
                 FlashFitnessFragment fragment = new FlashFitnessFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("label_bar", nameLabel);
+                bundle.putString(Constants.labelName, nameLabel);
                 fragment.setArguments(bundle);
                 dashboard.pushFragmentDashboard(fragment);
             }else if (position == 2){
                 FlashFitnessFragment fragment = new FlashFitnessFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("label_bar", nameLabel);
+                bundle.putString(Constants.labelName, nameLabel);
                 fragment.setArguments(bundle);
                 dashboard.pushFragmentDashboard(fragment);
             }else if (position == 3){

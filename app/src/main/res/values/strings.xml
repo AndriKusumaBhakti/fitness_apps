@@ -9,8 +9,9 @@
     <string name="btn_yes">Yes</string>
     <string name="btn_no">No</string>
     <string name="btn_ok">OK</string>
-    <string name="btn_cancel">"Cancel"</string>
-    <string name="btn_save">"Save"</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_apply">Apply</string>
 
     <string name="please_wait">Please Wait...</string>
     <string name="date_hint">Select a date</string>
@@ -96,7 +97,9 @@
 
     <string name="add_new_event">Add Schedule</string>
     <string name="select_class">Select Classes</string>
+    <string name="select_branch">Select Branch</string>
     <string name="select_clock">Select Clock</string>
     <string name="select_date">Select Date</string>
     <string name="label_cabang">Branch Name</string>
+    <string name="label_location">Location</string>
 </resources>

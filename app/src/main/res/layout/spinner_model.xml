@@ -30,7 +30,7 @@
 
             <ImageView
                 android:id="@+id/drop_down_icn_1"
-                android:layout_width="@dimen/medbooks_25dp"
+                android:layout_width="@dimen/medbooks_20dp"
                 android:layout_height="@dimen/medbooks_25dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
