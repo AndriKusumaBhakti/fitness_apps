@@ -24,9 +24,16 @@ import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fitness.R;
+import com.fitness.activity.DashboardActivity;
 import com.fitness.adapter.SliderAdapter;
 import com.fitness.aplication.APP;
 import com.fitness.base.OnActionbarListener;
+import com.fitness.database.DBClass;
+import com.fitness.database.DBClub;
+import com.fitness.database.DBEventClub;
+import com.fitness.entities.ClassEntity;
+import com.fitness.entities.ClubEntity;
+import com.fitness.entities.EventClubEntity;
 import com.fitness.fragment.BaseFragment;
 import com.fitness.model.ModelMaps;
 import com.fitness.util.DecodeBitmapTask;
@@ -43,6 +50,9 @@ import com.ramotion.cardslider.CardSliderLayoutManager;
 import com.ramotion.cardslider.CardSnapHelper;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 public class HomeFragment extends BaseFragment  implements OnMapReadyCallback {
@@ -53,16 +63,17 @@ public class HomeFragment extends BaseFragment  implements OnMapReadyCallback {
 
     //card image slider
     private final int[][] dotCoords = new int[5][2];
-    private final int[] pics = {R.drawable.advance_class, R.drawable.bodyjam_classes, R.drawable.classes_body_balance, R.drawable.classes_yoga, R.drawable.coreex_classes};
-    private String[] descriptions;
-    private final String[] places = {"Bangkalan", "Kediri", "Blitar", "Sumenep", "Sidoarjo"};
-    private final String[] countries = {"Advance Classes", "Body Jam Classes", "Classes Body Balance", "Classes Yoga", "Coreex Classes"};
-    private final String[] temperatures = {"60MINS", "45MINS", "60MINS", "30MINS", "60MINS"};
-    private final String[] times = {"Aug 1 - Dec 15    7:00-18:00", "Sep 5 - Nov 10    8:00-16:00", "Mar 8 - May 21    7:00-18:00", "Mar 8 - May 21    7:00-18:00", "Aug 1 - Dec 15    7:00-18:00"};
-    private final String[] longit = {"112.7450068", "112.032356", "112.162762", "113.9060624", "112.7173389"};
-    private final String[] latit = {"-7.0306912", " -7.809356", "-8.1014419", "-6.9253999", " -7.4530278"};
+    private String[] pics;
+    /*private String[] descriptions;*/
+    private String[] hari;
+//    private final String[] places = {"Bangkalan", "Kediri", "Blitar", "Sumenep", "Sidoarjo"};
+//    private final String[] countries = {"Advance Classes", "Body Jam Classes", "Classes Body Balance", "Classes Yoga", "Coreex Classes"};
+//    private final String[] temperatures = {"60MINS", "45MINS", "60MINS", "30MINS", "60MINS"};
+//    private final String[] times = {"Aug 1 - Dec 15    7:00-18:00", "Sep 5 - Nov 10    8:00-16:00", "Mar 8 - May 21    7:00-18:00", "Mar 8 - May 21    7:00-18:00", "Aug 1 - Dec 15    7:00-18:00"};
+    /*private final String[] longit = {"112.7450068", "112.032356", "112.162762", "113.9060624", "112.7173389"};
+    private final String[] latit = {"-7.0306912", " -7.809356", "-8.1014419", "-6.9253999", " -7.4530278"};*/
 
-    private final SliderAdapter sliderAdapter = new SliderAdapter(pics, 5, new OnCardClickListener());
+    private SliderAdapter sliderAdapter;
 
     private CardSliderLayoutManager layoutManger;
     private RecyclerView recyclerView;
@@ -83,6 +94,15 @@ public class HomeFragment extends BaseFragment  implements OnMapReadyCallback {
     private GoogleMap myMap;
     private ArrayList<ModelMaps> dataMaps;
 
+    private DBClub dbClub;
+    private DBClass dbClass;
+    private DBEventClub dbEventClub;
+    private List<EventClubEntity> listEntity;
+    private Date currentTime;
+    private String searchHari = "Senin";
+    private ClubEntity entitiClub;
+    private ClassEntity entitiClass;
+
     public HomeFragment() {}
 
     public static HomeFragment newInstance() {
@@ -101,38 +121,75 @@ public class HomeFragment extends BaseFragment  implements OnMapReadyCallback {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dbClub = new DBClub(getBaseActivity());
+        dbClass = new DBClass(getBaseActivity());
+        dbEventClub = new DBEventClub(getBaseActivity());
+        listEntity = new ArrayList<>();
+        dataMaps = new ArrayList<>();
+        entitiClub = new ClubEntity();
+        entitiClass = new ClassEntity();
     }
 
     @Override
     public void initView(View view) {
-        descriptions = getResources().getStringArray(R.array.deskripsi);
-        dataMaps = new ArrayList<>();
-        for (int i = 0; i<5; i++){
-            ModelMaps model = new ModelMaps();
-            model.setLatitudeFit(latit[i]);
-            model.setLongitudeFit(longit[i]);
-            model.setName(countries[i]);
-            dataMaps.add(model);
-        }
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        recyclerView.setAdapter(sliderAdapter);
-        recyclerView.setHasFixedSize(true);
-
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    onActiveCardChange();
-                }
+        currentTime = Calendar.getInstance().getTime();
+        hari = getResources().getStringArray(R.array.hari);
+        for (int i = 0; i<hari.length; i++){
+            if (i == currentTime.getDay() - 1){
+                searchHari = hari[i];
             }
-        });
+        }
+        APP.log("searchHari : "+searchHari);
+        listEntity = dbEventClub.getAllDay(String.valueOf(currentTime.getDay()));
+        if (listEntity.size()>0) {
+            for (int i = 0; i < listEntity.size(); i++) {
+                ModelMaps model = new ModelMaps();
+                //get data club untuk maps di now
+                entitiClub = dbClub.getByIdCLub(listEntity.get(i).getIdClub());
+                if (entitiClub != null){
+                    model.setLatitudeFit(entitiClub.getLatitude());
+                    model.setLongitudeFit(entitiClub.getLongitude());
+                    model.setName(entitiClub.getNamaClub());
+                    model.setLokasi(entitiClub.getLokasi());
+                }
+                //get data class now
+                entitiClass = dbClass.getById(listEntity.get(i).getIdClass());
+                if (entitiClass != null){
+                    model.setNamaEvent(entitiClass.getNamaClass());
+                    model.setDeskripsi(entitiClass.getDeskripsi());
+                    model.setImage(entitiClass.getImage());
+                }
+                //get data event club now
+                model.setId(String.valueOf(listEntity.get(i).getId()));
+                model.setDurasi(listEntity.get(i).getDurasi());
+                model.setJamStart(listEntity.get(i).getJamStart());
+                model.setJamEnd(listEntity.get(i).getJamEnd());
+                model.setPelatih(listEntity.get(i).getPelatih());
+                model.setHari(listEntity.get(i).getHari());
+                dataMaps.add(model);
+            }
 
-        layoutManger = (CardSliderLayoutManager) recyclerView.getLayoutManager();
+            recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+            sliderAdapter = new SliderAdapter(getBaseActivity(), dataMaps, dataMaps.size() - 1, new OnCardClickListener());
+            recyclerView.setAdapter(sliderAdapter);
+            recyclerView.setHasFixedSize(true);
 
-        new CardSnapHelper().attachToRecyclerView(recyclerView);
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        onActiveCardChange();
+                    }
+                }
+            });
 
-        initCountryText(view);
-        initSwitchers(view);
+            layoutManger = (CardSliderLayoutManager) recyclerView.getLayoutManager();
+
+            new CardSnapHelper().attachToRecyclerView(recyclerView);
+
+            initCountryText(view);
+            initSwitchers(view);
+        }
     }
 
     @Override
@@ -161,7 +218,9 @@ public class HomeFragment extends BaseFragment  implements OnMapReadyCallback {
         getBaseActivity().setRightIcon2(0);
         getBaseActivity().setRightIcon(0);
         getBaseActivity().showDisplayLogoTitle(false);
-        getBaseActivity().changeHomeToolbarBackground(true);
+        getBaseActivity().changeHomeToolbarBackground(false);
+        getBaseActivity().setBarView(false);
+        DashboardActivity.instance.setBarView(false);
     }
 
     @Override
@@ -182,13 +241,14 @@ public class HomeFragment extends BaseFragment  implements OnMapReadyCallback {
 
     private void tampilMaps(int position){
         APP.log("data : "+dataMaps.size());
+        myMap.clear();
         Double lat = Double.parseDouble(dataMaps.get(position).getLatitudeFit());
         Double longi = Double.parseDouble(dataMaps.get(position).getLongitudeFit());
         LatLng lldoctor = new LatLng(lat, longi);
         MarkerOptions markerDoctor = new MarkerOptions();
         markerDoctor.position(lldoctor);
         markerDoctor.title(String.valueOf(dataMaps.get(position).getName()));
-        markerDoctor.snippet(String.valueOf(dataMaps.get(position).getName()));
+        markerDoctor.snippet(String.valueOf(dataMaps.get(position).getLokasi()));
         markerDoctor.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
         myMap.addMarker(markerDoctor);
 
@@ -274,21 +334,21 @@ public class HomeFragment extends BaseFragment  implements OnMapReadyCallback {
             animV[1] = R.anim.slide_out_top;
         }
 
-        setCountryText(countries[pos % countries.length], left2right);
+        setCountryText(dataMaps.get(pos).getNamaEvent(), left2right);
 
         temperatureSwitcher.setInAnimation(getBaseActivity(), animH[0]);
         temperatureSwitcher.setOutAnimation(getBaseActivity(), animH[1]);
-        temperatureSwitcher.setText(temperatures[pos % temperatures.length]);
+        temperatureSwitcher.setText(dataMaps.get(pos).getDurasi());
 
         placeSwitcher.setInAnimation(getBaseActivity(), animV[0]);
         placeSwitcher.setOutAnimation(getBaseActivity(), animV[1]);
-        placeSwitcher.setText(places[pos % places.length]);
+        placeSwitcher.setText(dataMaps.get(pos).getPelatih());
 
         clockSwitcher.setInAnimation(getBaseActivity(), animV[0]);
         clockSwitcher.setOutAnimation(getBaseActivity(), animV[1]);
-        clockSwitcher.setText(times[pos % times.length]);
+        clockSwitcher.setText(searchHari+", "+dataMaps.get(pos).getJamStart()+" - "+dataMaps.get(pos).getJamEnd());
 
-        descriptionsSwitcher.setText(descriptions[pos % descriptions.length]);
+        descriptionsSwitcher.setText(dataMaps.get(pos).getDeskripsi());
 
         tampilMaps(pos);
 
@@ -342,7 +402,7 @@ public class HomeFragment extends BaseFragment  implements OnMapReadyCallback {
 
         country1TextView.setX(countryOffset1);
         country2TextView.setX(countryOffset2);
-        country1TextView.setText(countries[0]);
+        country1TextView.setText(dataMaps.get(0).getNamaEvent());
         country2TextView.setAlpha(0f);
 
         country1TextView.setTypeface(Typeface.createFromAsset(getBaseActivity().getAssets(), "ProximaNova-Bold.otf"));
@@ -352,21 +412,21 @@ public class HomeFragment extends BaseFragment  implements OnMapReadyCallback {
     private void initSwitchers(View view) {
         temperatureSwitcher = (TextSwitcher) view.findViewById(R.id.ts_temperature);
         temperatureSwitcher.setFactory(new TextViewFactory(R.style.TemperatureTextView, true));
-        temperatureSwitcher.setCurrentText(temperatures[0]);
+        temperatureSwitcher.setCurrentText(dataMaps.get(0).getDurasi());
 
         placeSwitcher = (TextSwitcher) view.findViewById(R.id.ts_place);
         placeSwitcher.setFactory(new TextViewFactory(R.style.PlaceTextView, false));
-        placeSwitcher.setCurrentText(places[0]);
+        placeSwitcher.setCurrentText(dataMaps.get(0).getPelatih());
 
         clockSwitcher = (TextSwitcher) view.findViewById(R.id.ts_clock);
         clockSwitcher.setFactory(new TextViewFactory(R.style.ClockTextView, false));
-        clockSwitcher.setCurrentText(times[0]);
+        clockSwitcher.setCurrentText(searchHari+", "+dataMaps.get(0).getJamStart()+" - "+dataMaps.get(0).getJamEnd());
 
         descriptionsSwitcher = (TextSwitcher) view.findViewById(R.id.ts_description);
         descriptionsSwitcher.setInAnimation(getBaseActivity(), android.R.anim.fade_in);
         descriptionsSwitcher.setOutAnimation(getBaseActivity(), android.R.anim.fade_out);
         descriptionsSwitcher.setFactory(new TextViewFactory(R.style.DescriptionTextView, false));
-        descriptionsSwitcher.setCurrentText(descriptions[0]);
+        descriptionsSwitcher.setCurrentText(dataMaps.get(0).getDeskripsi());
 
         supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fitness);
         supportMapFragment.getMapAsync(this);

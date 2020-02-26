@@ -12,7 +12,7 @@
         <RelativeLayout
             android:id="@+id/toolbar_background"
             android:layout_width="match_parent"
-            android:background="@color/red_bar"
+            android:background="@color/red_bar_status"
             android:layout_height="?attr/actionBarSize" >
 
             <LinearLayout

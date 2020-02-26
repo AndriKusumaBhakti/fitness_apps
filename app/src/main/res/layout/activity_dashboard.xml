@@ -11,6 +11,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
+        android:visibility="visible"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
         <androidx.appcompat.widget.Toolbar
@@ -18,17 +19,26 @@
             android:layout_height="@dimen/medbooks_52dp"
             android:layout_width="match_parent"
             android:minHeight="?attr/actionBarSize"
-            android:background="@color/red_bar" />
+            android:background="@color/red_bar_status" />
 
     </com.google.android.material.appbar.AppBarLayout>
-
-    <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
-        android:id="@+id/bottom_navigation"
+    <androidx.cardview.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        card_view:cardUseCompatPadding="true"
         android:layout_gravity="bottom"
-        app:selectedBackgroundVisible="false"/>
-
+        android:id="@+id/cardMenuBottom"
+        card_view:cardBackgroundColor="@color/greywhite"
+        card_view:cardCornerRadius="@dimen/medbooks_10dp"
+        card_view:contentPadding="@dimen/medbooks_2dp">
+        <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:selectedBackgroundVisible="false"/>
+    </androidx.cardview.widget.CardView>
     <RelativeLayout
         android:id="@+id/container"
         android:layout_width="match_parent"

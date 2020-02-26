@@ -3,8 +3,8 @@ package com.fitness.database;
 import android.content.Context;
 
 import com.fitness.aplication.DBHelper;
-import com.fitness.entities.LanguageEntity;
-import com.fitness.model.Language;
+import com.fitness.entities.ClassEntity;
+import com.fitness.model.ClassModel;
 import com.fitness.util.Constants;
 import com.fitness.util.StringUtil;
 import com.j256.ormlite.dao.Dao;
@@ -15,15 +15,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBLanguage {
+public class DBClass {
     private Context ctx;
     String tag = null;
     private static DBHelper dbHelper;
-    protected Dao<LanguageEntity, ?> dao;
+    protected Dao<ClassEntity, ?> dao;
 
     SimpleDateFormat sdfTimeZone = new SimpleDateFormat(Constants.FORMAT_ISO);
 
-    public DBLanguage(Context ctx) {
+    public DBClass(Context ctx) {
         // TODO Auto-generated constructor stub
         this.ctx = ctx;
 
@@ -33,7 +33,7 @@ public class DBLanguage {
 
         try {
             if (dao == null) {
-                dao = (Dao<LanguageEntity, ?>) dbHelper.getDao(LanguageEntity.class);
+                dao = (Dao<ClassEntity, ?>) dbHelper.getDao(ClassEntity.class);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -41,63 +41,26 @@ public class DBLanguage {
 
     }
 
-    public void parseLanguage(Language response) {
-        LanguageEntity entity = this.getLanguageById(response.getId());
+    public void parseClub(ClassModel response) {
+        ClassEntity entity = this.getById(response.getId());
 
         if (entity == null) {
-            entity = new LanguageEntity();
+            entity = new ClassEntity();
             entity.setId(response.getId());
         }
 
         entity.setIsDeleted(false);
-        entity.setLanguage(StringUtil.checkNullString(response.getLanguage()));
+        entity.setNamaClass(StringUtil.checkNullString(response.getNamaClass()));
+        entity.setDeskripsi(StringUtil.checkNullString(response.getDeskripsi()));
+        entity.setImage(StringUtil.checkNullString(response.getImage()));
+
         this.upsertToDatabase(entity);
     }
 
-    private void upsertToDatabase(LanguageEntity artikel) {
+    public ClassEntity getById(int id) {
+        List<ClassEntity> data = new ArrayList<ClassEntity>();
         try {
-            dao.createOrUpdate(artikel);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void saveToDatabase(LanguageEntity artikel) {
-        try {
-            dao.createIfNotExists(artikel);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void deleteLanguageData(LanguageEntity artikel) {
-        try {
-            dao.delete(artikel);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void safeDeleteLanguage(int languageId) {
-        LanguageEntity artikel = getLanguageById(languageId);
-        artikel.setIsDeleted(true);
-        upsertToDatabase(artikel);
-    }
-
-    public void softDelete(LanguageEntity artikel) {
-        try {
-            artikel.setIsDeleted(true);
-            dao.update(artikel);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public LanguageEntity getLanguageById(int id) {
-        List<LanguageEntity> data = new ArrayList<LanguageEntity>();
-        try {
-            data = dao.queryBuilder().where().eq(LanguageEntity.ID, id).query();
+            data = dao.queryBuilder().where().eq(ClassEntity.ID, id).query();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -107,11 +70,56 @@ public class DBLanguage {
         return null;
     }
 
-    public List<LanguageEntity> getAllLanguage() {
-        List<LanguageEntity> data = new ArrayList<LanguageEntity>();
+    private void upsertToDatabase(ClassEntity artikel) {
         try {
-            QueryBuilder<LanguageEntity, ?> queryBuilder = dao.queryBuilder();
-            queryBuilder.orderBy(LanguageEntity.LANGUAGE, true);
+            dao.createOrUpdate(artikel);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveToDatabase(ClassEntity artikel) {
+        try {
+            dao.createIfNotExists(artikel);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void safeDeleteLanguage(int id) {
+        ClassEntity artikel = getById(id);
+        artikel.setIsDeleted(true);
+        upsertToDatabase(artikel);
+    }
+
+    public void softDelete(ClassEntity artikel) {
+        try {
+            artikel.setIsDeleted(true);
+            dao.update(artikel);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ClassEntity getData(int id) {
+        List<ClassEntity> data = new ArrayList<ClassEntity>();
+        try {
+            data = dao.queryBuilder().where().eq(ClassEntity.ID, id).query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if(data.size()>0){
+            return data.get(0);
+        }
+        return null;
+    }
+
+    public List<ClassEntity> getAll() {
+        List<ClassEntity> data = new ArrayList<ClassEntity>();
+        try {
+            QueryBuilder<ClassEntity, ?> queryBuilder = dao.queryBuilder();
+            queryBuilder.orderBy(ClassEntity.ID, true);
             data = queryBuilder.query();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -119,7 +127,7 @@ public class DBLanguage {
         return data;
     }
 
-    public void deleteLanguage(LanguageEntity entity){
+    public void deleteData(ClassEntity entity){
         try {
             dao.delete(entity);
         } catch (SQLException e) {
@@ -129,7 +137,7 @@ public class DBLanguage {
 
     public void deleteAllReminder(int Id){
 
-        List<LanguageEntity> data = new ArrayList<LanguageEntity>();
+        List<ClassEntity> data = new ArrayList<ClassEntity>();
         try {
             data = dao.queryForAll();
         } catch (SQLException e) {
@@ -137,19 +145,24 @@ public class DBLanguage {
         }
 
         if(data != null && data.size()>0){
-            for(LanguageEntity entity:data) {
+            for(ClassEntity entity:data) {
                 if(entity.getId() == Id){
-                    deleteLanguage(entity);
+                    deleteData(entity);
                 }
             }
         }
     }
 
-    public void updateMaxHeartrate(String language) {
-        LanguageEntity entity = getLanguageById(1);
-        if(entity != null){
-            entity.setLanguage(language);
-            upsertToDatabase(entity);
+    public int getAllData(){
+        List<ClassEntity> data = new ArrayList<ClassEntity>();
+        try {
+            data = dao.queryForAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        if (data.size()>0){
+            return data.size();
+        }
+        return 0;
     }
 }

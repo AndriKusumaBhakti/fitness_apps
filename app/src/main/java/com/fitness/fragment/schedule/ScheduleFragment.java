@@ -101,6 +101,11 @@ public class ScheduleFragment extends BaseFragment implements OnDateSelectedList
                 new OneDayDecorator()
         );
 
+        /*Date currentTime = Calendar.getInstance().getTime();
+        APP.log(""+currentTime.getDay());
+        APP.log(""+currentTime.getHours());
+        APP.log(""+currentTime.getMonth());*/
+
         currentMonth = Integer.valueOf(sdfMonth.format(calendarView.getCurrentDate().getDate())) - 2;
         currentYear = Integer.valueOf(sdfYear.format(calendarView.getCurrentDate().getDate()));
 

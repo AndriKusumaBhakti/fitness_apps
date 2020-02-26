@@ -6,12 +6,15 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.fitness.R;
 import com.fitness.fragment.BaseFragment;
+import com.fitness.fragment.faq.FaqFragment;
 import com.fitness.fragment.home.HomeFragment;
+import com.fitness.fragment.profile.ProfileFlashFragment;
 import com.fitness.fragment.profile.ProfileFragment;
 import com.fitness.fragment.reward.RewardFragment;
 import com.fitness.fragment.schedule.ScheduleFragment;
@@ -22,6 +25,7 @@ import java.lang.ref.WeakReference;
 public class DashboardActivity extends BaseActivity{
     private Toolbar toolbar;
     private AHBottomNavigation bottomNavigation;
+    private CardView cardMenuBottom;
 
     public static DashboardActivity instance;
     private int currentSelectedTab;
@@ -38,6 +42,7 @@ public class DashboardActivity extends BaseActivity{
     public void initView() {
         toolbar = (Toolbar) findViewById(R.id.mainToolbar);
         bottomNavigation= (AHBottomNavigation) findViewById(R.id.bottom_navigation);
+        cardMenuBottom = (CardView) findViewById(R.id.cardMenuBottom);
         setSupportActionBar(toolbar);
 
         this.createNavigationItems();
@@ -48,16 +53,14 @@ public class DashboardActivity extends BaseActivity{
      private void createNavigationItems() {
 
          AHBottomNavigationItem news = new AHBottomNavigationItem(getResources().getString(R.string.label_home), R.drawable.icon_home);
-         AHBottomNavigationItem schedule = new AHBottomNavigationItem(getResources().getString(R.string.label_schedule), R.drawable.icon_calender);
+         AHBottomNavigationItem schedule = new AHBottomNavigationItem(getResources().getString(R.string.label_flash), R.drawable.icon_flash);
          AHBottomNavigationItem latihan=new AHBottomNavigationItem(getResources().getString(R.string.label_virtual), R.drawable.icon_latihan);
-         AHBottomNavigationItem reward=new AHBottomNavigationItem(getResources().getString(R.string.label_reward), R.drawable.icon_reward);
-         AHBottomNavigationItem profil=new AHBottomNavigationItem(getResources().getString(R.string.label_profile), R.drawable.icon_profil);
+         AHBottomNavigationItem reward=new AHBottomNavigationItem(getResources().getString(R.string.label_faq), R.drawable.icon_faq);
 
          bottomNavigation.addItem(news);
          bottomNavigation.addItem(schedule);
          bottomNavigation.addItem(latihan);
          bottomNavigation.addItem(reward);
-         bottomNavigation.addItem(profil);
 
          bottomNavigation.setDefaultBackgroundColor(getResources().getColor(R.color.greywhite));
 
@@ -85,7 +88,7 @@ public class DashboardActivity extends BaseActivity{
                     case 1:
                         currentSelectedTab = 1;
                         showBottomMenu();
-                        replaceFragmentwithTag(R.id.container, ScheduleFragment.newInstance(), false, "SCHEDULE");
+                        replaceFragmentwithTag(R.id.container, ProfileFlashFragment.newInstance(), false, "FLASH");
                         break;
                     case 2:
                         currentSelectedTab = 2;
@@ -95,12 +98,7 @@ public class DashboardActivity extends BaseActivity{
                     case 3:
                         currentSelectedTab = 3;
                         showBottomMenu();
-                        replaceFragmentwithTag(R.id.container, RewardFragment.newInstance(), false, "REWARD");
-                        break;
-                    case 4:
-                        currentSelectedTab = 4;
-                        showBottomMenu();
-                        replaceFragmentwithTag(R.id.container, ProfileFragment.newInstance(), false, "PROFILE");
+                        replaceFragmentwithTag(R.id.container, FaqFragment.newInstance(), false, "FAQ");
                         break;
                 }
                 return true;
@@ -126,8 +124,6 @@ public class DashboardActivity extends BaseActivity{
             pushFragmentToAbsenMasuk(fragment);
         } else if (currentSelectedTab == 2) {
             pushFragmentToAbsenKeluar(fragment);
-        } else if (currentSelectedTab == 3) {
-            pushFragmentToMore(fragment);
         }
     }
 
@@ -140,15 +136,22 @@ public class DashboardActivity extends BaseActivity{
     public void pushFragmentToAbsenKeluar(BaseFragment fragment) {
         replaceFragment(R.id.container, "File Saya", fragment, true);
     }
-    public void pushFragmentToMore(BaseFragment fragment) {
-        replaceFragment(R.id.container, "Lainnya", fragment, true);
-    }
 
     public void showBottomMenu() {
+        cardMenuBottom.setVisibility(View.VISIBLE);
         bottomNavigation.setVisibility(View.VISIBLE);
     }
 
     public void hideBottomMenu() {
+        cardMenuBottom.setVisibility(View.GONE);
         bottomNavigation.setVisibility(View.GONE);
+    }
+
+    public void setBarView(boolean barView){
+        if (barView){
+            toolbar.setVisibility(View.VISIBLE);
+        }else{
+            toolbar.setVisibility(View.GONE);
+        }
     }
 }

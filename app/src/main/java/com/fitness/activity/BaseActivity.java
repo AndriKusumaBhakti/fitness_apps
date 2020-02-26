@@ -70,6 +70,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
     Toolbar toolbar;
     protected LinearLayout layoutBar;
     protected RelativeLayout toolbarBackground;
+    boolean barText = false;
     final static String DIALOG_FRAGMENT_FLAG = "DF_FLAG";
 
     @Override
@@ -202,7 +203,15 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
         APP.log("SET WITH : " + title);
         if (tvActionBarTitle != null) {
             tvActionBarTitle.setText(title);
-            tvActionBarTitle.setTextColor(getResources().getColor(R.color.white));
+            if (barText) {
+                toolbarBackground.setBackgroundColor(getResources().getColor(R.color.red_bar_status));
+                layoutBar.setBackgroundColor(getResources().getColor(R.color.red_bar_status));
+                tvActionBarTitle.setTextColor(getResources().getColor(R.color.white));
+            } else {
+                toolbarBackground.setBackgroundColor(getResources().getColor(R.color.greywhite));
+                layoutBar.setBackgroundColor(getResources().getColor(R.color.greywhite));
+                tvActionBarTitle.setTextColor(getResources().getColor(R.color.red_bar_status));
+            }
         }
     }
 
@@ -210,9 +219,17 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
         if (menuAnimator != null){
             menuAnimator.setDisplayedChild(0);
         }
-        setLeftIcon(R.drawable.icon_profil);
+        setLeftIcon(0);
         setRightIcon(0);
         setRightIcon2(0);
+    }
+
+    public void setBarView(boolean set){
+        if (set){
+            layoutBar.setVisibility(View.VISIBLE);
+        }else{
+            layoutBar.setVisibility(View.GONE);
+        }
     }
 
     public void setLeftIcon(int drawableRes){
@@ -282,14 +299,18 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
     }
 
     public void changeHomeToolbarBackground(boolean change) {
-        if (toolbarBackground != null) {
-            if (change) {
-                layoutBar.setBackgroundColor(getResources().getColor(R.color.red_bar));
-            }
-            else {
-                layoutBar.setBackgroundColor(getResources().getColor(R.color.red_bar));
-            }
+//        if (toolbarBackground != null) {
+        barText = change;
+        if (barText) {
+            toolbarBackground.setBackgroundColor(getResources().getColor(R.color.red_bar_status));
+            layoutBar.setBackgroundColor(getResources().getColor(R.color.red_bar_status));
+            tvActionBarTitle.setTextColor(getResources().getColor(R.color.white));
+        } else {
+            toolbarBackground.setBackgroundColor(getResources().getColor(R.color.greywhite));
+            layoutBar.setBackgroundColor(getResources().getColor(R.color.greywhite));
+            tvActionBarTitle.setTextColor(getResources().getColor(R.color.red_bar_status));
         }
+//        }
     }
 
     public void requestAppPermissions(final String[] requestedPermissions, final int stringId, final int requestCode) {

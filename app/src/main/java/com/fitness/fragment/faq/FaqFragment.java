@@ -1,4 +1,4 @@
-package com.fitness.fragment.virtual;
+package com.fitness.fragment.faq;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,20 +8,20 @@ import com.fitness.activity.DashboardActivity;
 import com.fitness.base.OnActionbarListener;
 import com.fitness.fragment.BaseFragment;
 
-public class LatihanFragment extends BaseFragment {
+public class FaqFragment extends BaseFragment {
     private String mParam1;
     private String mParam2;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    public LatihanFragment() {}
+    public FaqFragment() {}
 
-    public static LatihanFragment newInstance() {
+    public static FaqFragment newInstance() {
         return newInstance("","");
     }
 
-    public static LatihanFragment newInstance(String param1, String param2) {
-        LatihanFragment fragment = new LatihanFragment();
+    public static FaqFragment newInstance(String param1, String param2) {
+        FaqFragment fragment = new FaqFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -56,7 +56,7 @@ public class LatihanFragment extends BaseFragment {
 
     @Override
     public void updateUI() {
-        getBaseActivity().setLeftIcon(R.drawable.icon_latihan);
+        getBaseActivity().setLeftIcon(R.drawable.icon_faq);
         getBaseActivity().setRightIcon2(0);
         getBaseActivity().setRightIcon(0);
         getBaseActivity().showDisplayLogoTitle(false);
@@ -67,11 +67,11 @@ public class LatihanFragment extends BaseFragment {
 
     @Override
     public String getPageTitle() {
-        return getResources().getString(R.string.label_virtual);
+        return getResources().getString(R.string.label_faq);
     }
 
     @Override
     public int getFragmentLayout() {
-        return R.layout.fragment_latihan;
+        return R.layout.fragment_faq;
     }
 }

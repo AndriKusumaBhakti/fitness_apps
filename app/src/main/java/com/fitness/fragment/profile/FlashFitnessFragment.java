@@ -1,4 +1,4 @@
-package com.fitness.fragment.virtual;
+package com.fitness.fragment.profile;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,25 +8,35 @@ import com.fitness.activity.DashboardActivity;
 import com.fitness.base.OnActionbarListener;
 import com.fitness.fragment.BaseFragment;
 
-public class LatihanFragment extends BaseFragment {
+public class FlashFitnessFragment extends BaseFragment {
     private String mParam1;
     private String mParam2;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    public LatihanFragment() {}
+    private String label_bar;
 
-    public static LatihanFragment newInstance() {
+    public FlashFitnessFragment() {}
+
+    public static FlashFitnessFragment newInstance() {
         return newInstance("","");
     }
 
-    public static LatihanFragment newInstance(String param1, String param2) {
-        LatihanFragment fragment = new LatihanFragment();
+    public static FlashFitnessFragment newInstance(String param1, String param2) {
+        FlashFitnessFragment fragment = new FlashFitnessFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(getArguments()!=null) {
+            label_bar = getArguments().getString("label_bar");
+        }
     }
 
     @Override
@@ -56,7 +66,7 @@ public class LatihanFragment extends BaseFragment {
 
     @Override
     public void updateUI() {
-        getBaseActivity().setLeftIcon(R.drawable.icon_latihan);
+        getBaseActivity().setLeftIcon(R.drawable.icon_language);
         getBaseActivity().setRightIcon2(0);
         getBaseActivity().setRightIcon(0);
         getBaseActivity().showDisplayLogoTitle(false);
@@ -67,11 +77,11 @@ public class LatihanFragment extends BaseFragment {
 
     @Override
     public String getPageTitle() {
-        return getResources().getString(R.string.label_virtual);
+        return label_bar;
     }
 
     @Override
     public int getFragmentLayout() {
-        return R.layout.fragment_latihan;
+        return R.layout.fragment_change_language;
     }
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/medbooks_100dp"
+    android:layout_margin="@dimen/medbooks_5dp"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardMaxElevation="4dp"
+    card_view:cardElevation="2dp"
+    card_view:contentPadding="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|left"
+        android:padding="@dimen/medbooks_8dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/imageIcon"
+            android:layout_width="@dimen/medbooks_60dp"
+            android:layout_height="@dimen/medbooks_60dp"
+            android:layout_marginRight="@dimen/medbooks_10dp"
+            android:src="@drawable/icon_latihan"/>
+        <com.fitness.view.TextViewBold
+            android:id="@+id/titileMenu"
+            android:layout_width="match_parent"
+            android:textSize="@dimen/medbooks_14dp"
+            android:gravity="center|left"
+            android:textColor="@color/red_bar_status"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+

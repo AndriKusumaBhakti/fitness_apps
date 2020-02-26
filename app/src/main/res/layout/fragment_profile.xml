@@ -1,12 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/greywhite"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginBottom="56dp">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/medbooks_220dp"
+            android:background="@drawable/spinner_border"
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/medbooks_100dp"
+                    android:background="@color/red_bar_status"/>
+                <androidx.cardview.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/medbooks_20dp"
+                    android:layout_marginLeft="@dimen/medbooks_20dp"
+                    card_view:cardUseCompatPadding="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/medbooks_10dp"
+                    card_view:cardBackgroundColor="@color/greywhite2"
+                    card_view:cardCornerRadius="@dimen/medbooks_10dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/medbooks_150dp"
+                        android:padding="@dimen/medbooks_10dp"
+                        android:orientation="vertical">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/medbooks_5dp">
+                            <com.fitness.view.TextViewSemiBold
+                                android:layout_width="wrap_content"
+                                android:textSize="@dimen/medbooks_16dp"
+                                android:textColor="@color/red_bar_status"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left|center"
+                                android:text="@string/app_name" />
+                            <ImageView
+                                android:layout_width="@dimen/medbooks_25dp"
+                                android:layout_height="@dimen/medbooks_25dp"
+                                android:layout_gravity="right|center"
+                                android:src="@drawable/icon_profil"/>
+                        </FrameLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey1"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="bottom"
+                            android:orientation="vertical">
+                            <com.fitness.view.TextViewSemiBold
+                                android:layout_width="wrap_content"
+                                android:textSize="@dimen/medbooks_14dp"
+                                android:textColor="@color/red_bar_status"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left|center"
+                                android:text="Member ID" />
+                            <com.fitness.view.TextViewLight
+                                android:layout_width="wrap_content"
+                                android:textSize="@dimen/medbooks_14dp"
+                                android:textColor="@color/red_bar_status"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left|center"
+                                android:text="@string/app_name" />
+                            <com.fitness.view.TextViewSemiBold
+                                android:layout_width="wrap_content"
+                                android:layout_marginTop="@dimen/medbooks_5dp"
+                                android:textSize="@dimen/medbooks_14dp"
+                                android:textColor="@color/red_bar_status"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left|center"
+                                android:text="Card Name" />
+                            <com.fitness.view.TextViewLight
+                                android:layout_width="wrap_content"
+                                android:textSize="@dimen/medbooks_16dp"
+                                android:textColor="@color/red_bar_status"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left|center"
+                                android:text="Andri Kusuma Bhakti" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </FrameLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardUseCompatPadding="true"
+                android:layout_gravity="center"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:cardCornerRadius="8dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:padding="@dimen/medbooks_10dp"
+                    android:layout_marginRight="@dimen/medbooks_20dp"
+                    android:orientation="vertical">
+                    <com.fitness.view.TextViewBold
+                        android:layout_width="wrap_content"
+                        android:textSize="@dimen/medbooks_14dp"
+                        android:textColor="@color/red_bar_status"
+                        android:layout_height="wrap_content"
+                        android:text="Andri Kusuma Bhakti"
+                        android:layout_marginBottom="@dimen/medbooks_5dp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/medbooks_2dp"
+                        android:layout_marginRight="@dimen/medbooks_25dp"
+                        android:layout_marginBottom="@dimen/medbooks_5dp"
+                        android:background="@color/greywhite"/>
+                    <com.fitness.view.TextViewRegular
+                        android:layout_width="wrap_content"
+                        android:textSize="@dimen/medbooks_14dp"
+                        android:textColor="@color/red_bar_status"
+                        android:layout_height="wrap_content"
+                        android:text="Andri Kusuma Bhakti"
+                        android:layout_marginBottom="@dimen/medbooks_5dp" />
+                </LinearLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="@dimen/medbooks_40dp"
+                        android:layout_height="@dimen/medbooks_40dp"
+                        android:layout_gravity="center|right"
+                        android:layout_marginRight="@dimen/medbooks_5dp"
+                        android:src="@drawable/icon_profil"/>
+                </FrameLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                card_view:cardUseCompatPadding="true"
+                android:layout_gravity="center"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:cardCornerRadius="8dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/medbooks_10dp"
+                    android:orientation="vertical">
+                    <com.fitness.view.TextViewSemiBold
+                        android:layout_width="wrap_content"
+                        android:textSize="@dimen/medbooks_14dp"
+                        android:textColor="@color/red_bar_status"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left|center"
+                        android:layout_marginBottom="@dimen/medbooks_5dp"
+                        android:text="Support" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/medbooks_2dp"
+                        android:layout_marginRight="@dimen/medbooks_25dp"
+                        android:layout_marginBottom="@dimen/medbooks_5dp"
+                        android:background="@color/greywhite"/>
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollbars="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/list_data"
+                                android:layout_width="match_parent"
+                                android:visibility="visible"
+                                android:layout_height="match_parent"
+                                android:scrollbars="vertical"/>
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
     </LinearLayout>
 </FrameLayout>

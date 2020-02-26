@@ -19,20 +19,11 @@
 
     <string name="label_home">News</string>
     <string name="label_schedule">Schedule</string>
+    <string name="label_flash">Flash Profile</string>
     <string name="label_virtual">Training</string>
+    <string name="label_faq">FAQ</string>
     <string name="label_reward">Reward</string>
     <string name="label_profile">Profile</string>
-
-    <integer-array name="posters">
-        <item>@drawable/gambar_1</item>
-        <item>@drawable/gambar_2</item>
-        <item>@drawable/gambar_3</item>
-        <item>@drawable/gambar_4</item>
-        <item>@drawable/gambar_5</item>
-        <item>@drawable/gambar_6</item>
-        <item>@drawable/gambar_7</item>
-        <item>@drawable/gambar_2</item>
-    </integer-array>
 
     <string-array name="titles">
         <item>DNA Insanity</item>
@@ -43,6 +34,25 @@
         <item>Saltar</item>
         <item>Strong By Zumba</item>
         <item>Kettlebell</item>
+    </string-array>
+
+    <string-array name="hari">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
+    <string-array name="menuFlash">
+        <item>Branch Profile</item>
+        <item>Featured Classes</item>
+        <item>Class Schedule</item>
+        <item>Instuctor Profile</item>
+        <item>Change Language</item>
+        <item>About Flash Fitness</item>
     </string-array>
 
     <string-array name="overviews">
@@ -88,4 +98,5 @@
     <string name="select_class">Select Classes</string>
     <string name="select_clock">Select Clock</string>
     <string name="select_date">Select Date</string>
+    <string name="label_cabang">Branch Name</string>
 </resources>
