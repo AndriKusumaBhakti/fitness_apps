@@ -11,6 +11,7 @@ public class ClassEntity extends BaseEntity implements Serializable {
     public static final String NAMA_CLASS = "NAMA_CLASS";
     public static final String DESKRIPSI = "DESKRIPSI";
     public static final String IMAGE = "IMAGE";
+    public static final String UNGGULAN = "UNGGULAN";
 
     @DatabaseField(columnName = NAMA_CLASS)
     private String namaClass;
@@ -18,6 +19,8 @@ public class ClassEntity extends BaseEntity implements Serializable {
     private String deskripsi;
     @DatabaseField(columnName = IMAGE)
     private String image;
+    @DatabaseField(columnName = UNGGULAN)
+    private String unggulan;
 
     public String getNamaClass() {
         return namaClass;
@@ -41,5 +44,13 @@ public class ClassEntity extends BaseEntity implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getUnggulan() {
+        return unggulan;
+    }
+
+    public void setUnggulan(String unggulan) {
+        this.unggulan = unggulan;
     }
 }

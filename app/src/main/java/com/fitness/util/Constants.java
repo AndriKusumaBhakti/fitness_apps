@@ -14,6 +14,8 @@ public class Constants {
     public final static int REQUEST_CODE_ASK_PERMISSIONS_STORAGE = 98;
 
     final public static String labelName = "PhotoPath";
+    final public static String mapsLocation = "false";
+    final public static String menuFlash = "0";
     final public static String posisi = "0";
 
     public static final String EXTRA_CUSTOM_TABS_SESSION = "android.support.customtabs.extra.SESSION";

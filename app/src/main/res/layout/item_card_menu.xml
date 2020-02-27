@@ -22,12 +22,12 @@
             android:layout_height="@dimen/medbooks_60dp"
             android:layout_marginRight="@dimen/medbooks_10dp"
             android:src="@drawable/icon_latihan"/>
-        <com.fitness.view.TextViewBold
+        <com.fitness.view.TextViewSemiBold
             android:id="@+id/titileMenu"
             android:layout_width="match_parent"
             android:textSize="@dimen/medbooks_14dp"
             android:gravity="center|left"
-            android:textColor="@color/red_bar_status"
+            android:textColor="@color/grey2"
             android:layout_height="match_parent"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

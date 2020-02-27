@@ -26,7 +26,7 @@
                     android:id="@+id/titleCard"
                     android:layout_width="wrap_content"
                     android:textSize="@dimen/medbooks_14dp"
-                    android:textColor="@color/red_bar_status"
+                    android:textColor="@color/grey2"
                     android:layout_height="wrap_content"
                     android:text="title"
                     android:layout_marginBottom="@dimen/medbooks_5dp" />
@@ -67,14 +67,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_weight="2"
                                 android:textSize="@dimen/medbooks_14dp"
-                                android:textColor="@color/red_bar_status"
+                                android:textColor="@color/grey2"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_location" />
                             <com.fitness.view.TextViewRegular
                                 android:layout_width="match_parent"
                                 android:layout_weight="2.3"
                                 android:textSize="@dimen/medbooks_14dp"
-                                android:textColor="@color/red_bar_status"
+                                android:textColor="@color/grey2"
                                 android:gravity="center"
                                 android:layout_height="wrap_content"
                                 android:text=":" />
@@ -83,10 +83,54 @@
                                 android:layout_width="match_parent"
                                 android:layout_weight="1"
                                 android:textSize="@dimen/medbooks_14dp"
-                                android:textColor="@color/red_bar_status"
+                                android:textColor="@color/grey2"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_location" />
                         </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/scheduleForm"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medbooks_5dp"
+                            android:orientation="horizontal">
+                            <com.fitness.view.TextViewRegular
+                                android:layout_width="match_parent"
+                                android:layout_weight="2"
+                                android:textSize="@dimen/medbooks_14dp"
+                                android:textColor="@color/grey2"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_jadwal" />
+                            <com.fitness.view.TextViewRegular
+                                android:layout_width="match_parent"
+                                android:layout_weight="2.3"
+                                android:textSize="@dimen/medbooks_14dp"
+                                android:textColor="@color/grey2"
+                                android:gravity="center"
+                                android:layout_height="wrap_content"
+                                android:text=":" />
+                            <com.fitness.view.TextViewRegular
+                                android:id="@+id/scheduleData"
+                                android:layout_width="match_parent"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/medbooks_14dp"
+                                android:textColor="@color/grey2"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_location" />
+                        </LinearLayout>
+                        <com.fitness.view.ButtonRegular
+                            android:id="@+id/btn_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/medbooks_30dp"
+                            android:layout_gravity="right"
+                            android:layout_marginTop="@dimen/medbooks_5dp"
+                            android:background="@drawable/selector_btn_grey"
+                            android:textSize="@dimen/medbooks_10dp"
+                            android:layout_centerInParent="true"
+                            android:text="@string/btn_detail"
+                            android:textColor="#FFFFFF"
+                            android:textAllCaps="true"
+                            android:textStyle="bold"
+                            style="?android:attr/borderlessButtonStyle"/>
                     </LinearLayout>
                 </ViewAnimator>
             </LinearLayout>

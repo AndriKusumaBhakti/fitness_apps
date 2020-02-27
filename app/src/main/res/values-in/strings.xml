@@ -13,6 +13,7 @@
     <string name="btn_ok">OK</string>
     <string name="btn_cancel">Batal</string>
     <string name="btn_save">Simpan</string>
+    <string name="btn_detail">Detail</string>
     <string name="btn_apply">Terapkan</string>
 
     <string name="please_wait">Harap Menunggu...</string>
@@ -85,4 +86,5 @@
     <string name="select_date">Pilih Tanggal</string>
     <string name="label_cabang">Nama Cabang</string>
     <string name="label_location">Lokasi</string>
+    <string name="label_jadwal">Jadwal</string>
 </resources>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.ViewAnimator;
 
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fitness.R;
 import com.fitness.activity.DashboardActivity;
 import com.fitness.adapter.FlashFitnessAdapter;
+import com.fitness.aplication.APP;
 import com.fitness.base.OnActionbarListener;
 import com.fitness.database.DBClass;
 import com.fitness.database.DBClub;
@@ -46,6 +48,8 @@ public class FlashFitnessFragment extends BaseFragment implements OnMapReadyCall
     private static final String ARG_PARAM2 = "param2";
 
     private String label_bar;
+    private boolean mapsStatus;
+    private int menuStatus = 3;
     private RecyclerView list_data;
     ViewAnimator select_filter_animator;
     private boolean isShowSelectProfile;
@@ -59,10 +63,13 @@ public class FlashFitnessFragment extends BaseFragment implements OnMapReadyCall
     private List<ClubEntity> entitiCLub;
     private List<ClassEntity> entitiCLass;
     private List<EventClubEntity> entitiEventCLub;
+    private ClubEntity clubData;
+    private ClassEntity classData;
     private FlashFitnessAdapter adapter;
     private ArrayList<ModelMaps> list;
     private GoogleMap myMapKu;
     private SupportMapFragment supportMapFragment;
+    private LinearLayout mapsLocation;
 
     private ButtonRegular save_apply;
 
@@ -86,7 +93,11 @@ public class FlashFitnessFragment extends BaseFragment implements OnMapReadyCall
         super.onCreate(savedInstanceState);
         if(getArguments()!=null) {
             label_bar = getArguments().getString(Constants.labelName);
+            mapsStatus = getArguments().getBoolean(Constants.mapsLocation);
+            menuStatus = getArguments().getInt(Constants.menuFlash);
         }
+        clubData = new ClubEntity();
+        classData = new ClassEntity();
         dbClub = new DBClub(getBaseActivity());
         dbClass = new DBClass(getBaseActivity());
         dbEventClub = new DBEventClub(getBaseActivity());
@@ -98,31 +109,147 @@ public class FlashFitnessFragment extends BaseFragment implements OnMapReadyCall
         arrClub = new ArrayList<>();
         arrClub.add(getActivity().getResources().getString(R.string.select_branch));
         list = new ArrayList<>();
-        if (dbClub.getAllData()>0){
-            entitiCLub = dbClub.getAll();
-            for (int i= 0; i<entitiCLub.size(); i++){
-                arrClub.add(entitiCLub.get(i).getNamaClub());
-                ModelMaps modelMaps = new ModelMaps();
-                modelMaps.setName(entitiCLub.get(i).getNamaClub());
-                modelMaps.setLongitudeFit(entitiCLub.get(i).getLongitude());
-                modelMaps.setLatitudeFit(entitiCLub.get(i).getLatitude());
-                modelMaps.setLokasi(entitiCLub.get(i).getLokasi());
-                list.add(modelMaps);
+        if (menuStatus == 1){
+            if (dbClub.getAllData()>0){
+                entitiCLub = dbClub.getAll();
+                for (int i= 0; i<entitiCLub.size(); i++){
+                    arrClub.add(entitiCLub.get(i).getNamaClub());
+                    ModelMaps modelMaps = new ModelMaps();
+                    modelMaps.setName(entitiCLub.get(i).getNamaClub());
+                    modelMaps.setLongitudeFit(entitiCLub.get(i).getLongitude());
+                    modelMaps.setLatitudeFit(entitiCLub.get(i).getLatitude());
+                    modelMaps.setLokasi(entitiCLub.get(i).getLokasi());
+                    modelMaps.setView(false);
+                    list.add(modelMaps);
+                }
             }
-        }
-        if (dbClass.getAllData()>0){
-            entitiCLass = dbClass.getAll();
-            for (int i= 0; i<entitiCLass.size(); i++){
-                arrClass.add(entitiCLass.get(i).getNamaClass());
+        }else if (menuStatus == 2){
+            if (dbClub.getAllData()>0){
+                entitiCLub = dbClub.getAll();
+                for (int i= 0; i<entitiCLub.size(); i++){
+                    arrClub.add(entitiCLub.get(i).getNamaClub());
+                }
             }
-        }
-        if (dbEventClub.getAllData()>0){
-            entitiEventCLub = dbEventClub.getAll();
+            if (dbClass.getAllData()>0){
+                entitiCLass = dbClass.getAll();
+                for (int j= 0; j<entitiCLass.size(); j++){
+                    if (Boolean.parseBoolean(entitiCLass.get(j).getUnggulan())) {
+                        arrClass.add(entitiCLass.get(j).getNamaClass());
+                        entitiEventCLub = dbEventClub.getAllByUnggulan(entitiCLass.get(j).getId());
+                        if (entitiEventCLub.size()>0){
+                            ArrayList<ModelMaps> model = new ArrayList<>();
+                            for (int i= 0; i<entitiEventCLub.size(); i++){
+                                if (model.size()>0){
+                                    for (int k = 0; k<model.size(); k++){
+                                        clubData = dbClub.getById(entitiEventCLub.get(i).getIdClub());
+                                        if (clubData!=null) {
+                                            if (model.get(k).getName().equals(clubData.getNamaClub())){
+
+                                            }else{
+                                                ModelMaps modelMaps = new ModelMaps();
+                                                modelMaps.setId(entitiEventCLub.get(i).getDurasi());
+                                                modelMaps.setDurasi(entitiEventCLub.get(i).getDurasi());
+                                                modelMaps.setHari(entitiEventCLub.get(i).getHari());
+                                                modelMaps.setJamEnd(entitiEventCLub.get(i).getJamEnd());
+                                                modelMaps.setJamStart(entitiEventCLub.get(i).getJamStart());
+                                                modelMaps.setPelatih(entitiEventCLub.get(i).getPelatih());
+                                                clubData = dbClub.getById(entitiEventCLub.get(i).getIdClub());
+                                                if (clubData != null){
+                                                    modelMaps.setName(clubData.getNamaClub());
+                                                    modelMaps.setLatitudeFit(clubData.getLatitude());
+                                                    modelMaps.setLongitudeFit(clubData.getLongitude());
+                                                    modelMaps.setLokasi(clubData.getLokasi());
+                                                }
+                                                classData = dbClass.getById(entitiEventCLub.get(i).getIdClass());
+                                                if (classData!=null){
+                                                    modelMaps.setNamaEvent(classData.getNamaClass());
+                                                    modelMaps.setImage(classData.getImage());
+                                                    modelMaps.setDeskripsi(classData.getDeskripsi());
+                                                }
+                                                modelMaps.setView(false);
+                                                model.add(modelMaps);
+                                            }
+                                        }
+                                    }
+                                }else{
+                                    ModelMaps modelMaps = new ModelMaps();
+                                    modelMaps.setId(entitiEventCLub.get(i).getDurasi());
+                                    modelMaps.setDurasi(entitiEventCLub.get(i).getDurasi());
+                                    modelMaps.setHari(entitiEventCLub.get(i).getHari());
+                                    modelMaps.setJamEnd(entitiEventCLub.get(i).getJamEnd());
+                                    modelMaps.setJamStart(entitiEventCLub.get(i).getJamStart());
+                                    modelMaps.setPelatih(entitiEventCLub.get(i).getPelatih());
+                                    clubData = dbClub.getById(entitiEventCLub.get(i).getIdClub());
+                                    if (clubData != null){
+                                        modelMaps.setName(clubData.getNamaClub());
+                                        modelMaps.setLatitudeFit(clubData.getLatitude());
+                                        modelMaps.setLongitudeFit(clubData.getLongitude());
+                                        modelMaps.setLokasi(clubData.getLokasi());
+                                    }
+                                    classData = dbClass.getById(entitiEventCLub.get(i).getIdClass());
+                                    if (classData!=null){
+                                        modelMaps.setNamaEvent(classData.getNamaClass());
+                                        modelMaps.setImage(classData.getImage());
+                                        modelMaps.setDeskripsi(classData.getDeskripsi());
+                                    }
+                                    modelMaps.setView(false);
+                                    model.add(modelMaps);
+                                }
+                            }
+                            list = model;
+                        }
+                    }
+                }
+            }
+
+        }else {
+            if (dbClub.getAllData()>0){
+                entitiCLub = dbClub.getAll();
+                for (int i= 0; i<entitiCLub.size(); i++){
+                    arrClub.add(entitiCLub.get(i).getNamaClub());
+                }
+            }
+            if (dbClass.getAllData()>0){
+                entitiCLass = dbClass.getAll();
+                for (int i= 0; i<entitiCLass.size(); i++){
+                    arrClass.add(entitiCLass.get(i).getNamaClass());
+                }
+            }
+            if (dbEventClub.getAllData()>0){
+                entitiEventCLub = dbEventClub.getAll();
+                if (entitiEventCLub.size()>0){
+                    for (int i= 0; i<entitiEventCLub.size(); i++){
+                        ModelMaps modelMaps = new ModelMaps();
+                        modelMaps.setId(entitiEventCLub.get(i).getDurasi());
+                        modelMaps.setDurasi(entitiEventCLub.get(i).getDurasi());
+                        modelMaps.setHari(entitiEventCLub.get(i).getHari());
+                        modelMaps.setJamEnd(entitiEventCLub.get(i).getJamEnd());
+                        modelMaps.setJamStart(entitiEventCLub.get(i).getJamStart());
+                        modelMaps.setPelatih(entitiEventCLub.get(i).getPelatih());
+                        clubData = dbClub.getById(entitiEventCLub.get(i).getIdClub());
+                        if (clubData != null){
+                            modelMaps.setName(clubData.getNamaClub());
+                            modelMaps.setLatitudeFit(clubData.getLatitude());
+                            modelMaps.setLongitudeFit(clubData.getLongitude());
+                            modelMaps.setLokasi(clubData.getLokasi());
+                        }
+                        classData = dbClass.getById(entitiEventCLub.get(i).getIdClass());
+                        if (classData!=null){
+                            modelMaps.setNamaEvent(classData.getNamaClass());
+                            modelMaps.setImage(classData.getImage());
+                            modelMaps.setDeskripsi(classData.getDeskripsi());
+                        }
+                        modelMaps.setView(false);
+                        list.add(modelMaps);
+                    }
+                }
+            }
         }
     }
 
     @Override
     public void initView(View view) {
+        mapsLocation = (LinearLayout) view.findViewById(R.id.mapsLocation);
         supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fitness);
         supportMapFragment.getMapAsync(this);
         list_data = (RecyclerView) view.findViewById(R.id.list_data);
@@ -138,7 +265,17 @@ public class FlashFitnessFragment extends BaseFragment implements OnMapReadyCall
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         list_data.setHasFixedSize(true);
         list_data.setLayoutManager(mLayoutManager);
-        adapter = new FlashFitnessAdapter(getActivity(), list);
+        adapter = new FlashFitnessAdapter(getActivity(), menuStatus, list, new FlashFitnessAdapter.ClickListener() {
+            @Override
+            public void onClick(int posisi) {
+                tampilMaps(posisi);
+            }
+
+            @Override
+            public void onDetail(ModelMaps modelMaps) {
+                APP.log(""+modelMaps.getNamaEvent());
+            }
+        });
         list_data.setAdapter(adapter);
     }
 
@@ -172,7 +309,17 @@ public class FlashFitnessFragment extends BaseFragment implements OnMapReadyCall
     public void updateUI() {
         getBaseActivity().setLeftIcon(R.drawable.back);
         getBaseActivity().setRightIcon2(0);
-        getBaseActivity().setRightIcon(R.drawable.icon_filter);
+        if (mapsStatus){
+            mapsLocation.setVisibility(View.VISIBLE);
+            getBaseActivity().setRightIcon(0);
+        }else{
+            if (menuStatus == 2){
+                getBaseActivity().setRightIcon(0);
+            }else{
+                getBaseActivity().setRightIcon(R.drawable.icon_filter);
+            }
+            mapsLocation.setVisibility(View.GONE);
+        }
         getBaseActivity().showDisplayLogoTitle(false);
         getBaseActivity().changeHomeToolbarBackground(false);
         getBaseActivity().setBarView(true);
@@ -211,48 +358,46 @@ public class FlashFitnessFragment extends BaseFragment implements OnMapReadyCall
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.myMapKu = googleMap;
-        tampilMaps();
+        tampilMaps(0);
     }
 
-    private void tampilMaps(){
+    private void tampilMaps(int posisi){
         if (myMapKu!= null){
             myMapKu.clear();
             if (list.size()>0){
-                for (int i=0; i<list.size(); i++){
-                    Double lat = Double.parseDouble(list.get(i).getLatitudeFit());
-                    Double longi = Double.parseDouble(list.get(i).getLongitudeFit());
-                    LatLng lldoctor = new LatLng(lat, longi);
-                    MarkerOptions markerDoctor = new MarkerOptions();
-                    markerDoctor.position(lldoctor);
-                    markerDoctor.title(String.valueOf(list.get(i).getName()));
-                    markerDoctor.snippet(String.valueOf(list.get(i).getLokasi()));
-                    markerDoctor.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
-                    myMapKu.addMarker(markerDoctor);
+                Double lat = Double.parseDouble(list.get(posisi).getLatitudeFit());
+                Double longi = Double.parseDouble(list.get(posisi).getLongitudeFit());
+                LatLng lldoctor = new LatLng(lat, longi);
+                MarkerOptions markerDoctor = new MarkerOptions();
+                markerDoctor.position(lldoctor);
+                markerDoctor.title(String.valueOf(list.get(posisi).getName()));
+                markerDoctor.snippet(String.valueOf(list.get(posisi).getLokasi()));
+                markerDoctor.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
+                myMapKu.addMarker(markerDoctor);
 
-                    myMapKu.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-                    myMapKu.getUiSettings().setCompassEnabled(true);
-                    myMapKu.getUiSettings().setZoomControlsEnabled(true);
-                    myMapKu.getUiSettings().setMyLocationButtonEnabled(true);
-                    myMapKu.animateCamera(CameraUpdateFactory.newLatLngZoom(lldoctor, 17));
-                    myMapKu.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                        @Override
-                        public boolean onMarkerClick(Marker arg0) {
-                            // TODO Auto-generated method stub
-                            try {
-                                StringBuilder urlString = new StringBuilder();
-                                String daddr = (String.valueOf(arg0.getPosition().latitude)+","+String.valueOf(arg0.getPosition().longitude));
-                                urlString.append("http://maps.google.com/maps?f=d&hl=en");
-                                urlString.append("&saddr="+String.valueOf(myMapKu.getMyLocation().getLatitude())+","+String.valueOf(myMapKu.getMyLocation().getLongitude()));
-                                urlString.append("&daddr="+daddr);
-                                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(urlString.toString()));
-                                getBaseActivity().startActivity(i);
-                            } catch (Exception ee) {
-                                Toast.makeText(getBaseActivity(), getBaseActivity().getResources().getString(R.string.gps_not_active), Toast.LENGTH_LONG).show();
-                            }
-                            return false;
+                myMapKu.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+                myMapKu.getUiSettings().setCompassEnabled(true);
+                myMapKu.getUiSettings().setZoomControlsEnabled(true);
+                myMapKu.getUiSettings().setMyLocationButtonEnabled(true);
+                myMapKu.animateCamera(CameraUpdateFactory.newLatLngZoom(lldoctor, 17));
+                myMapKu.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker arg0) {
+                        // TODO Auto-generated method stub
+                        try {
+                            StringBuilder urlString = new StringBuilder();
+                            String daddr = (String.valueOf(arg0.getPosition().latitude)+","+String.valueOf(arg0.getPosition().longitude));
+                            urlString.append("http://maps.google.com/maps?f=d&hl=en");
+                            urlString.append("&saddr="+String.valueOf(myMapKu.getMyLocation().getLatitude())+","+String.valueOf(myMapKu.getMyLocation().getLongitude()));
+                            urlString.append("&daddr="+daddr);
+                            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(urlString.toString()));
+                            getBaseActivity().startActivity(i);
+                        } catch (Exception ee) {
+                            Toast.makeText(getBaseActivity(), getBaseActivity().getResources().getString(R.string.gps_not_active), Toast.LENGTH_LONG).show();
                         }
-                    });
-                }
+                        return false;
+                    }
+                });
             }
         }
     }

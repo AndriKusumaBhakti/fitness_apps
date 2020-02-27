@@ -95,18 +95,24 @@ public class ProfileFlashFragment extends BaseFragment {
                 FlashFitnessFragment fragment = new FlashFitnessFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString(Constants.labelName, nameLabel);
+                bundle.putBoolean(Constants.mapsLocation, true);
+                bundle.putInt(Constants.menuFlash, 1);
                 fragment.setArguments(bundle);
                 dashboard.pushFragmentDashboard(fragment);
             }else if (position == 1){
                 FlashFitnessFragment fragment = new FlashFitnessFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString(Constants.labelName, nameLabel);
+                bundle.putBoolean(Constants.mapsLocation, false);
+                bundle.putInt(Constants.menuFlash, 2);
                 fragment.setArguments(bundle);
                 dashboard.pushFragmentDashboard(fragment);
             }else if (position == 2){
                 FlashFitnessFragment fragment = new FlashFitnessFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString(Constants.labelName, nameLabel);
+                bundle.putBoolean(Constants.mapsLocation, false);
+                bundle.putInt(Constants.menuFlash, 3);
                 fragment.setArguments(bundle);
                 dashboard.pushFragmentDashboard(fragment);
             }else if (position == 3){

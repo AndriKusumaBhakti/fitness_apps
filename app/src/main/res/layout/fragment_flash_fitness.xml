@@ -16,11 +16,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="vertical"/>
-            <fragment
-                android:id="@+id/map_fitness"
+            <LinearLayout
+                android:id="@+id/mapsLocation"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                class="com.google.android.gms.maps.SupportMapFragment"/>
+                android:orientation="vertical">
+                <fragment
+                    android:id="@+id/map_fitness"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    class="com.google.android.gms.maps.SupportMapFragment"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
     <ViewAnimator
@@ -43,7 +49,7 @@
                 android:background="@drawable/shape_filter"
                 android:orientation="vertical">
                 <com.fitness.view.CustomSpinnerView
-                    android:id="@+id/spinnerClass"
+                    android:id="@+id/spinnerClub"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_width="match_parent"
@@ -57,7 +63,7 @@
                 android:background="@drawable/shape_filter"
                 android:orientation="vertical">
                 <com.fitness.view.CustomSpinnerView
-                    android:id="@+id/spinnerClub"
+                    android:id="@+id/spinnerClass"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_width="match_parent"

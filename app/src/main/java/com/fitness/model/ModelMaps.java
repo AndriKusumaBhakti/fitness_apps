@@ -14,6 +14,7 @@ public class ModelMaps {
     private String hari;
     private String image;
     private String pelatih;
+    private Boolean view;
 
     public String getId() {
         return id;
@@ -117,5 +118,13 @@ public class ModelMaps {
 
     public void setPelatih(String pelatih) {
         this.pelatih = pelatih;
+    }
+
+    public Boolean getView() {
+        return view;
+    }
+
+    public void setView(Boolean view) {
+        this.view = view;
     }
 }

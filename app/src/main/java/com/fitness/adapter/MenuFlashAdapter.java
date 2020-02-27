@@ -15,6 +15,8 @@ import com.fitness.R;
 import com.fitness.activity.DashboardActivity;
 import com.fitness.fragment.profile.ChangeLanguageFragment;
 import com.fitness.view.TextViewBold;
+import com.fitness.view.TextViewLight;
+import com.fitness.view.TextViewSemiBold;
 
 public class MenuFlashAdapter extends RecyclerView.Adapter<MenuFlashAdapter.ViewHolder>{
     private String[] mDataSet;
@@ -31,11 +33,11 @@ public class MenuFlashAdapter extends RecyclerView.Adapter<MenuFlashAdapter.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        public TextViewBold titileMenu;
+        public TextViewSemiBold titileMenu;
         public ImageView imageIcon;
         public ViewHolder(View v){
             super(v);
-            titileMenu = (TextViewBold) v.findViewById(R.id.titileMenu);
+            titileMenu = (TextViewSemiBold) v.findViewById(R.id.titileMenu);
             imageIcon = (ImageView) v.findViewById(R.id.imageIcon);
         }
     }
