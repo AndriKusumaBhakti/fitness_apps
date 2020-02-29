@@ -77,7 +77,7 @@ public class FlashFitnessAdapter extends RecyclerView.Adapter<FlashFitnessAdapte
         }else if (menuStatus == 2){
             holder.scheduleForm.setVisibility(View.VISIBLE);
             holder.btn_detail.setVisibility(View.VISIBLE);
-            holder.titleCard.setText(mDataSet.get(position).getName());
+            holder.titleCard.setText(mDataSet.get(position).getNamaEvent());
             holder.labelLocation.setText(mDataSet.get(position).getLokasi());
             holder.scheduleData.setText(mContext.getResources().getStringArray(R.array.hari)[Integer.parseInt(mDataSet.get(position).getHari())-1]+", "+mDataSet.get(position).getJamStart()+" - "+mDataSet.get(position).getJamEnd());
         }else{
@@ -142,6 +142,11 @@ public class FlashFitnessAdapter extends RecyclerView.Adapter<FlashFitnessAdapte
                 }
             }
         }
+        notifyDataSetChanged();
+    }
+
+    public void updateListSearch(ArrayList<ModelMaps> mDataSet){
+        this.mDataSet = mDataSet;
         notifyDataSetChanged();
     }
 

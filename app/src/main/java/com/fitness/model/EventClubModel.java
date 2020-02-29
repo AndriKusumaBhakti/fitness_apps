@@ -9,6 +9,7 @@ public class EventClubModel {
     private String jamStart;
     private String jamEnd;
     private String pelatih;
+    private String unggulan;
 
     public int getId() {
         return id;
@@ -72,5 +73,13 @@ public class EventClubModel {
 
     public void setPelatih(String pelatih) {
         this.pelatih = pelatih;
+    }
+
+    public String getUnggulan() {
+        return unggulan;
+    }
+
+    public void setUnggulan(String unggulan) {
+        this.unggulan = unggulan;
     }
 }

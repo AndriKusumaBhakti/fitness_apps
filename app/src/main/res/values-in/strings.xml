@@ -87,4 +87,11 @@
     <string name="label_cabang">Nama Cabang</string>
     <string name="label_location">Lokasi</string>
     <string name="label_jadwal">Jadwal</string>
+
+    <string name="label_simple">Pelatihan sederhana</string>
+    <string name="label_reminder">Peringatan</string>
+    <string name="label_interval_timer">Penghitung Waktu</string>
+
+    <string name="label_deskciption">Deskripsi</string>
+    <string name="label_channel">Channel</string>
 </resources>

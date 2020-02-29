@@ -132,76 +132,41 @@ public class FlashFitnessFragment extends BaseFragment implements OnMapReadyCall
             }
             if (dbClass.getAllData()>0){
                 entitiCLass = dbClass.getAll();
-                for (int j= 0; j<entitiCLass.size(); j++){
-                    if (Boolean.parseBoolean(entitiCLass.get(j).getUnggulan())) {
-                        arrClass.add(entitiCLass.get(j).getNamaClass());
-                        entitiEventCLub = dbEventClub.getAllByUnggulan(entitiCLass.get(j).getId());
-                        if (entitiEventCLub.size()>0){
-                            ArrayList<ModelMaps> model = new ArrayList<>();
-                            for (int i= 0; i<entitiEventCLub.size(); i++){
-                                if (model.size()>0){
-                                    for (int k = 0; k<model.size(); k++){
-                                        clubData = dbClub.getById(entitiEventCLub.get(i).getIdClub());
-                                        if (clubData!=null) {
-                                            if (model.get(k).getName().equals(clubData.getNamaClub())){
-
-                                            }else{
-                                                ModelMaps modelMaps = new ModelMaps();
-                                                modelMaps.setId(entitiEventCLub.get(i).getDurasi());
-                                                modelMaps.setDurasi(entitiEventCLub.get(i).getDurasi());
-                                                modelMaps.setHari(entitiEventCLub.get(i).getHari());
-                                                modelMaps.setJamEnd(entitiEventCLub.get(i).getJamEnd());
-                                                modelMaps.setJamStart(entitiEventCLub.get(i).getJamStart());
-                                                modelMaps.setPelatih(entitiEventCLub.get(i).getPelatih());
-                                                clubData = dbClub.getById(entitiEventCLub.get(i).getIdClub());
-                                                if (clubData != null){
-                                                    modelMaps.setName(clubData.getNamaClub());
-                                                    modelMaps.setLatitudeFit(clubData.getLatitude());
-                                                    modelMaps.setLongitudeFit(clubData.getLongitude());
-                                                    modelMaps.setLokasi(clubData.getLokasi());
-                                                }
-                                                classData = dbClass.getById(entitiEventCLub.get(i).getIdClass());
-                                                if (classData!=null){
-                                                    modelMaps.setNamaEvent(classData.getNamaClass());
-                                                    modelMaps.setImage(classData.getImage());
-                                                    modelMaps.setDeskripsi(classData.getDeskripsi());
-                                                }
-                                                modelMaps.setView(false);
-                                                model.add(modelMaps);
-                                            }
-                                        }
-                                    }
-                                }else{
-                                    ModelMaps modelMaps = new ModelMaps();
-                                    modelMaps.setId(entitiEventCLub.get(i).getDurasi());
-                                    modelMaps.setDurasi(entitiEventCLub.get(i).getDurasi());
-                                    modelMaps.setHari(entitiEventCLub.get(i).getHari());
-                                    modelMaps.setJamEnd(entitiEventCLub.get(i).getJamEnd());
-                                    modelMaps.setJamStart(entitiEventCLub.get(i).getJamStart());
-                                    modelMaps.setPelatih(entitiEventCLub.get(i).getPelatih());
-                                    clubData = dbClub.getById(entitiEventCLub.get(i).getIdClub());
-                                    if (clubData != null){
-                                        modelMaps.setName(clubData.getNamaClub());
-                                        modelMaps.setLatitudeFit(clubData.getLatitude());
-                                        modelMaps.setLongitudeFit(clubData.getLongitude());
-                                        modelMaps.setLokasi(clubData.getLokasi());
-                                    }
-                                    classData = dbClass.getById(entitiEventCLub.get(i).getIdClass());
-                                    if (classData!=null){
-                                        modelMaps.setNamaEvent(classData.getNamaClass());
-                                        modelMaps.setImage(classData.getImage());
-                                        modelMaps.setDeskripsi(classData.getDeskripsi());
-                                    }
-                                    modelMaps.setView(false);
-                                    model.add(modelMaps);
-                                }
+                for (int i= 0; i<entitiCLass.size(); i++){
+                    arrClass.add(entitiCLass.get(i).getNamaClass());
+                }
+            }
+            if (dbEventClub.getAllData()>0){
+                entitiEventCLub = dbEventClub.getAll();
+                if (entitiEventCLub.size()>0){
+                    for (int i= 0; i<entitiEventCLub.size(); i++) {
+                        if (Boolean.parseBoolean(entitiEventCLub.get(i).getUnggulan())) {
+                            ModelMaps modelMaps = new ModelMaps();
+                            modelMaps.setId(String.valueOf(entitiEventCLub.get(i).getId()));
+                            modelMaps.setDurasi(entitiEventCLub.get(i).getDurasi());
+                            modelMaps.setHari(entitiEventCLub.get(i).getHari());
+                            modelMaps.setJamEnd(entitiEventCLub.get(i).getJamEnd());
+                            modelMaps.setJamStart(entitiEventCLub.get(i).getJamStart());
+                            modelMaps.setPelatih(entitiEventCLub.get(i).getPelatih());
+                            clubData = dbClub.getById(entitiEventCLub.get(i).getIdClub());
+                            if (clubData != null) {
+                                modelMaps.setName(clubData.getNamaClub());
+                                modelMaps.setLatitudeFit(clubData.getLatitude());
+                                modelMaps.setLongitudeFit(clubData.getLongitude());
+                                modelMaps.setLokasi(clubData.getLokasi());
                             }
-                            list = model;
+                            classData = dbClass.getById(entitiEventCLub.get(i).getIdClass());
+                            if (classData != null) {
+                                modelMaps.setNamaEvent(classData.getNamaClass());
+                                modelMaps.setImage(classData.getImage());
+                                modelMaps.setDeskripsi(classData.getDeskripsi());
+                            }
+                            modelMaps.setView(false);
+                            list.add(modelMaps);
                         }
                     }
                 }
             }
-
         }else {
             if (dbClub.getAllData()>0){
                 entitiCLub = dbClub.getAll();
@@ -220,7 +185,7 @@ public class FlashFitnessFragment extends BaseFragment implements OnMapReadyCall
                 if (entitiEventCLub.size()>0){
                     for (int i= 0; i<entitiEventCLub.size(); i++){
                         ModelMaps modelMaps = new ModelMaps();
-                        modelMaps.setId(entitiEventCLub.get(i).getDurasi());
+                        modelMaps.setId(String.valueOf(entitiEventCLub.get(i).getId()));
                         modelMaps.setDurasi(entitiEventCLub.get(i).getDurasi());
                         modelMaps.setHari(entitiEventCLub.get(i).getHari());
                         modelMaps.setJamEnd(entitiEventCLub.get(i).getJamEnd());
@@ -274,6 +239,13 @@ public class FlashFitnessFragment extends BaseFragment implements OnMapReadyCall
             @Override
             public void onDetail(ModelMaps modelMaps) {
                 APP.log(""+modelMaps.getNamaEvent());
+                DashboardActivity dashboard = DashboardActivity.instance;
+                DetailFlashFitnessFragment fragment = new DetailFlashFitnessFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString(Constants.labelBardetail, modelMaps.getNamaEvent());
+                bundle.putSerializable(Constants.detailFlash, modelMaps);
+                fragment.setArguments(bundle);
+                dashboard.pushFragmentDashboard(fragment);
             }
         });
         list_data.setAdapter(adapter);
@@ -289,6 +261,8 @@ public class FlashFitnessFragment extends BaseFragment implements OnMapReadyCall
 
             @Override
             public void onRightIconClick() {
+                spinnerClub.setSelection(0);
+                spinnerClass.setSelection(0);
                 processAnimateSelectorFilter();
             }
 
@@ -300,6 +274,37 @@ public class FlashFitnessFragment extends BaseFragment implements OnMapReadyCall
         save_apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ArrayList<ModelMaps> listSearch = new ArrayList<>();
+                if (list.size()>0){
+                    String selectClass = null;
+                    String selectClub = null;
+                    if (spinnerClub.getSelectedItemPosition()>0){
+                        selectClub = spinnerClub.getSelectedItem();
+                    }
+                    if (spinnerClass.getSelectedItemPosition()>0){
+                        selectClass = spinnerClass.getSelectedItem();
+                    }
+                    for (int i=0; i<list.size(); i++){
+                        if (selectClub!=null){
+                            if (selectClass!=null){
+                                if (selectClub.equals(list.get(i).getName()) && selectClass.equals(list.get(i).getNamaEvent())){
+                                    listSearch.add(list.get(i));
+                                }
+                            }else{
+                                if (selectClub.equals(list.get(i).getName())){
+                                    listSearch.add(list.get(i));
+                                }
+                            }
+                        }else if (selectClass!=null){
+                            if (selectClass.equals(list.get(i).getNamaEvent())){
+                                listSearch.add(list.get(i));
+                            }
+                        }else{
+                            listSearch.add(list.get(i));
+                        }
+                    }
+                    adapter.updateListSearch(listSearch);
+                }
                 processAnimateSelectorFilter();
             }
         });
@@ -313,11 +318,7 @@ public class FlashFitnessFragment extends BaseFragment implements OnMapReadyCall
             mapsLocation.setVisibility(View.VISIBLE);
             getBaseActivity().setRightIcon(0);
         }else{
-            if (menuStatus == 2){
-                getBaseActivity().setRightIcon(0);
-            }else{
-                getBaseActivity().setRightIcon(R.drawable.icon_filter);
-            }
+            getBaseActivity().setRightIcon(R.drawable.icon_filter);
             mapsLocation.setVisibility(View.GONE);
         }
         getBaseActivity().showDisplayLogoTitle(false);

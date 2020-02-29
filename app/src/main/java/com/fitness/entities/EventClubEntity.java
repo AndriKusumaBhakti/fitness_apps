@@ -15,6 +15,7 @@ public class EventClubEntity extends BaseEntity implements Serializable {
     public static final String JAM_END = "JAM_END";
     public static final String PELATIH = "PELATIH";
     public static final String ID_CLUB = "ID_CLUB";
+    public static final String UNGGULAN = "UNGGULAN";
 
     @DatabaseField(columnName = ID_CLASS)
     private int idClass;
@@ -30,6 +31,8 @@ public class EventClubEntity extends BaseEntity implements Serializable {
     private String jamEnd;
     @DatabaseField(columnName = PELATIH)
     private String pelatih;
+    @DatabaseField(columnName = UNGGULAN)
+    private String unggulan;
 
     public int getIdClass() {
         return idClass;
@@ -85,5 +88,13 @@ public class EventClubEntity extends BaseEntity implements Serializable {
 
     public void setPelatih(String pelatih) {
         this.pelatih = pelatih;
+    }
+
+    public String getUnggulan() {
+        return unggulan;
+    }
+
+    public void setUnggulan(String unggulan) {
+        this.unggulan = unggulan;
     }
 }

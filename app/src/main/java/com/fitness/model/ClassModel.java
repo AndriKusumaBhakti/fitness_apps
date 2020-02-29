@@ -5,7 +5,6 @@ public class ClassModel {
     private String namaClass;
     private String deskripsi;
     private String image;
-    private String unggulan;
 
     public int getId() {
         return id;
@@ -37,13 +36,5 @@ public class ClassModel {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public String getUnggulan() {
-        return unggulan;
-    }
-
-    public void setUnggulan(String unggulan) {
-        this.unggulan = unggulan;
     }
 }

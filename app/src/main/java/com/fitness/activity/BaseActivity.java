@@ -44,6 +44,8 @@ import com.fitness.util.CircleTransform;
 import com.fitness.util.FragmentHelper;
 import com.fitness.util.StringUtil;
 import com.fitness.util.TextUtil;
+import com.fitness.view.TextViewBold;
+import com.fitness.view.TextViewSemiBold;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -64,7 +66,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
     ActionBar actionBar;
     private OnActionbarListener actionbarListener;
 
-    public TextView tvActionBarTitle;
+    public TextViewSemiBold tvActionBarTitle;
     public ImageView leftIcon, rightIcon,rightIcon2;
     private ImageView logoTitle;
     Toolbar toolbar;
@@ -353,7 +355,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
             actionbarClickListener();
             menuAnimator = (ViewAnimator) actionBarView.findViewById(R.id.menu_animator);
 
-            tvActionBarTitle = (TextView) actionBarView.findViewById(R.id.menu_title);
+            tvActionBarTitle = (TextViewSemiBold) actionBarView.findViewById(R.id.menu_title);
             leftIcon = (ImageView) actionBarView.findViewById(R.id.menu_icons);
             toolbarBackground = (RelativeLayout) actionBarView.findViewById(R.id.toolbar_background);
             layoutBar  = (LinearLayout) actionBarView.findViewById(R.id.layoutBar);

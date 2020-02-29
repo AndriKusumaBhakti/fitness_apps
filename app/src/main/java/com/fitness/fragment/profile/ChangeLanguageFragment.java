@@ -100,7 +100,8 @@ public class ChangeLanguageFragment extends BaseFragment {
             public void onClick(View v) {
                 dbLanguage.updateMaxHeartrate("in");
                 Intent intent = new Intent(getBaseActivity(), StartActivity.class);
-                startActivity(intent);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                getBaseActivity().startActivity(intent);
                 getBaseActivity().finish();
             }
         });
@@ -109,7 +110,8 @@ public class ChangeLanguageFragment extends BaseFragment {
             public void onClick(View v) {
                 dbLanguage.updateMaxHeartrate("en");
                 Intent intent = new Intent(getBaseActivity(), StartActivity.class);
-                startActivity(intent);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                getBaseActivity().startActivity(intent);
                 getBaseActivity().finish();
             }
         });
@@ -119,7 +121,8 @@ public class ChangeLanguageFragment extends BaseFragment {
                 checkEng.setChecked(false);
                 dbLanguage.updateMaxHeartrate("in");
                 Intent intent = new Intent(getBaseActivity(), StartActivity.class);
-                startActivity(intent);
+                getBaseActivity().startActivity(intent);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 getBaseActivity().finish();
             }
         });
@@ -129,7 +132,8 @@ public class ChangeLanguageFragment extends BaseFragment {
                 checkIndo.setChecked(false);
                 dbLanguage.updateMaxHeartrate("en");
                 Intent intent = new Intent(getBaseActivity(), StartActivity.class);
-                startActivity(intent);
+                getBaseActivity().startActivity(intent);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 getBaseActivity().finish();
             }
         });

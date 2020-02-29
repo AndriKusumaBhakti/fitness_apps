@@ -104,4 +104,12 @@
     <string name="label_cabang">Branch Name</string>
     <string name="label_location">Location</string>
     <string name="label_jadwal">Schedule</string>
+
+    <string name="label_simple">Simple Training</string>
+    <string name="label_reminder">Reminder</string>
+    <string name="label_interval_timer">Interval Timer</string>
+
+
+    <string name="label_deskciption">Description</string>
+    <string name="label_channel">Channel</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.fitness.model;
 
-public class ModelMaps {
+import java.io.Serializable;
+
+public class ModelMaps implements Serializable {
     private String id;
     private String longitudeFit;
     private String latitudeFit;

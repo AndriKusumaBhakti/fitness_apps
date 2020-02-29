@@ -53,7 +53,6 @@ public class DBClass {
         entity.setNamaClass(StringUtil.checkNullString(response.getNamaClass()));
         entity.setDeskripsi(StringUtil.checkNullString(response.getDeskripsi()));
         entity.setImage(StringUtil.checkNullString(response.getImage()));
-        entity.setUnggulan(StringUtil.checkNullString(response.getUnggulan()));
 
         this.upsertToDatabase(entity);
     }

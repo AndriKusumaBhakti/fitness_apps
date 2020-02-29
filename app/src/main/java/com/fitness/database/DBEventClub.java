@@ -57,6 +57,7 @@ public class DBEventClub {
         entity.setJamStart(StringUtil.checkNullString(response.getJamStart()));
         entity.setJamEnd(StringUtil.checkNullString(response.getJamEnd()));
         entity.setPelatih(StringUtil.checkNullString(response.getPelatih()));
+        entity.setUnggulan(StringUtil.checkNullString(response.getUnggulan()));
 
         this.upsertToDatabase(entity);
     }
