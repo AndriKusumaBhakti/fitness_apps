@@ -14,6 +14,7 @@ import com.fitness.R;
 import com.fitness.fragment.BaseFragment;
 import com.fitness.fragment.faq.FaqFragment;
 import com.fitness.fragment.home.HomeFragment;
+import com.fitness.fragment.home.PromosiFragment;
 import com.fitness.fragment.profile.ProfileFlashFragment;
 import com.fitness.fragment.profile.ProfileFragment;
 import com.fitness.fragment.reward.RewardFragment;
@@ -47,7 +48,7 @@ public class DashboardActivity extends BaseActivity{
 
         this.createNavigationItems();
 
-        replaceFragmentwithTag(R.id.container, HomeFragment.newInstance(), false, "HOME");
+        replaceFragmentwithTag(R.id.container, PromosiFragment.newInstance(), false, "HOME");
     }
 
      private void createNavigationItems() {
@@ -83,7 +84,7 @@ public class DashboardActivity extends BaseActivity{
                     case 0:
                         currentSelectedTab = 0;
                         showBottomMenu();
-                        replaceFragmentwithTag(R.id.container, HomeFragment.newInstance(), false, "HOME");
+                        replaceFragmentwithTag(R.id.container, PromosiFragment.newInstance(), false, "HOME");
                         break;
                     case 1:
                         currentSelectedTab = 1;

@@ -12,6 +12,7 @@
     <string name="btn_cancel">Cancel</string>
     <string name="btn_save">Save</string>
     <string name="btn_detail">Detail</string>
+    <string name="btn_see_more">See More</string>
     <string name="btn_apply">Apply</string>
 
     <string name="please_wait">Please Wait...</string>
@@ -112,4 +113,8 @@
 
     <string name="label_deskciption">Description</string>
     <string name="label_channel">Channel</string>
+
+    <string name="label_sets">Sets</string>
+    <string name="label_work_interval">Work Interval</string>
+    <string name="label_rest_interval">Rest Interval</string>
 </resources>

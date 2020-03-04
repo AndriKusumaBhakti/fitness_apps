@@ -14,6 +14,7 @@
     <string name="btn_cancel">Batal</string>
     <string name="btn_save">Simpan</string>
     <string name="btn_detail">Detail</string>
+    <string name="btn_see_more">Lihat lainnya</string>
     <string name="btn_apply">Terapkan</string>
 
     <string name="please_wait">Harap Menunggu...</string>
@@ -94,4 +95,8 @@
 
     <string name="label_deskciption">Deskripsi</string>
     <string name="label_channel">Channel</string>
+
+    <string name="label_sets">Set</string>
+    <string name="label_work_interval">Work Interval</string>
+    <string name="label_rest_interval">Rest Interval</string>
 </resources>

@@ -245,14 +245,14 @@ public class StartActivity extends BaseActivity {
     public void initView() {
         title = getResources().getStringArray(R.array.titles);
         deskripsi = getResources().getStringArray(R.array.overviews);
-        mThumbIds = new String[]{"https://res.cloudinary.com/andrikusumabhakti/image/upload/v1582634488/fitness/gambar_1_fbc1hp.png",
-                "https://res.cloudinary.com/andrikusumabhakti/image/upload/v1582634509/fitness/gambar_2_dqvvd1.png",
-                "https://res.cloudinary.com/andrikusumabhakti/image/upload/v1582634509/fitness/gambar_3_n5zyk7.png",
-                "https://res.cloudinary.com/andrikusumabhakti/image/upload/v1582634510/fitness/gambar_4_fvvmfy.png",
-                "https://res.cloudinary.com/andrikusumabhakti/image/upload/v1582634510/fitness/gambar_5_qaetda.png",
-                "https://res.cloudinary.com/andrikusumabhakti/image/upload/v1582634510/fitness/gambar_6_rvomy0.png",
-                "https://res.cloudinary.com/andrikusumabhakti/image/upload/v1582634510/fitness/gambar_7_npd75b.png",
-                "https://res.cloudinary.com/andrikusumabhakti/image/upload/v1582634510/fitness/gambar_4_fvvmfy.png"};
+        mThumbIds = new String[]{"https://res.cloudinary.com/dvrv7bd38/image/upload/v1583250563/fitness/splashscreen/gambar_1_fdq3ps.png",
+                "https://res.cloudinary.com/dvrv7bd38/image/upload/v1583250563/fitness/splashscreen/gambar_2_se8rj0.png",
+                "https://res.cloudinary.com/dvrv7bd38/image/upload/v1583250558/fitness/splashscreen/gambar_3_xaietn.png",
+                "https://res.cloudinary.com/dvrv7bd38/image/upload/v1583250562/fitness/splashscreen/gambar_4_cm15t3.png",
+                "https://res.cloudinary.com/dvrv7bd38/image/upload/v1583250560/fitness/splashscreen/gambar_5_qgib3n.png",
+                "https://res.cloudinary.com/dvrv7bd38/image/upload/v1583250560/fitness/splashscreen/gambar_6_vikgsx.png",
+                "https://res.cloudinary.com/dvrv7bd38/image/upload/v1583250562/fitness/splashscreen/gambar_7_o6jmql.png",
+                "https://res.cloudinary.com/dvrv7bd38/image/upload/v1583250562/fitness/splashscreen/gambar_4_cm15t3.png"};
         carouselView = (CarouselView) findViewById(R.id.carouselView);
         carouselView.setPageCount(mThumbIds.length);
         carouselView.setSlideInterval(1500);
@@ -271,7 +271,6 @@ public class StartActivity extends BaseActivity {
             TextViewRegular deskripsiCard = (TextViewRegular) customView.findViewById(R.id.ketranganCard);
             titleCard.setText(title[position]);
             deskripsiCard.setText(deskripsi[position]);
-//            gambarCard.setImageResource(mThumbIds[position]);
             Glide.with(StartActivity.this)
                     .load(mThumbIds[position])
                     .diskCacheStrategy(DiskCacheStrategy.ALL)

@@ -34,7 +34,6 @@
         android:background="@drawable/shape_label_start"
         android:gravity="bottom">
         <com.fitness.view.TextViewBold
-            android:id="@+id/lupa_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/medbooks_30dp"
@@ -42,7 +41,7 @@
             android:gravity="center"
             android:paddingBottom="@dimen/medbooks_10dp"
             android:paddingTop="@dimen/medbooks_7dp"
-            android:text="@string/label_app"
+            android:text="@string/app_name"
             android:textColor="@color/greywhite"
             android:textSize="@dimen/medbooks_14dp" />
     </LinearLayout>

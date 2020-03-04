@@ -83,7 +83,9 @@ public class LatihanFragment extends BaseFragment {
 
             @Override
             public void onRightIconClick() {
-
+                DashboardActivity dashboard = DashboardActivity.instance;
+                TimerIntervalFragment fragment = new TimerIntervalFragment();
+                dashboard.pushFragmentDashboard(fragment);
             }
 
             @Override
