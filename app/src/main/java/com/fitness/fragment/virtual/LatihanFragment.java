@@ -115,4 +115,10 @@ public class LatihanFragment extends BaseFragment {
     public int getFragmentLayout() {
         return R.layout.fragment_latihan;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        DashboardActivity.instance.showBottomMenu();
+    }
 }

@@ -120,6 +120,16 @@ public class DBEventClub {
         return null;
     }
 
+    public List<EventClubEntity> getDataNoewAndClub(String hari, String cLass) {
+        List<EventClubEntity> data = new ArrayList<EventClubEntity>();
+        try {
+            data = dao.queryBuilder().where().eq(EventClubEntity.HARI, hari).eq(EventClubEntity.ID_CLASS, cLass).query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
     public List<EventClubEntity> getAll() {
         List<EventClubEntity> data = new ArrayList<EventClubEntity>();
         try {

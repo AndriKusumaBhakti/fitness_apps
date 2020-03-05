@@ -160,7 +160,28 @@ public class PromosiFragment extends BaseFragment {
                 model.setJamEnd(listEntity.get(i).getJamEnd());
                 model.setPelatih(listEntity.get(i).getPelatih());
                 model.setHari(listEntity.get(i).getHari());
-                dataMaps.add(model);
+                if (dataMaps.size()>0){
+                    boolean set = false;
+                    for (int j = 0; j<dataMaps.size(); j++){
+                        if (dataMaps.get(j).getNamaEvent().equals(model.getNamaEvent())){
+                            if (!set) {
+                                APP.log("data 1 "+dataMaps.get(j).getNamaEvent());
+                                APP.log("data 1 "+model.getNamaEvent());
+                                dataMaps.add(j, model);
+                                set = true;
+                            }
+                        }else{
+                            if (!set) {
+                                APP.log("data 2 "+dataMaps.get(j).getNamaEvent());
+                                APP.log("data 2 "+model.getNamaEvent());
+                                dataMaps.add(dataMaps.size()-1, model);
+                                set = true;
+                            }
+                        }
+                    }
+                }else{
+                    dataMaps.add(model);
+                }
             }
         }
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());

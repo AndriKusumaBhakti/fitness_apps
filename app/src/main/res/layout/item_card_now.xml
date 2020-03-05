@@ -2,8 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/spinner_border">
+    android:id="@+id/frameLayout"
+    android:orientation="vertical">
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -12,8 +12,8 @@
                 android:id="@+id/linearLayoutTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/medbooks_10dp"
-                android:paddingTop="@dimen/medbooks_10dp"
+                android:paddingBottom="@dimen/medbooks_5dp"
+                android:paddingTop="@dimen/medbooks_5dp"
                 android:orientation="horizontal">
                 <com.fitness.view.TextViewLight
                     android:id="@+id/titleCard"
@@ -21,6 +21,7 @@
                     android:layout_weight="1"
                     android:textSize="@dimen/medbooks_12dp"
                     android:gravity="center"
+                    android:layout_gravity="center"
                     android:textColor="@color/grey2"
                     android:layout_height="wrap_content"
                     android:text="title" />
@@ -29,22 +30,25 @@
                     android:layout_width="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:layout_gravity="center"
                     android:textSize="@dimen/medbooks_12dp"
                     android:textColor="@color/grey2"
                     android:layout_height="wrap_content"
                     android:text="title" />
-                <com.fitness.view.ButtonRegular
+                <LinearLayout
                     android:id="@+id/btn_detail"
-                    android:layout_width="@dimen/medbooks_80dp"
-                    android:layout_height="@dimen/medbooks_20dp"
-                    android:background="@drawable/selector_btn_red"
-                    android:textSize="@dimen/medbooks_10dp"
-                    android:layout_centerInParent="true"
-                    android:text="@string/btn_detail"
-                    android:textColor="@color/greywhite"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
-                    style="?android:attr/borderlessButtonStyle"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1.5"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="@dimen/medbooks_30dp"
+                        android:layout_height="@dimen/medbooks_30dp"
+                        android:gravity="center"
+                        android:src="@drawable/marker"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 </FrameLayout>

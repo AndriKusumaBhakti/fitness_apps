@@ -1,11 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="@dimen/medbooks_16dp"
         android:orientation="vertical">
-        
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.fitness.view.TextViewRegular
+                        android:id="@+id/setsText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/label_sets"
+                        android:textColor="@color/red_bar_status"
+                        android:textSize="@dimen/medbooks_20dp" />
+
+                    <LinearLayout
+                        android:id="@+id/setsLinear"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="@+id/setsText">
+
+                        <com.fitness.view.ButtonRegular
+                            android:id="@+id/setsMinusBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="-"
+                            android:background="@drawable/selector_btn_red"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/medbooks_20dp"
+                            android:textStyle="bold" />
+
+                        <com.fitness.view.TextViewRegular
+                            android:id="@+id/setsQuantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:freezesText="true"
+                            android:gravity="center_horizontal"
+                            android:text="0"
+                            android:textColor="@color/red_bar_status"
+                            android:textSize="@dimen/medbooks_20dp" />
+
+                        <com.fitness.view.ButtonRegular
+                            android:id="@+id/setsPlusBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/selector_btn_red"
+                            android:textColor="@color/white"
+                            android:text="+"
+                            android:textSize="@dimen/medbooks_20dp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/red_bar_status">
+
+                </View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.fitness.view.TextViewRegular
+                        android:id="@+id/workText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="@string/label_work_interval"
+                        android:textColor="@color/red_bar_status"
+                        android:textSize="@dimen/medbooks_20dp"
+                        app:layout_constraintTop_toBottomOf="@+id/setsLinear" />
+
+                    <LinearLayout
+                        android:id="@+id/workLinear"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="@+id/workText">
+
+                        <com.fitness.view.ButtonRegular
+                            android:id="@+id/workMinusBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/selector_btn_red"
+                            android:textColor="@color/white"
+                            android:text="-"
+                            android:textSize="@dimen/medbooks_20dp"
+                            android:textStyle="bold" />
+
+                        <com.fitness.view.TextViewRegular
+                            android:id="@+id/workQuantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:freezesText="true"
+                            android:gravity="center_horizontal"
+                            android:text="01 : 30"
+                            android:textColor="@color/red_bar_status"
+                            android:textSize="@dimen/medbooks_20dp" />
+
+                        <com.fitness.view.ButtonRegular
+                            android:id="@+id/workPlusBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/selector_btn_red"
+                            android:textColor="@color/white"
+                            android:text="+"
+                            android:textSize="@dimen/medbooks_20dp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/red_bar_status">
+
+                </View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.fitness.view.TextViewRegular
+                        android:id="@+id/restText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="@string/label_rest_interval"
+                        android:textColor="@color/red_bar_status"
+                        android:textSize="@dimen/medbooks_20dp"
+                        app:layout_constraintTop_toBottomOf="@+id/workLinear" />
+
+                    <LinearLayout
+                        android:id="@+id/restLinear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="@+id/restText">
+
+                        <com.fitness.view.ButtonRegular
+                            android:id="@+id/restMinusBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/selector_btn_red"
+                            android:textColor="@color/white"
+                            android:text="-"
+                            android:textSize="@dimen/medbooks_20dp"
+                            android:textStyle="bold" />
+
+                        <com.fitness.view.TextViewRegular
+                            android:id="@+id/restQuantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:freezesText="true"
+                            android:gravity="center_horizontal"
+                            android:text="00 : 30"
+                            android:textColor="@color/red_bar_status"
+                            android:textSize="@dimen/medbooks_20dp" />
+
+                        <com.fitness.view.ButtonRegular
+                            android:id="@+id/restPlusBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/selector_btn_red"
+                            android:textColor="@color/white"
+                            android:text="+"
+                            android:textSize="@dimen/medbooks_20dp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/red_bar_status">
+
+                </View>
+
+                <com.fitness.view.ButtonRegular
+                    android:id="@+id/startBtn"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/selector_btn_red"
+                    android:textColor="@color/white"
+                    android:text="start"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/medbooks_20dp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+        </ScrollView>
     </LinearLayout>
 </FrameLayout>

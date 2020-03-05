@@ -23,4 +23,11 @@ public class Constants {
     public static final String EXTRA_CUSTOM_TABS_SESSION = "android.support.customtabs.extra.SESSION";
     public static final String EXTRA_CUSTOM_TABS_TOOLBAR_COLOR = "android.support.customtabs.extra.TOOLBAR_COLOR";
     public static final String EXTRA_CUSTOM_TABS_EXIT_ANIMATION_BUNDLE = "android.support.customtabs.extra.EXIT_ANIMATION_BUNDLE";
+
+    public static final int DEFAULT_SETS = 12;
+    public static final int DEFAULT_WORK_SECS = 30;
+    public static final int DEFAULT_WORK_MINS = 1;
+    public static final int DEFAULT_REST_SECS = 30;
+    public static final int DEFAULT_REST_MINS = 0;
+    public static final String DEFAULT_FILE_NAME = "parameters";
 }

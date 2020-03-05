@@ -21,9 +21,10 @@
     <string name="date_hint">Pilih Tanggal</string>
     <string name="choose_date">"Pilih Tanggal"</string>
 
-    <string name="label_home">Terbaru</string>
+    <string name="label_new">Terbaru</string>
+    <string name="label_home">Beranda</string>
     <string name="label_schedule">Agenda</string>
-    <string name="label_flash">Flash Profil</string>
+    <string name="label_flash">Flash Fitnes</string>
     <string name="label_faq">FAQ</string>
     <string name="label_virtual">Latihan</string>
     <string name="label_reward">Rewards</string>
