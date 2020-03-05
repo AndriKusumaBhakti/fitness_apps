@@ -25,6 +25,8 @@
     <string name="label_home">Beranda</string>
     <string name="label_schedule">Agenda</string>
     <string name="label_flash">Flash Fitnes</string>
+    <string name="label_the_gyms">The Gym</string>
+    <string name="label_lets_move">Mulai Olahraga</string>
     <string name="label_faq">FAQ</string>
     <string name="label_virtual">Latihan</string>
     <string name="label_reward">Rewards</string>
@@ -52,12 +54,12 @@
     </string-array>
 
     <string-array name="menuFlash">
-        <item>Profil Cabang</item>
-        <item>Kelas Unggulan</item>
+        <item>Klub</item>
         <item>Jadwal Kelas</item>
-        <item>Profil Instruktur</item>
+        <item>Instruktur</item>
+        <item>Pelatih Pribadi</item>
+        <item>Tentang Flash</item>
         <item>Ubah Bahasa</item>
-        <item>Tentang Flash Fitness</item>
     </string-array>
 
     <string-array name="overviews">
@@ -100,4 +102,11 @@
     <string name="label_sets">Set</string>
     <string name="label_work_interval">Work Interval</string>
     <string name="label_rest_interval">Rest Interval</string>
+    <string name="label_versi">Versi 1.0.0</string>
+
+    <string name="label_about_1">  Flash Fitness menawarkan fasilitas fitness center yang lengkap dan sangat memadai:</string>
+    <string name="label_about_2">Program Personal-Training yang memberikan hasil optimal dengan personal-trainer yang bersertifikasi, berpengalaman, dan menjalankan gaya hidup yang diajarkannya sendiri. Fasilitas latihan beban (mesin, plate-loaded, free-weights) dan aerobik (treadmills, sepeda statis, cross/arc
+trainer, ruang aerobik, ruang spinning). Kelas-kelas aerobik yang bervariasi, lengkap, dan inovatif.</string>
+    <string name="label_about_3">Fasilitas locker, sauna, shower, ruang ganti pakaian, wastafel, toilet - PRIA dan WANITA. Lounge yang nyaman dan luas dengan fasilitas FREE wi-fi internet broadband. Handuk latihan dan handuk mandi untuk setiap member. Ruang konsultasi private dengan trainer. Fit-shop dengan merchandise yang memadai dan berkualitas.</string>
+    <string name="label_about_4">  Segera hubungi kami di 08112345678 melalui sambungan telepon atau whatsapp untuk mendapatkan informasi dan penawaran terbaik.</string>
 </resources>

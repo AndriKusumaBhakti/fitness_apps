@@ -82,7 +82,7 @@ public class ChangeLanguageFragment extends BaseFragment {
         getBaseActivity().setActionbarListener(new OnActionbarListener() {
             @Override
             public void onLeftIconClick() {
-
+                getFragmentManager().popBackStack();
             }
 
             @Override
@@ -141,7 +141,7 @@ public class ChangeLanguageFragment extends BaseFragment {
 
     @Override
     public void updateUI() {
-        getBaseActivity().setLeftIcon(R.drawable.icon_language);
+        getBaseActivity().setLeftIcon(R.drawable.back);
         getBaseActivity().setRightIcon2(0);
         getBaseActivity().setRightIcon(0);
         getBaseActivity().showDisplayLogoTitle(false);

@@ -42,10 +42,20 @@ public class PromosiFragment extends BaseFragment {
     private static final String ARG_PARAM2 = "param2";
 
     CarouselView carouselView;
-    final String[] mThumbIds = {"https://res.cloudinary.com/dvrv7bd38/image/upload/v1583250271/fitness/fitnessPromo1_ykaae9.jpg",
-            "https://res.cloudinary.com/dvrv7bd38/image/upload/v1583250163/fitness/fitnessPromo2_aeoydt.jpg",
-            "https://res.cloudinary.com/dvrv7bd38/image/upload/v1583250164/fitness/fitnessPromo3_ccle17.jpg",
-            "https://res.cloudinary.com/dvrv7bd38/image/upload/v1583250164/fitness/fitnessPromo4_hpwuyu.png"};
+    final String[][] mThumbIds = {{"https://res.cloudinary.com/dvrv7bd38/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1583250163/fitness/promo/fitnessPromo2_aeoydt.jpg",
+            "Ayo Segera Bergabung Bersama Kami Flash Fitness Indonesia, Dengan Fasilitas Olahraga Terlengkap Di Kota Surabaya, HANYA 250rb/bln..., " +
+                    "Tunggu apalagi segera yuuukkk...!!! @ Flash Fitness CITO",
+            "https://www.facebook.com/FlashFitnessCito.SBY/photos/pcb.1794041050607569/1794040913940916/?type=3&theater"},
+            {"https://res.cloudinary.com/dvrv7bd38/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1583388094/fitness/promo/promo2_ykujcd.jpg",
+            "Lippo Malls Indonesia dan Styles menghadirkan program istimewa “Gelegar Milyaran Hadiah”, yang diselenggarakan di 8 Lippo Malls Jawa Timur yaitu: Malang Town Square, Kediri Town Square, Plaza Madiun, City of Tomorrow, Lippo Plaza Batu, Lippo Plaza Sidoarjo, Lippo Plaza Jember dan Lippo Plaza Gresik.\n" +
+                    "\n" + "AYO TRANSAKSI DI @flashfitnessindonesia di FLASH CITO dan LIPPO SEKARANG! Dengan minimal Rp. 50.000,-, mengunduh aplikasi Styles dan menukarkan struk belanja ke Customer Service masing-masing mal, kamu berhak mendapatkan 1 kupon undian Lucky Styles berlaku kelipatan*. Program ini dimulai dari tanggal 1 Feb 2020 hingga 30 April 2020. Pengundian TAHAP II akan dilakukan tanggal 10 MEI 2020 di CITY OF TOMMOROW SURABAYA.\n" +
+                    "Semakin banyak belanja semakin besar kesempatan kamu untuk mendapatkan hadiahnya!\n" +
+                    "\n" + "Untuk info lebih lanjut, cek My Promo di aplikasi Styles. Hubungi Call Center Styles di WA/Call 08111-456-456, email ke: info@styles.id, atau Customer Service @cito_sby dan @lippoplazasidoarjo .\n" +
+                    ".\n" + "*Syarat dan Ketentuan berlaku.",
+                    "https://www.facebook.com/FlashFitnessCito.SBY/photos/a.1453638174647860/3044716835539978/?type=3&theater"},
+            {"https://res.cloudinary.com/dvrv7bd38/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1583388176/fitness/promo/promo3_yissza.jpg",
+                    "Ayo Dapatkan Keanggotaan Tipe Khusus untuk Anda, Tipe Baru untuk Liburan Fitness... hanya Rp. 200,000 tahun,-",
+                    "https://www.facebook.com/FlashFitnessCito.SBY/photos/a.1457938427551168/2166931379985199/?type=3&theater"}};
 
     private ArrayList<ModelMaps> dataMaps;
 
@@ -113,7 +123,7 @@ public class PromosiFragment extends BaseFragment {
                 ImageView gambarCard = (ImageView) customView.findViewById(R.id.gambarCardView);
 
                 Glide.with(getActivity())
-                        .load(mThumbIds[position])
+                        .load(mThumbIds[position][0])
                         .centerCrop()
                         .fitCenter()
                         .dontAnimate()
@@ -121,6 +131,20 @@ public class PromosiFragment extends BaseFragment {
                         .error(R.drawable.fitness_romo1)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(gambarCard);
+                gambarCard.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DashboardActivity dashboard = DashboardActivity.instance;
+                        DetailPromoFragment fragment = new DetailPromoFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString(Constants.labelBardetail, "Promo");
+                        bundle.putString(Constants.diskripsiPromo, mThumbIds[position][1]);
+                        bundle.putString(Constants.imagePromo, mThumbIds[position][0]);
+                        bundle.putString(Constants.linkShare, mThumbIds[position][2]);
+                        fragment.setArguments(bundle);
+                        dashboard.pushFragmentDashboard(fragment);
+                    }
+                });
                 return customView;
             }
         });

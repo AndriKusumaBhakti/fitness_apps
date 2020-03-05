@@ -69,6 +69,8 @@
     <dimen name="medbooks_180dp">180dp</dimen>
     <dimen name="medbooks_210dp">210dp</dimen>
     <dimen name="medbooks_220dp">220dp</dimen>
+    <dimen name="medbooks_230dp">230dp</dimen>
+    <dimen name="medbooks_240dp">240dp</dimen>
     <dimen name="medbooks_250dp">250dp</dimen>
     <dimen name="medbooks_260dp">260dp</dimen>
     <dimen name="medbooks_270dp">270dp</dimen>

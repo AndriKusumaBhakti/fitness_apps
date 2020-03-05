@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/gambarCardView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/medbooks_300dp"
+        android:layout_height="@dimen/medbooks_250dp"
         android:layout_marginBottom="6dp"
         android:adjustViewBounds="true"/>
 </LinearLayout>

@@ -24,6 +24,8 @@
     <string name="label_home">Home</string>
     <string name="label_schedule">Schedule</string>
     <string name="label_flash">Flash Fitnes</string>
+    <string name="label_the_gyms">The Gym</string>
+    <string name="label_lets_move">Lets Move</string>
     <string name="label_virtual">Training</string>
     <string name="label_faq">FAQ</string>
     <string name="label_reward">Reward</string>
@@ -51,12 +53,12 @@
     </string-array>
 
     <string-array name="menuFlash">
-        <item>Branch Profile</item>
-        <item>Featured Classes</item>
-        <item>Class Schedule</item>
-        <item>Instuctor Profile</item>
+        <item>Clubs</item>
+        <item>Timetable</item>
+        <item>Instructor</item>
+        <item>Personal Trainer</item>
+        <item>About Flash</item>
         <item>Change Language</item>
-        <item>About Flash Fitness</item>
     </string-array>
 
     <string-array name="overviews">
@@ -118,4 +120,11 @@
     <string name="label_sets">Sets</string>
     <string name="label_work_interval">Work Interval</string>
     <string name="label_rest_interval">Rest Interval</string>
+    <string name="label_versi">Version 1.0.0</string>
+
+    <string name="label_about_1">  Flash Fitness offers complete and very adequate fitness center facilities:</string>
+    <string name="label_about_2">Personal-Training program that provides optimal results with certified personal trainers who are experienced and live the lifestyle that they teach themselves. Weight training facilities (machinery, plate-loaded, free-weights) and aerobics (treadmills, static bicycles, cross / arc
+trainer, aerobics room, spinning room). Aerobic classes that are varied, complete, and innovative.</string>
+    <string name="label_about_3">Locker facilities, sauna, shower, changing room, sink, toilet - MEN and WOMEN. Comfortable and spacious lounge with FREE wi-fi broadband internet facilities. Exercise towels and bath towels for each member. Private consultation room with trainers. Fit-shop with adequate and quality merchandise.</string>
+    <string name="label_about_4">  Immediately contact us at 08112345678 via telephone or whatsapp to get the best information and offers.</string>
 </resources>

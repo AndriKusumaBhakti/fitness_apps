@@ -18,6 +18,9 @@ public class Constants {
     final public static String menuFlash = "0";
     final public static String posisi = "0";
     final public static String labelBardetail = "labelBardetail";
+    final public static String diskripsiPromo = "diskripsiPromo";
+    final public static String imagePromo = "imagePromo";
+    final public static String linkShare = "linkShare";
     final public static String detailFlash = "detailFlash";
 
     public static final String EXTRA_CUSTOM_TABS_SESSION = "android.support.customtabs.extra.SESSION";

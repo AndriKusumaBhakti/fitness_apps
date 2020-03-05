@@ -54,8 +54,8 @@ public class DashboardActivity extends BaseActivity{
      private void createNavigationItems() {
 
          AHBottomNavigationItem news = new AHBottomNavigationItem(getResources().getString(R.string.label_home), R.drawable.icon_home);
-         AHBottomNavigationItem schedule = new AHBottomNavigationItem(getResources().getString(R.string.label_flash), R.drawable.icon_flash);
-         AHBottomNavigationItem latihan=new AHBottomNavigationItem(getResources().getString(R.string.label_virtual), R.drawable.icon_latihan);
+         AHBottomNavigationItem schedule = new AHBottomNavigationItem(getResources().getString(R.string.label_the_gyms), R.drawable.icon_flash);
+         AHBottomNavigationItem latihan=new AHBottomNavigationItem(getResources().getString(R.string.label_lets_move), R.drawable.icon_latihan);
          AHBottomNavigationItem reward=new AHBottomNavigationItem(getResources().getString(R.string.label_faq), R.drawable.icon_faq);
 
          bottomNavigation.addItem(news);
