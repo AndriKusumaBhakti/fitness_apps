@@ -1,12 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginBottom="56dp">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@color/red_bar_status"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/imageFlash"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/medbooks_250dp"/>
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/medbooks_10dp"
+            android:paddingRight="@dimen/medbooks_10dp"
+            android:paddingLeft="@dimen/medbooks_10dp"
+            android:scrollbars="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/linearGym"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/medbooks_40dp"
+                    android:orientation="horizontal"
+                    android:background="@color/red_bar_status">
+                    <com.fitness.view.TextViewBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gym Access"
+                        android:textSize="@dimen/medbooks_14dp"
+                        android:layout_marginLeft="@dimen/medbooks_15dp"
+                        android:gravity="left|center"
+                        android:layout_gravity="center|left"
+                        android:textColor="@color/white"/>
+                    <com.fitness.view.TextViewBold
+                        android:id="@+id/plusGym"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="-"
+                        android:textSize="@dimen/medbooks_24dp"
+                        android:layout_marginRight="@dimen/medbooks_10dp"
+                        android:gravity="right|center"
+                        android:layout_gravity="center|right"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/exp_gym"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:el_expanded="true"
+                    app:el_duration = "800">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="@dimen/medbooks_15dp"
+                        android:layout_gravity="center">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list_data_gym"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="vertical"/>
+                    </LinearLayout>
+                </net.cachapa.expandablelayout.ExpandableLayout>
+                <LinearLayout
+                    android:id="@+id/linearEmergency"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/medbooks_40dp"
+                    android:layout_marginTop="@dimen/medbooks_10dp"
+                    android:orientation="horizontal"
+                    android:background="@color/red_bar_status">
+                    <com.fitness.view.TextViewBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Emergency"
+                        android:textSize="@dimen/medbooks_14dp"
+                        android:layout_marginLeft="@dimen/medbooks_15dp"
+                        android:gravity="left|center"
+                        android:layout_gravity="center|left"
+                        android:textColor="@color/white"/>
+                    <com.fitness.view.TextViewBold
+                        android:id="@+id/plusEmergency"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="+"
+                        android:textSize="@dimen/medbooks_24dp"
+                        android:layout_marginRight="@dimen/medbooks_10dp"
+                        android:gravity="right|center"
+                        android:layout_gravity="center|right"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/exp_emergency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:el_expanded="false"
+                    app:el_duration = "800">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="@dimen/medbooks_15dp"
+                        android:layout_gravity="center">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list_data_emergency"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="vertical"/>
+                    </LinearLayout>
+                </net.cachapa.expandablelayout.ExpandableLayout>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </FrameLayout>

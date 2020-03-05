@@ -127,4 +127,8 @@
 trainer, aerobics room, spinning room). Aerobic classes that are varied, complete, and innovative.</string>
     <string name="label_about_3">Locker facilities, sauna, shower, changing room, sink, toilet - MEN and WOMEN. Comfortable and spacious lounge with FREE wi-fi broadband internet facilities. Exercise towels and bath towels for each member. Private consultation room with trainers. Fit-shop with adequate and quality merchandise.</string>
     <string name="label_about_4">  Immediately contact us at 08112345678 via telephone or whatsapp to get the best information and offers.</string>
+
+
+    <string name="label_tanya">Question</string>
+    <string name="label_jawab">Answer</string>
 </resources>

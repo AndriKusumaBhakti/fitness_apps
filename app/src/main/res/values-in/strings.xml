@@ -109,4 +109,7 @@
 trainer, ruang aerobik, ruang spinning). Kelas-kelas aerobik yang bervariasi, lengkap, dan inovatif.</string>
     <string name="label_about_3">Fasilitas locker, sauna, shower, ruang ganti pakaian, wastafel, toilet - PRIA dan WANITA. Lounge yang nyaman dan luas dengan fasilitas FREE wi-fi internet broadband. Handuk latihan dan handuk mandi untuk setiap member. Ruang konsultasi private dengan trainer. Fit-shop dengan merchandise yang memadai dan berkualitas.</string>
     <string name="label_about_4">  Segera hubungi kami di 08112345678 melalui sambungan telepon atau whatsapp untuk mendapatkan informasi dan penawaran terbaik.</string>
+
+    <string name="label_tanya">Pertanyaan</string>
+    <string name="label_jawab">Jawaban</string>
 </resources>
