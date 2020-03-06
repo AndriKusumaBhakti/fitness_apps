@@ -2,6 +2,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="56dp">
     <ScrollView
         android:layout_width="match_parent"
@@ -39,10 +42,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingLeft="@dimen/medbooks_15dp"
-                        android:paddingRight="@dimen/medbooks_15dp"
-                        android:paddingBottom="@dimen/medbooks_10dp">
+                        android:orientation="vertical">
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/listVideo"
                             android:layout_width="match_parent"
@@ -53,88 +53,96 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardCornerRadius="8dp"
-                android:background="@color/greywhite">
+                android:orientation="vertical">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                        android:id="@+id/calendar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:mcv_showOtherDates="none"
+                        app:mcv_arrowColor="@color/red_bar"
+                        app:mcv_selectionColor="@color/red_bar"
+                        app:mcv_headerTextAppearance="@color/red_bar"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        app:mcv_calendarMode="month"/>
+                    <View
+                        android:id="@+id/choiceMonthYear"
+                        android:layout_width="match_parent"
+                        android:layout_marginRight="@dimen/medbooks_100dp"
+                        android:layout_marginLeft="@dimen/medbooks_100dp"
+                        android:background="@android:color/transparent"
+                        android:layout_height="@dimen/medbooks_50dp"/>
+                </FrameLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/greywhite"
+                    android:layout_below="@+id/calendar"
                     android:orientation="vertical">
-                    <LinearLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list_data"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/spinner_border"
-                        android:padding="@dimen/medbooks_10dp"
-                        android:orientation="horizontal">
-                        <com.fitness.view.TextViewBold
-                            android:layout_width="wrap_content"
-                            android:textSize="@dimen/medbooks_14dp"
-                            android:textColor="@color/grey2"
-                            android:layout_height="wrap_content"
-                            android:text="@string/label_reminder" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingLeft="@dimen/medbooks_15dp"
-                        android:paddingRight="@dimen/medbooks_15dp"
-                        android:paddingBottom="@dimen/medbooks_10dp">
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:clipChildren="false"
-                            android:scrollbars="horizontal"
-                            android:overScrollMode="never"/>
-                    </LinearLayout>
+                        android:visibility="visible"
+                        android:layout_marginRight="@dimen/medbooks_10dp"
+                        android:layout_marginLeft="@dimen/medbooks_10dp"
+                        android:layout_height="match_parent"
+                        android:scrollbars="vertical"/>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardCornerRadius="8dp"
-                android:background="@color/greywhite">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/greywhite"
-                    android:orientation="vertical">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/spinner_border"
-                        android:padding="@dimen/medbooks_10dp"
-                        android:orientation="horizontal">
-                        <com.fitness.view.TextViewBold
-                            android:layout_width="wrap_content"
-                            android:textSize="@dimen/medbooks_14dp"
-                            android:textColor="@color/grey2"
-                            android:layout_height="wrap_content"
-                            android:text="@string/label_virtual" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingLeft="@dimen/medbooks_15dp"
-                        android:paddingRight="@dimen/medbooks_15dp"
-                        android:paddingBottom="@dimen/medbooks_10dp">
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:clipChildren="false"
-                            android:scrollbars="horizontal"
-                            android:overScrollMode="never"/>
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
+    <View
+        android:id="@+id/dashboard_backgrounds"
+        android:paddingTop="@dimen/medbooks_100dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent_black_lv1"
+        android:clickable="true"
+        android:visibility="gone"></View>
+    <toan.android.floatingactionmenu.FloatingActionsMenu
+        android:id="@+id/dashboard_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="@dimen/medbooks_10dp"
+        fab:fab_addButtonColorNormal="@color/red_bar_status"
+        fab:fab_addButtonColorPressed="@color/red_bar_status"
+        fab:fab_addButtonPlusIconColor="@color/white"
+        fab:fab_labelStyle="@style/menu_labels_style"
+        fab:fab_menuIcon="@drawable/icon_add_white"
+        android:layout_gravity="bottom|right">
+
+        <toan.android.floatingactionmenu.FloatingActionButton
+            android:id="@+id/add_training"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_icon="@drawable/icon_latihan"
+            fab:fab_title="@string/add_training"
+            fab:fab_colorPressed="@color/grey2"
+            fab:fab_size="mini"/>
+        <toan.android.floatingactionmenu.FloatingActionButton
+            android:id="@+id/add_reminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_icon="@drawable/icon_reminder"
+            fab:fab_title="@string/add_training"
+            fab:fab_colorPressed="@color/grey2"
+            fab:fab_size="mini"/>
+        <toan.android.floatingactionmenu.FloatingActionButton
+            android:id="@+id/add_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_icon="@drawable/icon_timer"
+            fab:fab_title="@string/label_interval_timer"
+            fab:fab_colorPressed="@color/grey2"
+            fab:fab_size="mini"/>
+    </toan.android.floatingactionmenu.FloatingActionsMenu>
 </FrameLayout>

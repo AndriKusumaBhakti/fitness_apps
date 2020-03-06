@@ -84,6 +84,8 @@
     </string-array>
 
     <string name="add_new_event">Tambah Agenda</string>
+    <string name="add_training">Add Catatan Latihan</string>
+    <string name="add_reminder">Add Pengingat</string>
     <string name="select_class">Pilih Kelas</string>
     <string name="select_branch">Select Cabang</string>
     <string name="select_clock">Pilih Jam</string>

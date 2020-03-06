@@ -82,7 +82,7 @@ public class TimerIntervalFragment extends BaseFragment implements View.OnClickL
         getBaseActivity().setActionbarListener(new OnActionbarListener() {
             @Override
             public void onLeftIconClick() {
-
+                getFragmentManager().popBackStack();
             }
 
             @Override

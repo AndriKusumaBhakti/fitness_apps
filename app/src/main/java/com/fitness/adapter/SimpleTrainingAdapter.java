@@ -69,6 +69,7 @@ public class SimpleTrainingAdapter extends RecyclerView.Adapter<SimpleTrainingAd
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position){
+        holder.btn_detail.setVisibility(View.GONE);
         final Animation inAnim = AnimationUtils.loadAnimation(mContext, R.anim.slide_in_top);
         final Animation outAnim = AnimationUtils.loadAnimation(mContext, R.anim.slide_in_bottom);
         holder.select_filter_animator.setInAnimation(inAnim);

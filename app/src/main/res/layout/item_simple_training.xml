@@ -11,6 +11,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/medbooks_200dp"
+                android:padding="@dimen/medbooks_10dp"
                 android:orientation="horizontal">
                 <VideoView
                     android:id="@+id/youtube_view"
@@ -32,8 +33,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/spinner_border"
-                android:padding="@dimen/medbooks_5dp"
-                android:layout_marginTop="@dimen/medbooks_5dp"
+                android:paddingLeft="@dimen/medbooks_10dp"
+                android:paddingRight="@dimen/medbooks_10dp"
+                android:paddingBottom="@dimen/medbooks_10dp"
                 android:orientation="horizontal">
                 <com.fitness.view.TextViewBold
                     android:id="@+id/titleYoutobe"
@@ -63,8 +65,8 @@
                     android:layout_width="match_parent"
                     android:background="@color/transparent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/medbooks_5dp"
-                    android:paddingRight="@dimen/medbooks_5dp"
+                    android:paddingLeft="@dimen/medbooks_10dp"
+                    android:paddingRight="@dimen/medbooks_10dp"
                     android:layout_marginBottom="@dimen/medbooks_10dp"
                     android:visibility="gone">
                     <LinearLayout

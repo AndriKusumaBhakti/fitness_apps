@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TimePicker;
 
 import com.fitness.R;
+import com.fitness.activity.DashboardActivity;
 import com.fitness.base.OnActionbarListener;
 import com.fitness.database.DBEvent;
 import com.fitness.fragment.BaseFragment;
@@ -165,11 +166,13 @@ public class AddEventFragment extends BaseFragment {
 
     @Override
     public void updateUI() {
-        getBaseActivity().setLeftIcon(R.drawable.back_white);
+        getBaseActivity().setLeftIcon(R.drawable.back);
         getBaseActivity().setRightIcon2(0);
         getBaseActivity().setRightIcon(0);
         getBaseActivity().showDisplayLogoTitle(false);
-        getBaseActivity().changeHomeToolbarBackground(true);
+        getBaseActivity().changeHomeToolbarBackground(false);
+        getBaseActivity().setBarView(true);
+        DashboardActivity.instance.setBarView(true);
     }
 
     @Override
