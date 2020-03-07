@@ -32,13 +32,13 @@ public class FlashNowAdapter extends RecyclerView.Adapter<FlashNowAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextViewLight titleCard;
         public TextViewRegular timeClass;
-        public LinearLayout btn_detail;
+        public ButtonRegular btn_detail;
         public FrameLayout frameLayout;
         public ViewHolder(View v){
             super(v);
             titleCard = (TextViewLight) v.findViewById(R.id.titleCard);
             timeClass = (TextViewRegular) v.findViewById(R.id.timeClass);
-            btn_detail = (LinearLayout) v.findViewById(R.id.btn_detail);
+            btn_detail = (ButtonRegular) v.findViewById(R.id.btn_detail);
             frameLayout = (FrameLayout) v.findViewById(R.id.frameLayout);
         }
     }
@@ -52,17 +52,8 @@ public class FlashNowAdapter extends RecyclerView.Adapter<FlashNowAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position){
-        if (position>0){
-            if (mDataSet.get(position).getNamaEvent().equals(mDataSet.get(position-1).getNamaEvent())){
-                holder.titleCard.setVisibility(View.INVISIBLE);
-                holder.frameLayout.setBackgroundColor(mContext.getResources().getColor(R.color.transparent));
-            }else{
-                holder.frameLayout.setBackground(mContext.getResources().getDrawable(R.drawable.spinner_border));
-                holder.titleCard.setVisibility(View.VISIBLE);
-            }
-        }
-        holder.timeClass.setText(mDataSet.get(position).getJamStart()+"-"+mDataSet.get(position).getJamEnd()+" ("+mDataSet.get(position).getName()+")");
-        holder.titleCard.setText(mDataSet.get(position).getNamaEvent());
+        holder.timeClass.setText(mDataSet.get(position).getJamStart()+"-"+mDataSet.get(position).getJamEnd());
+        holder.titleCard.setText(mDataSet.get(position).getName());
         holder.btn_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

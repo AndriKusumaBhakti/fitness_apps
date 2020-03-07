@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.fitness.R;
 import com.fitness.activity.DashboardActivity;
+import com.fitness.adapter.FlashNewAdapter;
 import com.fitness.adapter.FlashNowAdapter;
 import com.fitness.aplication.APP;
 import com.fitness.base.OnActionbarListener;
@@ -23,7 +24,9 @@ import com.fitness.entities.EventClubEntity;
 import com.fitness.fragment.BaseFragment;
 import com.fitness.fragment.profile.DetailFlashFitnessFragment;
 import com.fitness.fragment.profile.FlashFitnessFragment;
+import com.fitness.fragment.profile.FlashFitnessNowFragment;
 import com.fitness.model.ModelMaps;
+import com.fitness.model.ModelNewMaps;
 import com.fitness.util.Constants;
 import com.fitness.view.ButtonRegular;
 import com.fitness.view.TextViewBold;
@@ -63,15 +66,17 @@ public class PromosiFragment extends BaseFragment {
     private DBClass dbClass;
     private DBEventClub dbEventClub;
     private List<EventClubEntity> listEntity;
+    private List<ClassEntity> listClass;
     private Date currentTime;
     private String searchHari = "Senin";
     private ClubEntity entitiClub;
     private ClassEntity entitiClass;
     private String[] hari;
     private RecyclerView listClassNow;
-    private FlashNowAdapter adapter;
+    private FlashNewAdapter adapter;
     private TextViewBold dayNow;
     private ButtonRegular btn_detail;
+    private ArrayList<ModelNewMaps> dataNewMaps;
 
     public PromosiFragment() {}
 
@@ -96,8 +101,10 @@ public class PromosiFragment extends BaseFragment {
         dbEventClub = new DBEventClub(getBaseActivity());
         listEntity = new ArrayList<>();
         dataMaps = new ArrayList<>();
+        dataNewMaps = new ArrayList<>();
         entitiClub = new ClubEntity();
         entitiClass = new ClassEntity();
+        listClass = new ArrayList<>();
     }
 
     @Override
@@ -112,7 +119,7 @@ public class PromosiFragment extends BaseFragment {
     }
 
     private void viewData(){
-        dataMaps.clear();
+        dataNewMaps.clear();
         carouselView.setPageCount(mThumbIds.length);
         carouselView.setSlideInterval(3000);
 
@@ -158,71 +165,62 @@ public class PromosiFragment extends BaseFragment {
         }
         APP.log("searchHari : "+searchHari);
         dayNow.setText(getResources().getString(R.string.label_jadwal)+" : "+searchHari);
-        listEntity = dbEventClub.getAllDay(String.valueOf(currentTime.getDay()));
-        if (listEntity.size()>0) {
-            for (int i = 0; i < listEntity.size(); i++) {
-                ModelMaps model = new ModelMaps();
-                //get data club untuk maps di now
-                entitiClub = dbClub.getByIdCLub(listEntity.get(i).getIdClub());
-                if (entitiClub != null){
-                    model.setLatitudeFit(entitiClub.getLatitude());
-                    model.setLongitudeFit(entitiClub.getLongitude());
-                    model.setName(entitiClub.getNamaClub());
-                    model.setLokasi(entitiClub.getLokasi());
-                }
-                //get data class now
-                entitiClass = dbClass.getById(listEntity.get(i).getIdClass());
-                if (entitiClass != null){
-                    model.setNamaEvent(entitiClass.getNamaClass());
-                    model.setDeskripsi(entitiClass.getDeskripsi());
-                    model.setImage(entitiClass.getImage());
-                }
-                //get data event club now
-                model.setId(String.valueOf(listEntity.get(i).getId()));
-                model.setDurasi(listEntity.get(i).getDurasi());
-                model.setJamStart(listEntity.get(i).getJamStart());
-                model.setJamEnd(listEntity.get(i).getJamEnd());
-                model.setPelatih(listEntity.get(i).getPelatih());
-                model.setHari(listEntity.get(i).getHari());
-                if (dataMaps.size()>0){
-                    boolean set = false;
-                    for (int j = 0; j<dataMaps.size(); j++){
-                        if (dataMaps.get(j).getNamaEvent().equals(model.getNamaEvent())){
-                            if (!set) {
-                                APP.log("data 1 "+dataMaps.get(j).getNamaEvent());
-                                APP.log("data 1 "+model.getNamaEvent());
-                                dataMaps.add(j, model);
-                                set = true;
-                            }
-                        }else{
-                            if (!set) {
-                                APP.log("data 2 "+dataMaps.get(j).getNamaEvent());
-                                APP.log("data 2 "+model.getNamaEvent());
-                                dataMaps.add(dataMaps.size()-1, model);
-                                set = true;
-                            }
+        listClass = dbClass.getAll();
+        if (listClass.size()>0) {
+            for (int j=0; j<listClass.size(); j++){
+                listEntity = dbEventClub.getAllDayAndClass(String.valueOf(currentTime.getDay()), listClass.get(j).getId());
+                if (listEntity.size() > 0) {
+                    dataMaps.clear();
+                    for (int i = 0; i < listEntity.size(); i++) {
+                        ModelMaps model = new ModelMaps();
+                        //get data club untuk maps di now
+                        entitiClub = dbClub.getByIdCLub(listEntity.get(i).getIdClub());
+                        if (entitiClub != null) {
+                            model.setLatitudeFit(entitiClub.getLatitude());
+                            model.setLongitudeFit(entitiClub.getLongitude());
+                            model.setName(entitiClub.getNamaClub());
+                            model.setLokasi(entitiClub.getLokasi());
                         }
+                        //get data class now
+                        entitiClass = dbClass.getById(listEntity.get(i).getIdClass());
+                        if (entitiClass != null) {
+                            model.setNamaEvent(entitiClass.getNamaClass());
+                            model.setDeskripsi(entitiClass.getDeskripsi());
+                            model.setImage(entitiClass.getImage());
+                        }
+                        //get data event club now
+                        model.setId(String.valueOf(listEntity.get(i).getId()));
+                        model.setDurasi(listEntity.get(i).getDurasi());
+                        model.setJamStart(listEntity.get(i).getJamStart());
+                        model.setJamEnd(listEntity.get(i).getJamEnd());
+                        model.setPelatih(listEntity.get(i).getPelatih());
+                        model.setHari(listEntity.get(i).getHari());
+                        dataMaps.add(model);
                     }
-                }else{
-                    dataMaps.add(model);
+                    ModelNewMaps newMaps = new ModelNewMaps();
+                    newMaps.setId(j);
+                    newMaps.setNamaEvent(listClass.get(j).getNamaClass());
+                    newMaps.setDataMaps(dataMaps);
+                    if (dataNewMaps.size()<1){
+                        newMaps.setView(true);
+                    }else{
+                        newMaps.setView(false);
+                    }
+                    dataNewMaps.add(newMaps);
                 }
             }
+        }
+        ArrayList<ModelNewMaps> dataNewMaps1 = new ArrayList<>();
+        if (dataNewMaps.size()>2){
+            dataNewMaps1.add(dataNewMaps.get(0));
+            dataNewMaps1.add(dataNewMaps.get(1));
+        }else{
+            dataNewMaps1 = dataNewMaps;
         }
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         listClassNow.setHasFixedSize(true);
         listClassNow.setLayoutManager(mLayoutManager);
-        adapter = new FlashNowAdapter(getActivity(), dataMaps, new FlashNowAdapter.ClickListener() {
-            @Override
-            public void onClick(ModelMaps data) {
-                DashboardActivity dashboard = DashboardActivity.instance;
-                DetailFlashFitnessFragment fragment = new DetailFlashFitnessFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString(Constants.labelBardetail, data.getNamaEvent());
-                bundle.putSerializable(Constants.detailFlash, data);
-                fragment.setArguments(bundle);
-                dashboard.pushFragmentDashboard(fragment);
-            }
-        });
+        adapter = new FlashNewAdapter(getActivity(), dataNewMaps1, false);
         listClassNow.setAdapter(adapter);
     }
 
@@ -248,7 +246,7 @@ public class PromosiFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 DashboardActivity dashboard = DashboardActivity.instance;
-                FlashFitnessFragment fragment = new FlashFitnessFragment();
+                FlashFitnessNowFragment fragment = new FlashFitnessNowFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString(Constants.labelName, getResources().getStringArray(R.array.menuFlash)[2]);
                 bundle.putBoolean(Constants.mapsLocation, false);

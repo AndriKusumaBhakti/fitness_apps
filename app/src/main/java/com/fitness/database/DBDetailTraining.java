@@ -3,8 +3,8 @@ package com.fitness.database;
 import android.content.Context;
 
 import com.fitness.aplication.DBHelper;
-import com.fitness.entities.ClassEntity;
-import com.fitness.model.ClassModel;
+import com.fitness.entities.TrainingEntity;
+import com.fitness.model.TrainingModel;
 import com.fitness.util.Constants;
 import com.fitness.util.StringUtil;
 import com.j256.ormlite.dao.Dao;
@@ -15,15 +15,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBClass {
+public class DBDetailTraining {
     private Context ctx;
     String tag = null;
     private static DBHelper dbHelper;
-    protected Dao<ClassEntity, ?> dao;
+    protected Dao<TrainingEntity, ?> dao;
 
     SimpleDateFormat sdfTimeZone = new SimpleDateFormat(Constants.FORMAT_ISO);
 
-    public DBClass(Context ctx) {
+    public DBDetailTraining(Context ctx) {
         // TODO Auto-generated constructor stub
         this.ctx = ctx;
 
@@ -33,7 +33,7 @@ public class DBClass {
 
         try {
             if (dao == null) {
-                dao = (Dao<ClassEntity, ?>) dbHelper.getDao(ClassEntity.class);
+                dao = (Dao<TrainingEntity, ?>) dbHelper.getDao(TrainingEntity.class);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -41,36 +41,20 @@ public class DBClass {
 
     }
 
-    public void parseClub(ClassModel response) {
-        ClassEntity entity = this.getById(response.getId());
+    public void parse(TrainingModel response) {
+        TrainingEntity entity = this.getById(response.getId());
 
         if (entity == null) {
-            entity = new ClassEntity();
+            entity = new TrainingEntity();
             entity.setId(response.getId());
         }
 
         entity.setIsDeleted(false);
-        entity.setNamaClass(StringUtil.checkNullString(response.getNamaClass()));
-        entity.setDeskripsi(StringUtil.checkNullString(response.getDeskripsi()));
-        entity.setImage(StringUtil.checkNullString(response.getImage()));
-
+        entity.setJenisTraining(StringUtil.checkNullString(response.getJenisTraining()));
         this.upsertToDatabase(entity);
     }
 
-    public ClassEntity getById(int id) {
-        List<ClassEntity> data = new ArrayList<ClassEntity>();
-        try {
-            data = dao.queryBuilder().where().eq(ClassEntity.ID, id).query();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        if(data.size()>0){
-            return data.get(0);
-        }
-        return null;
-    }
-
-    private void upsertToDatabase(ClassEntity artikel) {
+    private void upsertToDatabase(TrainingEntity artikel) {
         try {
             dao.createOrUpdate(artikel);
         } catch (SQLException e) {
@@ -78,7 +62,7 @@ public class DBClass {
         }
     }
 
-    private void saveToDatabase(ClassEntity artikel) {
+    private void saveToDatabase(TrainingEntity artikel) {
         try {
             dao.createIfNotExists(artikel);
 
@@ -87,13 +71,21 @@ public class DBClass {
         }
     }
 
-    public void safeDeleteLanguage(int id) {
-        ClassEntity artikel = getById(id);
+    public void deleteData(TrainingEntity artikel) {
+        try {
+            dao.delete(artikel);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void safeDelete(int languageId) {
+        TrainingEntity artikel = getById(languageId);
         artikel.setIsDeleted(true);
         upsertToDatabase(artikel);
     }
 
-    public void softDelete(ClassEntity artikel) {
+    public void softDelete(TrainingEntity artikel) {
         try {
             artikel.setIsDeleted(true);
             dao.update(artikel);
@@ -102,10 +94,10 @@ public class DBClass {
         }
     }
 
-    public ClassEntity getData(int id) {
-        List<ClassEntity> data = new ArrayList<ClassEntity>();
+    public TrainingEntity getById(int id) {
+        List<TrainingEntity> data = new ArrayList<TrainingEntity>();
         try {
-            data = dao.queryBuilder().where().eq(ClassEntity.ID, id).query();
+            data = dao.queryBuilder().where().eq(TrainingEntity.ID, id).query();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -115,11 +107,11 @@ public class DBClass {
         return null;
     }
 
-    public List<ClassEntity> getAll() {
-        List<ClassEntity> data = new ArrayList<ClassEntity>();
+    public List<TrainingEntity> getAll() {
+        List<TrainingEntity> data = new ArrayList<TrainingEntity>();
         try {
-            QueryBuilder<ClassEntity, ?> queryBuilder = dao.queryBuilder();
-            queryBuilder.orderBy(ClassEntity.NAMA_CLASS, true);
+            QueryBuilder<TrainingEntity, ?> queryBuilder = dao.queryBuilder();
+            queryBuilder.orderBy(TrainingEntity.JENIS_TRAININGG, true);
             data = queryBuilder.query();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -127,7 +119,7 @@ public class DBClass {
         return data;
     }
 
-    public void deleteData(ClassEntity entity){
+    public void delete(TrainingEntity entity){
         try {
             dao.delete(entity);
         } catch (SQLException e) {
@@ -135,9 +127,9 @@ public class DBClass {
         }
     }
 
-    public void deleteAllReminder(int Id){
+    public void deleteAll(int Id){
 
-        List<ClassEntity> data = new ArrayList<ClassEntity>();
+        List<TrainingEntity> data = new ArrayList<TrainingEntity>();
         try {
             data = dao.queryForAll();
         } catch (SQLException e) {
@@ -145,24 +137,19 @@ public class DBClass {
         }
 
         if(data != null && data.size()>0){
-            for(ClassEntity entity:data) {
+            for(TrainingEntity entity:data) {
                 if(entity.getId() == Id){
-                    deleteData(entity);
+                    delete(entity);
                 }
             }
         }
     }
 
-    public int getAllData(){
-        List<ClassEntity> data = new ArrayList<ClassEntity>();
-        try {
-            data = dao.queryForAll();
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public void update(String language) {
+        TrainingEntity entity = getById(1);
+        if(entity != null){
+            entity.setJenisTraining(language);
+            upsertToDatabase(entity);
         }
-        if (data.size()>0){
-            return data.size();
-        }
-        return 0;
     }
 }

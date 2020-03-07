@@ -114,4 +114,5 @@ trainer, ruang aerobik, ruang spinning). Kelas-kelas aerobik yang bervariasi, le
 
     <string name="label_tanya">Pertanyaan</string>
     <string name="label_jawab">Jawaban</string>
+    <string name="label_jadwal_now">Jadwal Kelas</string>
 </resources>

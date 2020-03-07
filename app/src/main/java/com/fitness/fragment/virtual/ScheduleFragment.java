@@ -1,4 +1,4 @@
-package com.fitness.fragment.schedule;
+package com.fitness.fragment.virtual;
 
 import android.os.Bundle;
 import android.view.View;
@@ -31,7 +31,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 import toan.android.floatingactionmenu.FloatingActionButton;
 import toan.android.floatingactionmenu.FloatingActionsMenu;

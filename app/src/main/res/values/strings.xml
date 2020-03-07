@@ -133,4 +133,5 @@ trainer, aerobics room, spinning room). Aerobic classes that are varied, complet
 
     <string name="label_tanya">Question</string>
     <string name="label_jawab">Answer</string>
+    <string name="label_jadwal_now">Timetable</string>
 </resources>

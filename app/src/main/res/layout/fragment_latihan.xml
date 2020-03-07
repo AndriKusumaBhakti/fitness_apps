@@ -132,7 +132,7 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"
             fab:fab_icon="@drawable/icon_reminder"
-            fab:fab_title="@string/add_training"
+            fab:fab_title="@string/add_reminder"
             fab:fab_colorPressed="@color/grey2"
             fab:fab_size="mini"/>
         <toan.android.floatingactionmenu.FloatingActionButton

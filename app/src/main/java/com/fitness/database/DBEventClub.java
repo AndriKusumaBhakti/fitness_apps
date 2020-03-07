@@ -174,6 +174,44 @@ public class DBEventClub {
         return data;
     }
 
+    public List<EventClubEntity> getAllDayAndClass(String day, int idClass) {
+        List<EventClubEntity> data = new ArrayList<EventClubEntity>();
+        List<EventClubEntity> dataAll = new ArrayList<EventClubEntity>();
+        try {
+            dataAll = dao.queryForAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if(dataAll != null && dataAll.size()>0){
+            for(EventClubEntity entity:dataAll) {
+                if(entity.getHari().equals(day) && entity.getIdClass() == idClass){
+                    data.add(entity);
+                }
+            }
+        }
+        return data;
+    }
+
+    public List<EventClubEntity> getAllClass(int idClass) {
+        List<EventClubEntity> data = new ArrayList<EventClubEntity>();
+        List<EventClubEntity> dataAll = new ArrayList<EventClubEntity>();
+        try {
+            dataAll = dao.queryForAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if(dataAll != null && dataAll.size()>0){
+            for(EventClubEntity entity:dataAll) {
+                if(entity.getIdClass() == idClass){
+                    data.add(entity);
+                }
+            }
+        }
+        return data;
+    }
+
     public List<EventClubEntity> getAllByUnggulan(int unggulan) {
         List<EventClubEntity> data = new ArrayList<EventClubEntity>();
         List<EventClubEntity> dataAll = new ArrayList<EventClubEntity>();

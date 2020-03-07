@@ -13,12 +13,8 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.fitness.R;
 import com.fitness.fragment.BaseFragment;
 import com.fitness.fragment.faq.FaqFragment;
-import com.fitness.fragment.home.HomeFragment;
 import com.fitness.fragment.home.PromosiFragment;
 import com.fitness.fragment.profile.ProfileFlashFragment;
-import com.fitness.fragment.profile.ProfileFragment;
-import com.fitness.fragment.reward.RewardFragment;
-import com.fitness.fragment.schedule.ScheduleFragment;
 import com.fitness.fragment.virtual.LatihanFragment;
 
 import java.lang.ref.WeakReference;

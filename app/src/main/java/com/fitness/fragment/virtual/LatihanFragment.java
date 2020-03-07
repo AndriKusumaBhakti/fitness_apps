@@ -15,7 +15,6 @@ import com.fitness.aplication.APP;
 import com.fitness.base.OnActionbarListener;
 import com.fitness.database.DBEvent;
 import com.fitness.fragment.BaseFragment;
-import com.fitness.fragment.schedule.AddEventFragment;
 import com.fitness.model.EventModel;
 import com.fitness.model.SimpleTrainingModel;
 import com.fitness.util.Constants;
@@ -188,7 +187,11 @@ public class LatihanFragment extends BaseFragment implements OnDateSelectedListe
         add_training.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                AddTrainingFragment fragment = new AddTrainingFragment();
+                Bundle args = new Bundle();
+                fragment.setArguments(args);
+                DashboardActivity dashboard = DashboardActivity.instance;
+                dashboard.pushFragmentDashboard(fragment);
             }
         });
         add_timer.setOnClickListener(new View.OnClickListener() {

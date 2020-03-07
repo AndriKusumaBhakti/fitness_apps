@@ -1,4 +1,4 @@
-package com.fitness.fragment.schedule;
+package com.fitness.fragment.virtual;
 
 import android.app.TimePickerDialog;
 import android.os.Bundle;

@@ -41,9 +41,11 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
-public class FlashFitnessFragment extends BaseFragment implements OnMapReadyCallback {
+public class FlashFitnessNowFragment extends BaseFragment implements OnMapReadyCallback {
     private String mParam1;
     private String mParam2;
     private static final String ARG_PARAM1 = "param1";
@@ -79,14 +81,18 @@ public class FlashFitnessFragment extends BaseFragment implements OnMapReadyCall
     private ButtonRegular save_apply;
     private FlashNewAdapter adapterNew;
 
-    public FlashFitnessFragment() {}
+    private Date currentTime;
+    private String searchHari = "Senin";
+    private String[] hari;
 
-    public static FlashFitnessFragment newInstance() {
+    public FlashFitnessNowFragment() {}
+
+    public static FlashFitnessNowFragment newInstance() {
         return newInstance("","");
     }
 
-    public static FlashFitnessFragment newInstance(String param1, String param2) {
-        FlashFitnessFragment fragment = new FlashFitnessFragment();
+    public static FlashFitnessNowFragment newInstance(String param1, String param2) {
+        FlashFitnessNowFragment fragment = new FlashFitnessNowFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -190,9 +196,16 @@ public class FlashFitnessFragment extends BaseFragment implements OnMapReadyCall
                 }
             }
             listClass = dbClass.getAll();
+            currentTime = Calendar.getInstance().getTime();
+            hari = getResources().getStringArray(R.array.hari);
+            for (int i = 0; i<hari.length; i++){
+                if (i == currentTime.getDay() - 1){
+                    searchHari = hari[i];
+                }
+            }
             if (listClass.size()>0) {
                 for (int j=0; j<listClass.size(); j++){
-                    entitiEventCLub = dbEventClub.getAllClass(listClass.get(j).getId());
+                    entitiEventCLub = dbEventClub.getAllDayAndClass(String.valueOf(currentTime.getDay()), listClass.get(j).getId());
                     if (entitiEventCLub.size() > 0) {
                         list.clear();
                         for (int i = 0; i < entitiEventCLub.size(); i++) {
