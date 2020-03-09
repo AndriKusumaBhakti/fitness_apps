@@ -22,13 +22,17 @@ import com.fitness.aplication.APP;
 import com.fitness.aplication.DBHelper;
 import com.fitness.database.DBClass;
 import com.fitness.database.DBClub;
+import com.fitness.database.DBDetailTraining;
 import com.fitness.database.DBEventClub;
 import com.fitness.database.DBLanguage;
+import com.fitness.database.DBTraining;
 import com.fitness.entities.LanguageEntity;
 import com.fitness.model.ClassModel;
 import com.fitness.model.ClubModel;
+import com.fitness.model.DetailTrainingModel;
 import com.fitness.model.EventClubModel;
 import com.fitness.model.Language;
+import com.fitness.model.TrainingModel;
 import com.fitness.util.FunctionUtil;
 import com.fitness.view.TextViewBold;
 import com.fitness.view.TextViewRegular;
@@ -91,7 +95,7 @@ public class StartActivity extends BaseActivity {
                     "\n" + "Dengan mengikuti kelas RPM, lemak dalam tubuhmu bisa terbakar maksimal.",
                     "https://res.cloudinary.com/andrikusumabhakti/image/upload/v1582634530/fitness/coreex_classes_xtbp7u.png"}};
     //tempat, class, hari, durasi, start, end, pelatih, unggulan
-    String[][] eventClass = new String[][]{{"1", "4", "1", "60mins", "08:00", "09:00", "LIEM", "false"}, {"1", "1", "1", "60mins", "09:00", "10:00", "STEVANO", "false"}, {"1", "6", "1", "60mins", "18:00", "19:00", "FUAD", "false"},
+    String[][] eventClass = new String[][]{{"1", "4", "0", "60mins", "08:00", "09:00", "LIEM", "false"}, {"1", "1", "0", "60mins", "09:00", "10:00", "STEVANO", "false"}, {"1", "6", "0", "60mins", "18:00", "19:00", "FUAD", "false"},
             {"1", "4", "2", "60mins", "18:00", "19:00", "LIEM", "false"}, {"1", "1", "2", "60mins", "19:00", "20:00", "FFC COACH", "false"}, {"1", "6", "2", "60mins", "19:00", "20:00", "LUKI", "false"},
             {"1", "4", "3", "60mins", "08:00", "09:00", "LIEM", "false"}, {"1", "1", "3", "60mins", "18:00", "19:00", "VONNY", "false"}, {"1", "6", "3", "60mins", "18:00", "19:00", "VONNY", "false"},
             {"1", "4", "4", "60mins", "19:00", "20:00", "ARMAN", "false"}, {"1", "1", "4", "60mins", "18:00", "19:00", "VONNY", "false"}, {"1", "6", "4", "60mins", "09:00", "10:00", "FUAD", "false"},
@@ -106,8 +110,14 @@ public class StartActivity extends BaseActivity {
             {"3", "1", "3", "60mins", "19:00", "20:00", "MELISA", "false"}, {"3", "6", "3", "60mins", "08:00", "09:00", "PIPIT", "false"},
             {"3", "1", "4", "60mins", "09:00", "10:00", "VONNY", "false"}, {"3", "1", "4", "60mins", "19:00", "20:00", "MUE", "false"},
             {"3", "4", "5", "60mins", "09:00", "10:00", "MELISA", "false"}, {"3", "1", "5", "60mins", "18:00", "19:00", "VONNY", "false"}, {"3", "6", "5", "60mins", "19:00", "20:00", "PATRICK", "false"},
-            {"3", "1", "6", "60mins", "07:00", "08:00", "EDIE", "false"}, {"3", "1", "6", "60mins", "08:00", "09:00", "EDIE", "false"}, {"3", "6", "6", "60mins", "08:00", "09:00", "LUCKY", "false"},
-            {"3", "3", "7", "60mins", "19:00", "20:00", "DANDY", "false"}};
+            {"3", "1", "0", "60mins", "07:00", "08:00", "EDIE", "false"}, {"3", "1", "0", "60mins", "08:00", "09:00", "EDIE", "false"}, {"3", "6", "0", "60mins", "08:00", "09:00", "LUCKY", "false"},
+            {"3", "3", "0", "60mins", "19:00", "20:00", "DANDY", "false"}};
+    //training log
+    String[][] training = new String[][]{{"Chest", "1"}, {"Biceps","1"}, {"Other", "1"}};
+    //training log
+    String[][] detailTraining = new String[][]{{"1", "Barbell Bench Press"}, {"1", "Incline Barbell Bench Press"}, {"1", "Decline Barbell Bench Press"},
+            {"2", "Barbell Curl"}, {"2", "Seated Incline Dumbbell Curl"}, {"2", "Standing Dumbbell Curl"},
+            {"3", "Calves - Standing Call Raise"}, {"3", "Calves - Steated Call Raise"}, {"3", "Calves - Call Press"}};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -125,6 +135,8 @@ public class StartActivity extends BaseActivity {
         DBClub dbClub = new DBClub(this);
         DBClass dbClass = new DBClass(this);
         DBEventClub dbEventClub = new DBEventClub(this);
+        DBTraining dbTraining = new DBTraining(this);
+        DBDetailTraining dbDetailTraining = new DBDetailTraining(this);
         if (dbClub.getAllData() == 0) {
             for (int i = 0; i < cabang.length; i++) {
                 ClubModel model = new ClubModel();
@@ -159,6 +171,24 @@ public class StartActivity extends BaseActivity {
                 model.setPelatih(eventClass[i][6]);
                 model.setUnggulan(eventClass[i][7]);
                 dbEventClub.parseClub(model);
+            }
+        }
+        if (dbTraining.getAllData() == 0){
+            for (int i = 0; i<training.length; i++){
+                TrainingModel model = new TrainingModel();
+                model.setId(i+1);
+                model.setJenisTraining(training[i][0]);
+                model.setParams(training[i][1]);
+                dbTraining.parse(model);
+            }
+        }
+        if (dbDetailTraining.getAllData() == 0){
+            for (int i = 0; i<detailTraining.length; i++){
+                DetailTrainingModel model = new DetailTrainingModel();
+                model.setId(i+1);
+                model.setIdTraining(detailTraining[i][0]);
+                model.setTraining(detailTraining[i][1]);
+                dbDetailTraining.parse(model);
             }
         }
     }

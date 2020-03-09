@@ -158,12 +158,18 @@ public class PromosiFragment extends BaseFragment {
 
         currentTime = Calendar.getInstance().getTime();
         hari = getResources().getStringArray(R.array.hari);
-        for (int i = 0; i<hari.length; i++){
-            if (i == currentTime.getDay() - 1){
-                searchHari = hari[i];
+
+        /*for (int i = 0; i < hari.length; i++) {
+            if (currentTime.getDay() == 0){
+
+            }else {
+                if (i == currentTime.getDay() - 1) {
+                    searchHari = hari[i];
+                }
             }
-        }
-        APP.log("searchHari : "+searchHari);
+        }*/
+        searchHari = hari[currentTime.getDay()];
+        APP.log("searchHari : "+currentTime.getDay());
         dayNow.setText(getResources().getString(R.string.label_jadwal)+" : "+searchHari);
         listClass = dbClass.getAll();
         if (listClass.size()>0) {

@@ -121,6 +121,11 @@ public class FlashNewAdapter extends RecyclerView.Adapter<FlashNewAdapter.ViewHo
         notifyDataSetChanged();
     }
 
+    public void updateListSearch(ArrayList<ModelNewMaps> mDataSet){
+        this.mDataSet = mDataSet;
+        notifyDataSetChanged();
+    }
+
     private class MyClickAdapter implements FlashNowAdapter.ClickListener{
         @Override
         public void onClick(ModelMaps data) {

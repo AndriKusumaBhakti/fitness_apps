@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.fitness.R;
 import com.fitness.activity.DashboardActivity;
@@ -153,13 +154,17 @@ public class AddEventFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 SimpleDateFormat formatter = new SimpleDateFormat(Constants.FORMAT_TANGGAL);
-                EventModel model = new EventModel();
-                model.setId(event.getAllLanguage().size()+1);
-                model.setDateEvent(String.valueOf(formatter.format(date_start.getDate())));
-                model.setJamEvent(parent_time_text.getText().toString());
-                model.setNamaClass(spinner_class.getSelectedItem().toString());
-                event.parseEvent(model);
-                getFragmentManager().popBackStack();
+                if (!date_start.getDateString().isEmpty()) {
+                    EventModel model = new EventModel();
+                    model.setId(event.getAllLanguage().size() + 1);
+                    model.setDateEvent(String.valueOf(formatter.format(date_start.getDate())));
+                    model.setJamEvent(parent_time_text.getText().toString());
+                    model.setNamaClass(spinner_class.getSelectedItem().toString());
+                    event.parseEvent(model);
+                    getFragmentManager().popBackStack();
+                }else{
+                    Toast.makeText(getBaseActivity(), "silahkan pilih tanggal", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

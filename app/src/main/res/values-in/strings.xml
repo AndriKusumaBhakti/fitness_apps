@@ -44,13 +44,13 @@
     </string-array>
 
     <string-array name="hari">
+        <item>Minggu</item>
         <item>Senin</item>
         <item>Selasa</item>
         <item>Rabu</item>
         <item>Kamis</item>
         <item>Jumat</item>
         <item>Sabtu</item>
-        <item>Minggu</item>
     </string-array>
 
     <string-array name="menuFlash">
@@ -85,8 +85,10 @@
 
     <string name="add_new_event">Tambah Agenda</string>
     <string name="add_training">Add Catatan Latihan</string>
+    <string name="label_training">Catatan Latihan</string>
     <string name="add_reminder">Add Pengingat</string>
     <string name="select_class">Pilih Kelas</string>
+    <string name="select_exercises">Select Exercises</string>
     <string name="select_branch">Select Cabang</string>
     <string name="select_clock">Pilih Jam</string>
     <string name="select_date">Pilih Tanggal</string>
@@ -115,4 +117,6 @@ trainer, ruang aerobik, ruang spinning). Kelas-kelas aerobik yang bervariasi, le
     <string name="label_tanya">Pertanyaan</string>
     <string name="label_jawab">Jawaban</string>
     <string name="label_jadwal_now">Jadwal Kelas</string>
+    <string name="label_jadwal_today">Jadwal Hari ini</string>
+    <string name="label_empty">Jadwal Kosong</string>
 </resources>

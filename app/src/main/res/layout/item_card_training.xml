@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/frameLayout"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/spinner_border"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/linearLayoutTitle"
+            android:layout_width="match_parent"
+            android:padding="@dimen/medbooks_16dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <com.fitness.view.TextViewLight
+                android:id="@+id/titleCard"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:textSize="@dimen/medbooks_14dp"
+                android:gravity="center|left"
+                android:layout_gravity="center"
+                android:textColor="@color/grey2"
+                android:layout_height="wrap_content"
+                android:text="title" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

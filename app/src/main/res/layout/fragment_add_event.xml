@@ -4,9 +4,7 @@
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/medbooks_15dp"
-        android:layout_marginLeft="@dimen/medbooks_10dp"
-        android:layout_marginRight="@dimen/medbooks_10dp"
+        android:layout_margin="@dimen/medbooks_16dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <com.fitness.view.CustomSpinnerView

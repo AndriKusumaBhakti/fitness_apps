@@ -3,7 +3,9 @@ package com.fitness.database;
 import android.content.Context;
 
 import com.fitness.aplication.DBHelper;
+import com.fitness.entities.EventTrainingEntity;
 import com.fitness.entities.TrainingEntity;
+import com.fitness.model.EventTrainingModel;
 import com.fitness.model.TrainingModel;
 import com.fitness.util.Constants;
 import com.fitness.util.StringUtil;
@@ -15,15 +17,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBTraining {
+public class DBEventTraining {
     private Context ctx;
     String tag = null;
     private static DBHelper dbHelper;
-    protected Dao<TrainingEntity, ?> dao;
+    protected Dao<EventTrainingEntity, ?> dao;
 
     SimpleDateFormat sdfTimeZone = new SimpleDateFormat(Constants.FORMAT_ISO);
 
-    public DBTraining(Context ctx) {
+    public DBEventTraining(Context ctx) {
         // TODO Auto-generated constructor stub
         this.ctx = ctx;
 
@@ -33,7 +35,7 @@ public class DBTraining {
 
         try {
             if (dao == null) {
-                dao = (Dao<TrainingEntity, ?>) dbHelper.getDao(TrainingEntity.class);
+                dao = (Dao<EventTrainingEntity, ?>) dbHelper.getDao(EventTrainingEntity.class);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -41,21 +43,22 @@ public class DBTraining {
 
     }
 
-    public void parse(TrainingModel response) {
-        TrainingEntity entity = this.getById(response.getId());
+    public void parse(EventTrainingModel response) {
+        EventTrainingEntity entity = this.getById(response.getId());
 
         if (entity == null) {
-            entity = new TrainingEntity();
+            entity = new EventTrainingEntity();
             entity.setId(response.getId());
         }
 
         entity.setIsDeleted(false);
-        entity.setJenisTraining(StringUtil.checkNullString(response.getJenisTraining()));
-        entity.setParams(StringUtil.checkNullString(response.getParams()));
+        entity.setIdTraining(response.getIdTraining());
+        entity.setIdJenisTraining(response.getIdTraining());
+        entity.setTanggalEvent(response.getDateEvent());
         this.upsertToDatabase(entity);
     }
 
-    private void upsertToDatabase(TrainingEntity artikel) {
+    private void upsertToDatabase(EventTrainingEntity artikel) {
         try {
             dao.createOrUpdate(artikel);
         } catch (SQLException e) {
@@ -63,7 +66,7 @@ public class DBTraining {
         }
     }
 
-    private void saveToDatabase(TrainingEntity artikel) {
+    private void saveToDatabase(EventTrainingEntity artikel) {
         try {
             dao.createIfNotExists(artikel);
 
@@ -72,7 +75,7 @@ public class DBTraining {
         }
     }
 
-    public void deleteData(TrainingEntity artikel) {
+    public void deleteData(EventTrainingEntity artikel) {
         try {
             dao.delete(artikel);
         } catch (SQLException e) {
@@ -81,12 +84,12 @@ public class DBTraining {
     }
 
     public void safeDelete(int languageId) {
-        TrainingEntity artikel = getById(languageId);
+        EventTrainingEntity artikel = getById(languageId);
         artikel.setIsDeleted(true);
         upsertToDatabase(artikel);
     }
 
-    public void softDelete(TrainingEntity artikel) {
+    public void softDelete(EventTrainingEntity artikel) {
         try {
             artikel.setIsDeleted(true);
             dao.update(artikel);
@@ -95,10 +98,10 @@ public class DBTraining {
         }
     }
 
-    public TrainingEntity getById(int id) {
-        List<TrainingEntity> data = new ArrayList<TrainingEntity>();
+    public EventTrainingEntity getById(int id) {
+        List<EventTrainingEntity> data = new ArrayList<EventTrainingEntity>();
         try {
-            data = dao.queryBuilder().where().eq(TrainingEntity.ID, id).query();
+            data = dao.queryBuilder().where().eq(EventTrainingEntity.ID, id).query();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -108,11 +111,11 @@ public class DBTraining {
         return null;
     }
 
-    public List<TrainingEntity> getAll() {
-        List<TrainingEntity> data = new ArrayList<TrainingEntity>();
+    public List<EventTrainingEntity> getAll() {
+        List<EventTrainingEntity> data = new ArrayList<EventTrainingEntity>();
         try {
-            QueryBuilder<TrainingEntity, ?> queryBuilder = dao.queryBuilder();
-            queryBuilder.orderBy(TrainingEntity.ID, true);
+            QueryBuilder<EventTrainingEntity, ?> queryBuilder = dao.queryBuilder();
+            queryBuilder.orderBy(EventTrainingEntity.ID, true);
             data = queryBuilder.query();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -120,8 +123,23 @@ public class DBTraining {
         return data;
     }
 
+    public int getIdEvent() {
+        List<EventTrainingEntity> data = new ArrayList<EventTrainingEntity>();
+        try {
+            QueryBuilder<EventTrainingEntity, ?> queryBuilder = dao.queryBuilder();
+            queryBuilder.orderBy(EventTrainingEntity.ID, true);
+            data = queryBuilder.query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (data.size()>0){
+            return data.get(data.size()-1).getId() + 1;
+        }
+        return 1;
+    }
+
     public int getAllData(){
-        List<TrainingEntity> data = new ArrayList<TrainingEntity>();
+        List<EventTrainingEntity> data = new ArrayList<EventTrainingEntity>();
         try {
             data = dao.queryForAll();
         } catch (SQLException e) {
@@ -133,7 +151,7 @@ public class DBTraining {
         return 0;
     }
 
-    public void delete(TrainingEntity entity){
+    public void delete(EventTrainingEntity entity){
         try {
             dao.delete(entity);
         } catch (SQLException e) {
@@ -143,27 +161,18 @@ public class DBTraining {
 
     public void deleteAll(int Id){
 
-        List<TrainingEntity> data = new ArrayList<TrainingEntity>();
+        List<EventTrainingEntity> data = new ArrayList<EventTrainingEntity>();
         try {
             data = dao.queryForAll();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         if(data != null && data.size()>0){
-            for(TrainingEntity entity:data) {
+            for(EventTrainingEntity entity:data) {
                 if(entity.getId() == Id){
                     delete(entity);
                 }
             }
-        }
-    }
-
-    public void update(String language) {
-        TrainingEntity entity = getById(1);
-        if(entity != null){
-            entity.setJenisTraining(language);
-            upsertToDatabase(entity);
         }
     }
 }

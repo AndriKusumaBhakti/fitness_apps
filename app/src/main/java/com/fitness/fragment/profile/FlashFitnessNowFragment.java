@@ -317,8 +317,8 @@ public class FlashFitnessNowFragment extends BaseFragment implements OnMapReadyC
         save_apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<ModelMaps> listSearch = new ArrayList<>();
-                if (list.size()>0){
+                ArrayList<ModelNewMaps> dataNewMapsSearch = new ArrayList<>();
+                if (dataNewMaps.size()>0){
                     String selectClass = null;
                     String selectClub = null;
                     if (spinnerClub.getSelectedItemPosition()>0){
@@ -327,26 +327,69 @@ public class FlashFitnessNowFragment extends BaseFragment implements OnMapReadyC
                     if (spinnerClass.getSelectedItemPosition()>0){
                         selectClass = spinnerClass.getSelectedItem();
                     }
-                    for (int i=0; i<list.size(); i++){
+                    APP.log(""+selectClub+", "+selectClass);
+                    for (int i=0; i<dataNewMaps.size(); i++){
+                        ArrayList<ModelMaps> listSearch = new ArrayList<>();
                         if (selectClub!=null){
                             if (selectClass!=null){
-                                if (selectClub.equals(list.get(i).getName()) && selectClass.equals(list.get(i).getNamaEvent())){
-                                    listSearch.add(list.get(i));
+                                if (selectClass.equals(dataNewMaps.get(i).getNamaEvent())){
+                                    if (dataNewMaps.get(i).getDataMaps().size()>0) {
+                                        for (int j = 0; j < dataNewMaps.get(i).getDataMaps().size(); j++) {
+                                            if (selectClub.equals(dataNewMaps.get(i).getDataMaps().get(j).getName())) {
+                                                listSearch.add(dataNewMaps.get(i).getDataMaps().get(j));
+                                            }
+                                        }
+                                        ModelNewMaps newMaps = new ModelNewMaps();
+                                        newMaps.setId(i);
+                                        newMaps.setNamaEvent(dataNewMaps.get(i).getNamaEvent());
+                                        newMaps.setDataMaps(listSearch);
+                                        if (dataNewMapsSearch.size() < 1) {
+                                            newMaps.setView(true);
+                                        } else {
+                                            newMaps.setView(false);
+                                        }
+                                        dataNewMapsSearch.add(newMaps);
+                                    }
                                 }
                             }else{
-                                if (selectClub.equals(list.get(i).getName())){
-                                    listSearch.add(list.get(i));
+                                if (dataNewMaps.get(i).getDataMaps().size()>0) {
+                                    for (int j = 0; j < dataNewMaps.get(i).getDataMaps().size(); j++) {
+                                        if (selectClub.equals(dataNewMaps.get(i).getDataMaps().get(j).getName())) {
+                                            listSearch.add(dataNewMaps.get(i).getDataMaps().get(j));
+                                        }
+                                    }
+                                    if (listSearch.size()>0) {
+                                        ModelNewMaps newMaps = new ModelNewMaps();
+                                        newMaps.setId(i);
+                                        newMaps.setNamaEvent(dataNewMaps.get(i).getNamaEvent());
+                                        newMaps.setDataMaps(listSearch);
+                                        if (dataNewMapsSearch.size() < 1) {
+                                            newMaps.setView(true);
+                                        } else {
+                                            newMaps.setView(false);
+                                        }
+                                        dataNewMapsSearch.add(newMaps);
+                                    }
                                 }
                             }
                         }else if (selectClass!=null){
-                            if (selectClass.equals(list.get(i).getNamaEvent())){
-                                listSearch.add(list.get(i));
+                            if (selectClass.equals(dataNewMaps.get(i).getNamaEvent())){
+                                ModelNewMaps newMaps = new ModelNewMaps();
+                                newMaps.setId(i);
+                                newMaps.setNamaEvent(dataNewMaps.get(i).getNamaEvent());
+                                newMaps.setDataMaps(dataNewMaps.get(i).getDataMaps());
+                                if (dataNewMapsSearch.size() < 1) {
+                                    newMaps.setView(true);
+                                } else {
+                                    newMaps.setView(false);
+                                }
+                                dataNewMapsSearch.add(newMaps);
                             }
                         }else{
-                            listSearch.add(list.get(i));
+                            dataNewMapsSearch.add(dataNewMaps.get(i));
                         }
                     }
-                    adapter.updateListSearch(listSearch);
+                    adapterNew.updateListSearch(dataNewMapsSearch);
                 }
                 processAnimateSelectorFilter();
             }
@@ -372,7 +415,7 @@ public class FlashFitnessNowFragment extends BaseFragment implements OnMapReadyC
 
     @Override
     public String getPageTitle() {
-        return label_bar;
+        return getResources().getString(R.string.label_jadwal_today);
     }
 
     @Override

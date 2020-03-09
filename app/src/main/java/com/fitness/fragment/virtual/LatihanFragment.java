@@ -1,7 +1,11 @@
 package com.fitness.fragment.virtual;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,17 +14,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fitness.R;
 import com.fitness.activity.DashboardActivity;
 import com.fitness.adapter.EventListAdapter;
+import com.fitness.adapter.JenisTrainingAdapter;
 import com.fitness.adapter.SimpleTrainingAdapter;
+import com.fitness.adapter.TrainingLogAdapter;
 import com.fitness.aplication.APP;
 import com.fitness.base.OnActionbarListener;
 import com.fitness.database.DBEvent;
+import com.fitness.database.DBEventLog;
+import com.fitness.database.DBEventTraining;
+import com.fitness.database.DBTraining;
+import com.fitness.entities.TrainingEntity;
 import com.fitness.fragment.BaseFragment;
+import com.fitness.model.EventLogModel;
 import com.fitness.model.EventModel;
+import com.fitness.model.EventTrainingModel;
 import com.fitness.model.SimpleTrainingModel;
+import com.fitness.model.TrainingModel;
 import com.fitness.util.Constants;
+import com.fitness.view.ButtonRegular;
 import com.fitness.view.EventDecorator;
 import com.fitness.view.HighlightWeekendsDecorator;
 import com.fitness.view.OneDayDecorator;
+import com.fitness.view.TextViewBold;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -33,6 +48,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import toan.android.floatingactionmenu.FloatingActionButton;
 import toan.android.floatingactionmenu.FloatingActionsMenu;
@@ -61,9 +77,16 @@ public class LatihanFragment extends BaseFragment implements OnDateSelectedListe
     SimpleDateFormat sdfDay = new SimpleDateFormat("dd");
     SimpleDateFormat sdfYear = new SimpleDateFormat("yyyy");
 
-    private RecyclerView list_data;
+    private RecyclerView list_data, list_data_training;
     private DBEvent event;
     private EventListAdapter adapterEvent;
+    private TrainingLogAdapter trainingLogAdapter;
+
+    private DBTraining dbTraining;
+    private List<TrainingEntity> listTraining;
+    private LinearLayout formReminder, formTraining;
+    private DBEventTraining dbEventTraining;
+    private DBEventLog dbEventLog;
 
     public LatihanFragment() {}
 
@@ -95,12 +118,18 @@ public class LatihanFragment extends BaseFragment implements OnDateSelectedListe
             model.setPlayVideo(false);
             data.add(model);
         }
-
+        dbEventLog = new DBEventLog(getBaseActivity());
+        dbTraining = new DBTraining(getBaseActivity());
+        dbEventTraining = new DBEventTraining(getBaseActivity());
+        listTraining = new ArrayList<>();
+        listTraining = dbTraining.getAll();
     }
 
     @Override
     public void initView(View view) {
         listVideo = (RecyclerView) view.findViewById(R.id.listVideo);
+        formReminder = (LinearLayout) view.findViewById(R.id.formReminder);
+        formTraining = (LinearLayout) view.findViewById(R.id.formTraining);
         calendarView = (MaterialCalendarView) view.findViewById(R.id.calendar);
         choiceMonthYear = (View) view.findViewById(R.id.choiceMonthYear);
         transparentBlackBG = (View) view.findViewById(R.id.dashboard_backgrounds);
@@ -109,6 +138,7 @@ public class LatihanFragment extends BaseFragment implements OnDateSelectedListe
         add_reminder = (FloatingActionButton) view.findViewById(R.id.add_reminder);
         add_training = (FloatingActionButton) view.findViewById(R.id.add_training);
         list_data = (RecyclerView) view.findViewById(R.id.list_data);
+        list_data_training = (RecyclerView) view.findViewById(R.id.list_data_training);
         transparentBlackBG.setVisibility(View.GONE);
 
         calendarView.state().edit()
@@ -187,11 +217,7 @@ public class LatihanFragment extends BaseFragment implements OnDateSelectedListe
         add_training.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddTrainingFragment fragment = new AddTrainingFragment();
-                Bundle args = new Bundle();
-                fragment.setArguments(args);
-                DashboardActivity dashboard = DashboardActivity.instance;
-                dashboard.pushFragmentDashboard(fragment);
+                tampilData();
             }
         });
         add_timer.setOnClickListener(new View.OnClickListener() {
@@ -286,11 +312,32 @@ public class LatihanFragment extends BaseFragment implements OnDateSelectedListe
             }
             calendarView.addDecorator(new EventDecorator(dateList));
         }
+        if (dbEventTraining.getAll().size()>0){
+            ArrayList<CalendarDay> dateList = new ArrayList<>();
+            for (int i = 0; i<dbEventTraining.getAll().size(); i++){
+                SimpleDateFormat formatter = new SimpleDateFormat(Constants.FORMAT_TANGGAL);
+
+                try {
+                    Date date = formatter.parse(dbEventTraining.getAll().get(i).getTanggalEvent());
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(date);
+
+                    CalendarDay day = CalendarDay.from(calendar);
+                    dateList.add(day);
+
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+            calendarView.addDecorator(new EventDecorator(dateList));
+        }
     }
 
     private void getData(CalendarDay date){
         if (event.getAllLanguage().size()>0) {
-            ArrayList<EventModel> list = new ArrayList<>();
+            formReminder.setVisibility(View.VISIBLE);
+            ArrayList<EventModel> listReminder = new ArrayList<>();
             for (int i = 0; i < event.getAllLanguage().size(); i++) {
                 SimpleDateFormat formatter = new SimpleDateFormat(Constants.FORMAT_TANGGAL);
                 try {
@@ -305,8 +352,7 @@ public class LatihanFragment extends BaseFragment implements OnDateSelectedListe
                         model.setNamaClass(String.valueOf(event.getAllLanguage().get(i).getNamaClass()));
                         model.setJamEvent(String.valueOf(event.getAllLanguage().get(i).getJamEvent()));
                         model.setDateEvent(String.valueOf(event.getAllLanguage().get(i).getTanggalEvent()));
-                        APP.log("Data Schedule: " + event.getAllLanguage().get(i).getTanggalEvent());
-                        list.add(model);
+                        listReminder.add(model);
                     }
                 } catch (Exception e) {
                     APP.log("" + e);
@@ -315,8 +361,72 @@ public class LatihanFragment extends BaseFragment implements OnDateSelectedListe
             LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
             list_data.setHasFixedSize(true);
             list_data.setLayoutManager(mLayoutManager);
-            adapterEvent = new EventListAdapter(getActivity(), list, new MyAdapterListener());
+            adapterEvent = new EventListAdapter(getActivity(), listReminder, new MyAdapterListener());
             list_data.setAdapter(adapterEvent);
+            if (listReminder.size()>0){
+                formReminder.setVisibility(View.VISIBLE);
+            }else{
+                formReminder.setVisibility(View.GONE);
+            }
+        }
+
+        if (dbEventTraining.getAll().size()>0) {
+            ArrayList<EventTrainingModel> listTraining = new ArrayList<>();
+            for (int i = 0; i < dbEventTraining.getAll().size(); i++) {
+                SimpleDateFormat formatter = new SimpleDateFormat(Constants.FORMAT_TANGGAL);
+                try {
+                    Date dateStart = formatter.parse(dbEventTraining.getAll().get(i).getTanggalEvent());
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(dateStart);
+
+                    CalendarDay day = CalendarDay.from(calendar);
+                    if (date.equals(day)) {
+                        EventTrainingModel model = new EventTrainingModel();
+                        model.setId(dbEventTraining.getAll().get(i).getId());
+                        model.setIdJenisTraining(dbEventTraining.getAll().get(i).getIdJenisTraining());
+                        model.setDateEvent(dbEventTraining.getAll().get(i).getTanggalEvent());
+                        model.setIdTraining(dbEventTraining.getAll().get(i).getIdTraining());
+                        listTraining.add(model);
+                    }
+                } catch (Exception e) {
+                    APP.log("" + e);
+                }
+            }
+            LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+            list_data_training.setHasFixedSize(true);
+            list_data_training.setLayoutManager(mLayoutManager);
+            trainingLogAdapter = new TrainingLogAdapter(getBaseActivity(), listTraining, new TrainingLogAdapter.ClickListener() {
+                @Override
+                public void onRemove(int posisi) {
+                    APP.log("id : "+posisi);
+                    dbEventLog.deleteAll(posisi);
+                    dbEventTraining.deleteAll(posisi);
+                    trainingLogAdapter.removeList(posisi);
+                    calendarView.invalidate();
+                    calendarView.removeDecorators();
+                    calendarView.state().edit()
+                            .setFirstDayOfWeek(Calendar.SUNDAY)
+                            .setCalendarDisplayMode(CalendarMode.MONTHS)
+                            .commit();
+
+                    calendarView.addDecorators(
+                            new HighlightWeekendsDecorator(),
+                            new OneDayDecorator()
+                    );
+                    getEventBymonth();
+                }
+
+                @Override
+                public void addData(int id) {
+                    tambahData(id);
+                }
+            });
+            list_data_training.setAdapter(trainingLogAdapter);
+            if (listTraining.size()>0){
+                formTraining.setVisibility(View.VISIBLE);
+            }else{
+                formTraining.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -350,5 +460,78 @@ public class LatihanFragment extends BaseFragment implements OnDateSelectedListe
             }catch (Exception e){}
             getBaseActivity().showAlertDialog(model.getNamaClass(), String.valueOf(formatter.format(dateStart))+" "+model.getJamEvent());
         }
+    }
+
+    private void tampilData() {
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.training_detail);
+        ArrayList<TrainingModel> trainingModels = new ArrayList<>();
+        if (listTraining.size()>0){
+            for (int i = 0; i<listTraining.size(); i++){
+                TrainingModel model = new TrainingModel();
+                model.setId(listTraining.get(i).getId());
+                model.setJenisTraining(listTraining.get(i).getJenisTraining());
+                trainingModels.add(model);
+            }
+        }
+        RecyclerView list_data = (RecyclerView) dialog.findViewById(R.id.list_data);
+        TextViewBold close = (TextViewBold) dialog.findViewById(R.id.close_x_text);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        list_data.setHasFixedSize(true);
+        list_data.setLayoutManager(mLayoutManager);
+        JenisTrainingAdapter trainingAdapter = new JenisTrainingAdapter(getBaseActivity(), trainingModels, new JenisTrainingAdapter.ClickListener() {
+            @Override
+            public void onCLick(int id, String nameLabel) {
+                APP.log("posisi : "+id+", "+nameLabel);
+                dialog.dismiss();
+                AddTrainingFragment fragment = new AddTrainingFragment();
+                Bundle args = new Bundle();
+                args.putInt("id", id);
+                args.putString("nama_label", nameLabel);
+                fragment.setArguments(args);
+                DashboardActivity dashboard = DashboardActivity.instance;
+                dashboard.pushFragmentDashboard(fragment);
+            }
+        });
+        list_data.setAdapter(trainingAdapter);
+        dialog.show();
+    }
+
+    private void tambahData(int id) {
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.add_data_training);
+        TextViewBold close = (TextViewBold) dialog.findViewById(R.id.close_x_text);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        EditText input_weight = (EditText) dialog.findViewById(R.id.input_weight);
+        EditText input_reps = (EditText) dialog.findViewById(R.id.input_reps);
+        EventLogModel eventLogModel = new EventLogModel();
+        eventLogModel.setId(dbEventLog.getDataById());
+        eventLogModel.setIdEventTraining(id);
+        eventLogModel.setValue_1(input_weight.getText().toString().trim());
+        eventLogModel.setValue_2(input_reps.getText().toString().trim());
+        ButtonRegular save_btn = (ButtonRegular) dialog.findViewById(R.id.save_btn);
+        save_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbEventLog.parse(eventLogModel);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }

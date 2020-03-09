@@ -43,13 +43,13 @@
     </string-array>
 
     <string-array name="hari">
+        <item>Sunday</item>
         <item>Monday</item>
         <item>Tuesday</item>
         <item>Wednesday</item>
         <item>Thursday</item>
         <item>Friday</item>
         <item>Saturday</item>
-        <item>Sunday</item>
     </string-array>
 
     <string-array name="menuFlash">
@@ -102,8 +102,10 @@
 
     <string name="add_new_event">Add Schedule</string>
     <string name="add_training">Add Training Log</string>
+    <string name="label_training">Training Log</string>
     <string name="add_reminder">Add Reminder</string>
     <string name="select_class">Select Classes</string>
+    <string name="select_exercises">Select Exercises</string>
     <string name="select_branch">Select Branch</string>
     <string name="select_clock">Select Clock</string>
     <string name="select_date">Select Date</string>
@@ -134,4 +136,6 @@ trainer, aerobics room, spinning room). Aerobic classes that are varied, complet
     <string name="label_tanya">Question</string>
     <string name="label_jawab">Answer</string>
     <string name="label_jadwal_now">Timetable</string>
+    <string name="label_jadwal_today">Timetable Today</string>
+    <string name="label_empty">Timetable Empty</string>
 </resources>

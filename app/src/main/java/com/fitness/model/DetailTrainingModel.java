@@ -4,6 +4,7 @@ public class DetailTrainingModel {
     private int id;
     private String training;
     private String idTraining;
+    private boolean status;
 
     public int getId() {
         return id;
@@ -27,5 +28,13 @@ public class DetailTrainingModel {
 
     public void setIdTraining(String idTraining) {
         this.idTraining = idTraining;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

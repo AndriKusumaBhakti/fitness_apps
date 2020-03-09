@@ -5,9 +5,13 @@ import android.database.sqlite.SQLiteDatabase;
 import com.fitness.database.BaseEntity;
 import com.fitness.entities.ClassEntity;
 import com.fitness.entities.ClubEntity;
+import com.fitness.entities.DetailTrainingEntity;
 import com.fitness.entities.EventClubEntity;
 import com.fitness.entities.EventEntity;
+import com.fitness.entities.EventLogEntity;
+import com.fitness.entities.EventTrainingEntity;
 import com.fitness.entities.LanguageEntity;
+import com.fitness.entities.TrainingEntity;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
@@ -17,7 +21,7 @@ import java.sql.SQLException;
 
 public class DBHelper extends OrmLiteSqliteOpenHelper {
 
-    private static final int DATABASE_VERSION = 20;
+    private static final int DATABASE_VERSION = 30;
     private Context context;
 
     public DBHelper(Context context) {
@@ -45,6 +49,10 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTableIfNotExists(connectionSource, EventClubEntity.class);
             TableUtils.createTableIfNotExists(connectionSource, ClubEntity.class);
             TableUtils.createTableIfNotExists(connectionSource, ClassEntity.class);
+            TableUtils.createTableIfNotExists(connectionSource, TrainingEntity.class);
+            TableUtils.createTableIfNotExists(connectionSource, DetailTrainingEntity.class);
+            TableUtils.createTableIfNotExists(connectionSource, EventTrainingEntity.class);
+            TableUtils.createTableIfNotExists(connectionSource, EventLogEntity.class);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -62,6 +70,10 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, EventClubEntity.class, true);
             TableUtils.dropTable(connectionSource, ClubEntity.class, true);
             TableUtils.dropTable(connectionSource, ClassEntity.class, true);
+            TableUtils.dropTable(connectionSource, TrainingEntity.class, true);
+            TableUtils.dropTable(connectionSource, DetailTrainingEntity.class, true);
+            TableUtils.dropTable(connectionSource, EventTrainingEntity.class, true);
+            TableUtils.dropTable(connectionSource, EventLogEntity.class, true);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -91,6 +103,10 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, EventClubEntity.class, true);
             TableUtils.dropTable(connectionSource, ClubEntity.class, true);
             TableUtils.dropTable(connectionSource, ClassEntity.class, true);
+            TableUtils.dropTable(connectionSource, TrainingEntity.class, true);
+            TableUtils.dropTable(connectionSource, DetailTrainingEntity.class, true);
+            TableUtils.dropTable(connectionSource, EventTrainingEntity.class, true);
+            TableUtils.dropTable(connectionSource, EventLogEntity.class, true);
 
             APP.removePreference(context, Preference.TOKEN);
             createTable();

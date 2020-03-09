@@ -273,7 +273,7 @@ public class DetailFlashFitnessFragment extends BaseFragment  implements OnMapRe
 
         clockSwitcher = (TextSwitcher) view.findViewById(R.id.ts_clock);
         clockSwitcher.setFactory(new TextViewFactory(R.style.ClockTextView, false));
-        clockSwitcher.setCurrentText(hari[Integer.parseInt(dataMaps.get(0).getHari())-1]+", "+dataMaps.get(0).getJamStart()+" - "+dataMaps.get(0).getJamEnd());
+        clockSwitcher.setCurrentText(hari[Integer.parseInt(dataMaps.get(0).getHari())]+", "+dataMaps.get(0).getJamStart()+" - "+dataMaps.get(0).getJamEnd());
 
         descriptionsSwitcher = (TextSwitcher) view.findViewById(R.id.ts_description);
         descriptionsSwitcher.setInAnimation(getBaseActivity(), android.R.anim.fade_in);
