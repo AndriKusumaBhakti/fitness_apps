@@ -119,7 +119,7 @@ public class AddEventFragment extends BaseFragment {
 
                 TimePickerDialog mTimePicker;
                 final BooleanModel isShowing = new BooleanModel(true);
-                mTimePicker = new TimePickerDialog(getBaseActivity(), new TimePickerDialog.OnTimeSetListener() {
+                mTimePicker = new TimePickerDialog(getBaseActivity(), R.style.TimePicker, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         if (!isShowing.isValue()) {
